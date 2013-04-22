@@ -1,0 +1,20 @@
+[v] login
+[v] logout
+[v] melihat profil
+[v] mengubah profil
+[v] upgrade status
+[v] melihat cv
+[v] mengubah cv
+[v] mencari lowongan
+[v] melihat lowongan sebagai seeker
+[v] mendaftar lowongan
+[v] membatalkan pendaftaran
+[v] mengubah jadwal wawancara
+[v] mengajukan lowongan
+[v] melihat lowongan sebagai provider
+[v] membatalkan lowongan
+[v] mengubah lowongan
+[v] melihat daftar pendaftar
+[v] mengubah status pendaftar
+[v] melihat cv pendaftar
+[v] memoderasi lowongan

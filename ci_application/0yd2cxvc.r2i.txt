@@ -1,0 +1,17 @@
+﻿cv_ubah_view resolve conflict
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# Not currently on any branch.
+# You are currently rebasing.
+#   (all conflicts fixed: run "git rebase --continue")
+#
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   views/Ajukan_deskripsi_view.php
+#	modified:   views/Ajukan_judul_tipe_view.php
+#	modified:   views/Cv_ubah_view.php
+#	modified:   views/Lowongan_ubah_view.php
+#	modified:   views/Profil_ubah_view.php
+#
+
