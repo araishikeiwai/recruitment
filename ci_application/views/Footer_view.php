@@ -1,3 +1,12 @@
+<!--    
+- View - Footer
+-  
+- Footer tiap halaman
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel
+- @copyright recrUItment, 24-Apr-2013
+- @version 1.1.0.2
+-->
 <div class="page">
         <div class="nav-bar">
             <div class="nav-bar-inner padding10 bg-color-orange" style="margin-top:25px;">

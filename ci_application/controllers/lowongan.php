@@ -1,7 +1,23 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+* Controller - Lowongan
+* 
+* Menghandle segala keperluan yang berhubungan dengan lowongan, baik lihat lowongan, ajukan lowongan,
+* hapus lowongan, lihat pendaftar, dan lain-lain.
+* Digunakan untuk keperluan yang berhubungan dengan lowongan bagi seeker dan provider
+*
+* @author Ricky Arifandi Daniel, Erryan Sazany
+* @copyright recrUItment, 24-Apr-2013
+* @version 1.1.0.2
+* 
+*/
 class Lowongan extends CI_Controller {
 
+    /**
+    * Mengkonstruksi controller dan melakukan pengaturan validasi, lalu me-load model untuk
+    * wawancara, lowongan, pendaftar, reviwq, dan pengguna.
+    */
     public function __construct() {
         parent::__construct();
         $this->load->library('form_validation');
@@ -16,10 +32,20 @@ class Lowongan extends CI_Controller {
         $this->load->model('pengguna_model');
     }
 
+    /**
+    * Mengalihkan halaman menuju halaman pencarian lowongan
+    */
     public function index() {
         redirect('cari');
     }
 
+    /**
+    * Mengambil data-data terkait lowongan yang akan dilihat oleh admin, seeker, atau provider dari
+    * database melalui model, lalu meneruskan data-data tersebut ke halaman lowongan_view sebagai
+    * halaman deskripsi lowongan
+    *
+    * @param integer $id_lowongan nomor identitas lowongan sesuai database
+    */
     public function lihat($id_lowongan) {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -36,14 +62,25 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Mengkontrol proses pengajuan suatu lowongan oleh provider. Dibagi ke dalam 3 tahap antara lain:
+    * 1. Pengisian judul dan tipe lowongan (langsung disimpan)
+    * 2. Pengisian deskripsi dan persyaratan lowongan
+    * 3. Pengisian slot jadwal wawancara - opsional
+    *
+    * @param char $par penentu branch yang diambil sesuai tahapan pengajuan yang sedang dijalani
+    */
     public function ajukan($par = '') {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
         } else {
             if ($par == '') {
+                // me-load halaman pengisian judul dan tipe lowongan
                 $data = array('query' => '');
                 $this -> load -> view('ajukan_judul_tipe_view', $data);
             } else if ($par == '1') {
+                // melakukan validasi judul dan tipe, jika lolos maka simpan lowongan, lalu
+                // load halaman pengisian deskripsi dan persyaratan lowongan
                 $this -> form_validation -> set_rules('judul', 'Judul', 'required|callback_cek_judul_unik');
                 
                 if ($this -> form_validation -> run() == FALSE) {
@@ -61,6 +98,8 @@ class Lowongan extends CI_Controller {
                     $this -> load -> view('ajukan_deskripsi_view', $data);
                 }
             } else if ($par == '2') {
+                // mengecek isian deskripsi dan persyaratan, lalu me-load halaman pengisian 
+                // jadwal wawancara jika dibutuhkan
                 $this -> form_validation -> set_rules('deskripsi', 'Deskripsi', 'required');
                 $this -> form_validation -> set_rules('fakultas[]', 'Fakultas', 'required');
                 $this -> form_validation -> set_rules('role[]', 'Angkatan/Role', 'required');
@@ -128,6 +167,7 @@ class Lowongan extends CI_Controller {
                     }
                 }
             } else if ($par == '3') {
+                // menyimpan slot jadwal wawancara yang dimasukkan ke database
                 $data = array();
                 $data['id_lowongan'] = $this -> input -> post('id_lowongan');
                 $jml_wawancara = $this -> input -> post('jml_wawancara');
@@ -154,6 +194,12 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Melakukan validasi persyaratan judul lowongan
+    * 
+    * @param string $judul judul lowongan yang dimasukkan
+    * @return boolean TRUE judul tidak duplikat, FALSE jika judul duplikat
+    */
     public function cek_judul_unik($judul) {
         $data['judul'] = $judul;
 
@@ -167,6 +213,12 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Melakukan validasi persyaratan judul lowongan setelah terdeteksi duplikat
+    * 
+    * @param string $judul judul lowongan yang dimasukkan
+    * @return boolean TRUE judul tidak duplikat, FALSE jika judul duplikat
+    */
     public function cek_judul_unik_ubah($judul) {
         $data['judul'] = $judul;
 
@@ -182,6 +234,12 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Melakukan validasi persyaratan usia
+    * 
+    * @param integer $usia batas usia yang dimasukkan
+    * @return boolean TRUE usia valid, FALSE jika usia tidak valid
+    */
     public function cek_usia($usia) {
         $min = $this -> input -> post('usia_min');
         if ($usia < $min) {
@@ -192,6 +250,11 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Me-load halaman pengubahan lowongan
+    * 
+    * @param integer $id_lowongan nomor identitas lowongan sesuai database
+    */
     public function ubah($id_lowongan) {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -206,6 +269,11 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Mengkontrol proses pendaftaran pengguna pada lowongan tertentu
+    * 
+    * @param integer $id_lowongan nomor identitas lowongan sesuai database
+    */
     public function daftar($id_lowongan) {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -235,6 +303,11 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Mengkontrol proses pembatalan pendaftaran pengguna pada lowongan tertentu
+    * 
+    * @param integer $id_lowongan nomor identitas lowongan sesuai database
+    */
     public function batal_daftar($id_lowongan) {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -262,6 +335,11 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Menyimpan pilihan tanggal dan waktu wawancara suatu pengguna
+    * 
+    * @param integer $id_lowongan nomor identitas lowongan sesuai database
+    */
     public function simpan_jadwal($id_lowongan) {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -278,6 +356,11 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Mengkontrol proses pengubahan pilihan tanggal dan waktu wawancara suatu pengguna
+    * 
+    * @param integer $id_lowongan nomor identitas lowongan sesuai database
+    */
     public function ubah_wawancara($id_lowongan) {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -304,6 +387,13 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Mengkontrol proses verifikasi data pengguna terhadap persyaratan lowongan
+    * 
+    * @param integer $id_lowongan nomor identitas lowongan sesuai database
+    * @param string $username username pengguna
+    * @return boolean TRUE jika data pengguna memenuhi seluruh persyaratan lowongan, FALSE jika tidak
+    */
     public function verifikasi_data($id_lowongan, $username) {
         $lowongan = $this -> lowongan_model -> get_lowongan($id_lowongan);
         $pengguna = $this -> pengguna_model -> get_pengguna($username);
@@ -337,6 +427,11 @@ class Lowongan extends CI_Controller {
         return $oke;
     }
 
+    /**
+    * Mengambil pengguna-pengguna yang terdaftar di suatu lowongan dan me-load view list pendaftar lowongan
+    * 
+    * @param integer $id_lowongan nomor identitas lowongan sesuai database
+    */
     public function pendaftar($id_lowongan) {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -358,6 +453,9 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Mengkontrol pengubahan status pendaftar (melamar/diterima/ditolak)
+    */
     public function ubah_pendaftar() {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -380,6 +478,9 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Mengkontrol penyimpanan data-data lowongan tertentu yang diajukan/diubah
+    */
     public function simpan_lowongan() {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -465,6 +566,11 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Mengkontrol pembatalan pengajuan suatu lowongan
+    *
+    * @param integer $id_lowongan nomor identitas lowongan sesuai database
+    */
     public function batal($id_lowongan) {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -480,6 +586,12 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Mekanisme sistem agar provider dapat melihat isian cv salah satu pendaftar pada lowongan yang ia buka
+    *
+    * @param integer $id_lowongan nomor identitas lowongan sesuai database
+    * @param string $username username suatu pengguna
+    */
     public function lihat_cv($id_lowongan, $username) {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -510,6 +622,9 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * unused in this version
+    */
     public function beri_review() {
         
     }

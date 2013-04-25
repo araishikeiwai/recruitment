@@ -1,3 +1,12 @@
+<!--    
+- View - Pilih Wawancara
+-  
+- Halaman pemilihan jadwal wawancara bagi pendaftar
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel
+- @copyright recrUItment, 24-Apr-2013
+- @version 1.1.0.2
+-->
     <?php include('header_view_0.php'); ?>
 
     <title>Pilih Jadwal Wawancara</title>

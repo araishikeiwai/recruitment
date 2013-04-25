@@ -1,5 +1,13 @@
     <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">
-
+<!--    
+- View - Header
+-  
+- Header tiap halaman
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel
+- @copyright recrUItment, 24-Apr-2013
+- @version 1.1.0.2
+-->
     <?php include('jscss.php') ?>
     
     <body class="metrouicss">

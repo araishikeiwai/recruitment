@@ -1,7 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+* Controller - Profil
+* 
+* Menghandle segala keperluan yang berhubungan dengan profil pengguna
+* Digunakan untuk keperluan melihat dan mengubah profil
+*
+* @author Ricky Arifandi Daniel
+* @copyright recrUItment, 24-Apr-2013
+* @version 1.1.0.2
+* 
+*/
 class Profil extends CI_Controller {
 
+    /**
+    * Mengkonstruksi controller dan melakukan pengaturan validasi, lalu me-load model untuk pengguna.
+    */
     public function __construct() {
         parent::__construct();
         $this->load->library('form_validation');
@@ -23,6 +37,9 @@ class Profil extends CI_Controller {
         $this -> load -> library('upload', $config);
     }
 
+    /**
+    * Mengalihkan halaman menuju halaman utama (halaman profil pengguna)
+    */
     public function index()
     {
         if (!$this->session->userdata('logged_in')) {
@@ -33,6 +50,11 @@ class Profil extends CI_Controller {
         }
     }
 
+    /**
+    * Mengalihkan halaman menuju halaman profil
+    *
+    * @param  string $username username pengguna tertentu
+    */
     public function lihat($username = '') {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -49,6 +71,9 @@ class Profil extends CI_Controller {
         }
     }
 
+    /**
+    * Me-load view ubah profil sebagai halaman pengubahan profil
+    */
     public function ubah() {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -58,6 +83,9 @@ class Profil extends CI_Controller {
         }
     }
 
+    /**
+    * Melakukan penyimpanan data profil ke database melalui model
+    */
     public function simpan($par = 0) {
         if (!$this->session->userdata('logged_in')) {
             redirect('');

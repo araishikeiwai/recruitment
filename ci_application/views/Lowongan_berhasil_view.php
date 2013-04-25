@@ -1,3 +1,12 @@
+<!--    
+- View - Ajukan Judul Tipe
+-  
+- Halaman berisi pesan berhasil mendaftar pada suatu lowongan
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel
+- @copyright recrUItment, 24-Apr-2013
+- @version 1.1.0.2
+-->
     <?php include('header_view_0.php'); ?>
 
     <title>Berhasil Mendaftar Lowongan</title>

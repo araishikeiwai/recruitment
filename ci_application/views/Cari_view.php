@@ -1,5 +1,13 @@
     <?php include('header_view_0.php'); ?>
-
+<!--    
+- View - Cari
+-  
+- Halaman hasil pencarian lowongan
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel, Ahmad Faruq Waqfi
+- @copyright recrUItment, 24-Apr-2013
+- @version 1.1.0.2
+-->
     <title>Hasil Pencarian</title>
 
     <?php include('header_view.php'); ?>

@@ -1,12 +1,30 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+* Controller - Authentication
+* 
+* Mengkontrol keperluan autentikasi akun pengguna.
+* Digunakan untuk keperluan autentikasi bagi admin, seeker, dan provider
+*
+* @author Ricky Arifandi Daniel
+* @copyright recrUItment, 24-Apr-2013
+* @version 1.1.0.2
+* 
+*/
 class Authentication extends CI_Controller {
 
+    /**
+    * Mengkonstruksi controller dan me-load model pengguna_model
+    */
     public function __construct() {
         parent::__construct();
         $this->load->model('pengguna_model');
     }
 
+    /**
+    * Mengatur halaman mana yang akan ditampilkan, apakah halaman home (sudah login) atau 
+    * halaman login (belum login)
+    */
     public function index()
     {
         if (!$this->session->userdata('logged_in')) {
@@ -17,10 +35,17 @@ class Authentication extends CI_Controller {
         }
     }
 
+    /**
+    * unused for this version
+    */
     public function auth() {
 
     }
 
+    /**
+    * Memulai session, jika pengguna yang masuk belum terdaftar, maka akan langsung dibuatkan
+    * pengguna baru.
+    */
     public function start_session() {
         $username = strtolower($this->input->post('username', true));
         if ($username != "") {
@@ -50,6 +75,9 @@ class Authentication extends CI_Controller {
         redirect('');
     }
 
+    /**
+    * unused for this version
+    */
     public function delete_session() {
         $this -> session -> sess_destroy();
         redirect('');

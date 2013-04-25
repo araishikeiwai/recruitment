@@ -1,7 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+* Controller - Cv
+* 
+* Menghandle segala keperluan yang berhubungan dengan CV pengguna
+* Digunakan untuk keperluan yang berhubungan dengan CV bagi seeker dan provider
+*
+* @author Ricky Arifandi Daniel, Ahmad Faruq Waqfi
+* @copyright recrUItment, 24-Apr-2013
+* @version 1.1.0.2
+* 
+*/
 class Cv extends CI_Controller {
 
+    /**
+    * Mengkonstruksi controller dan melakukan pengaturan validasi, lalu me-load model untuk pengguna.
+    */
     public function __construct() {
         parent::__construct();
         $this->load->library('form_validation');
@@ -12,6 +26,9 @@ class Cv extends CI_Controller {
         $this->load->model('pengguna_model');
     }
 
+    /**
+    * Mengalihkan halaman menuju halaman isian CV
+    */
     public function index($par = 0) {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -26,6 +43,9 @@ class Cv extends CI_Controller {
         }
     }
 
+    /**
+    * Mengalihkan halaman menuju halaman ubah CV
+    */
     public function ubah() {
          if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -35,6 +55,9 @@ class Cv extends CI_Controller {
         }
     }
 
+    /**
+    * Melakukan penyimpanan isian CV ke database melalui model
+    */
     public function simpan() {
         if (!$this->session->userdata('logged_in')) {
             redirect('');

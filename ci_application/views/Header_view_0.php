@@ -1,3 +1,12 @@
+<!--    
+- View - Header 0
+-  
+- Inisialisasi segala variabel yang akan dibutuhkan dalam pembuatan halaman
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel
+- @copyright recrUItment, 24-Apr-2013
+- @version 1.1.0.2
+-->
 <?php
     if ($query == 'multiLihat') {
         $row['lowongan'] = $lowongan -> row_array();

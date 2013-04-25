@@ -1,5 +1,13 @@
     <?php include('header_view_0.php'); ?>
-
+<!--    
+- View - Lowongan Gagal
+-  
+- Halaman berisi pesan gagal mendaftar pada suatu lowongan
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel
+- @copyright recrUItment, 24-Apr-2013
+- @version 1.1.0.2
+-->
     <title>Gagal Mendaftar Lowongan</title>
     
     <?php include('header_view.php'); ?>

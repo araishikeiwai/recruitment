@@ -1,5 +1,13 @@
     <?php include('header_view_0.php'); ?>
-
+<!--    
+- View - Cari Lanjut
+-  
+- Halaman pencarian lanjut terhadap suatu lowongan
+-
+- @author Nur Ulul Asman, Erryan Sazany, Ricky Arifandi Daniel
+- @copyright recrUItment, 24-Apr-2013
+- @version 1.1.0.2
+-->
     <title>Pencarian Lanjut</title>
 
     <?php include('header_view.php'); ?>

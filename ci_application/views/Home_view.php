@@ -1,3 +1,12 @@
+<!--    
+- View - Home
+-  
+- Halaman login sistem
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel
+- @copyright recrUItment, 24-Apr-2013
+- @version 1.1.0.2
+-->
 <!DOCTYPE html>
 <html>
   <head>

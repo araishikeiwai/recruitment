@@ -1,7 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+* Controller - Cari
+* 
+* Mengkontrol proses pencarian terhadap suatu lowongan
+* Digunakan untuk keperluan pencarian lowongan bagi seeker dan provider
+*
+* @author Ricky Arifandi Daniel, Erryan Sazany
+* @copyright recrUItment, 24-Apr-2013
+* @version 1.1.0.2
+* 
+*/
 class Cari extends CI_Controller {
 
+    /**
+    * Mengkonstruksi controller dan melakukan pengaturan  validasi, lalu me-load lowongan_model
+    */
     public function __construct() {
         parent::__construct();
         $this->load->library('form_validation');
@@ -11,6 +25,9 @@ class Cari extends CI_Controller {
         $this->load->model('lowongan_model');
     }
 
+    /**
+    * Me-load view cari_utama_view sebagai halaman pencarian utama
+    */
     public function index() {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -19,6 +36,9 @@ class Cari extends CI_Controller {
         }
     }
 
+    /**
+    * Me-load view cari_lanjut_view sebagai halaman untuk pencarian lanjutan
+    */
     public function cari_lanjut() {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -28,7 +48,11 @@ class Cari extends CI_Controller {
         }
     }
 
-    //tambahan
+    /**
+    * Mengkonstruksi query kriteria lanjutan untuk klausa 'WHERE', mengirimkannya kepada model untuk di-retrieve dari
+    * database menuju controller ini kembali, dan meneruskan data hasil query pencarian tersebut pada view
+    * cari_view sebagai halaman hasil pencarian lowongan.
+    */
     public function cari_lanjut_hasil() {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -106,6 +130,13 @@ class Cari extends CI_Controller {
         }
     }
 
+    /**
+    * Melakukan validasi kriteria pencarian menurut usia, dengan melakukan pengecekan pada isian 
+    * textbox usia.
+    * 
+    * @param integer $usia isian pada textbox usia
+    * @return boolean TRUE jika isian valid, FALSE jika tidak valid
+    */
     public function cek_usia($usia) {
         $min = $this -> input -> post('usia_min');
         if ($min != '' && $usia != '') {
@@ -120,11 +151,18 @@ class Cari extends CI_Controller {
         }
     }
 
-    //tambahan
+    /**
+    * Melakukan redirect ke halaman pencarian utama karena batal melakukan pencarian lanjutan
+    */
     public function cari_lanjut_batal() {
         redirect('cari');
     }
 
+    /**
+    * Mengkonstruksi query kriteria untuk pencarian biasa untuk dimasukkan pada klausa 'WHERE', mengirimkannya
+    * kepada model untuk di-retrieve dari database menuju controller ini kembali, dan meneruskan data hasil 
+    * query pencarian tersebut pada view cari_view sebagai halaman hasil pencarian lowongan.
+    */
     public function cari_hasil() {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -135,6 +173,11 @@ class Cari extends CI_Controller {
         }
     }
 
+    /**
+    * Mengkonstruksi query kriteria untuk pencarian semua lowongan yang telah dimoderasi untuk dimasukkan pada
+    * klausa 'WHERE', mengirimkannya kepada model untuk di-retrieve dari database menuju controller ini kembali, 
+    * dan meneruskan data hasil query pencarian tersebut pada view cari_view sebagai halaman hasil pencarian lowongan.
+    */
     public function semua() {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
