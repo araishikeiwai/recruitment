@@ -32,7 +32,7 @@
                                         <td id="identitas"><?php echo $row['fakultas']; ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Angkatan/Role</td>
+                                        <td>Role/Angkatan</td>
                                         <td id="identitas"><?php echo $row['role']; ?></td>
                                     </tr>
                                     <tr>

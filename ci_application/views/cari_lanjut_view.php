@@ -170,7 +170,7 @@
                                         </tr>
                                         <tr>
                                             <td valign="top" style="width: 237px;">
-                                                Angkatan/Role
+                                                Role/Angkatan
                                                 <a href="javascript:;" onclick="pilih('role[]')"><h6>Pilih/Hapus Semua</h6></a>
                                                 <?php $role = array('2008', '2009', '2010', '2011', '2012', 'Alumni', 'Staf', 'Dosen'); ?>
                                             </td>

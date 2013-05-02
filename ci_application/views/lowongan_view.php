@@ -140,7 +140,7 @@
                                     </tr>
                                     <tr>
                                         <td valign="top" style="width: 237px;">
-                                            Angkatan/Role
+                                            Role/Angkatan
                                         </td>
                                         <td>
                                             <p>

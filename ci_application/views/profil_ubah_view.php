@@ -136,7 +136,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td id="t_head">Angkatan/Role<font style="color:red">*</font></td>
+                                <td id="t_head">Role/Angkatan<font style="color:red">*</font></td>
                                 <td id="identitas">
                                     <div class="input-control select">
                                         <?php

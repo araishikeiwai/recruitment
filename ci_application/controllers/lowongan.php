@@ -102,7 +102,7 @@ class Lowongan extends CI_Controller {
                 // jadwal wawancara jika dibutuhkan
                 $this -> form_validation -> set_rules('deskripsi', 'Deskripsi', 'required');
                 $this -> form_validation -> set_rules('fakultas[]', 'Fakultas', 'required');
-                $this -> form_validation -> set_rules('role[]', 'Angkatan/Role', 'required');
+                $this -> form_validation -> set_rules('role[]', 'Role/Angkatan', 'required');
                 
                 $this -> form_validation -> set_rules('usia_min', 'Usia Minimum', 'required|integer');
                 $this -> form_validation -> set_rules('usia_max', 'Usia Maksimum', 'required|integer|callback_cek_usia');
@@ -491,7 +491,7 @@ class Lowongan extends CI_Controller {
                 $this -> form_validation -> set_rules('judul', 'Judul', 'required|callback_cek_judul_unik_ubah');
                 $this -> form_validation -> set_rules('deskripsi', 'Deskripsi', 'required');
                 $this -> form_validation -> set_rules('fakultas[]', 'Fakultas', 'required');
-                $this -> form_validation -> set_rules('role[]', 'Angkatan/Role', 'required');
+                $this -> form_validation -> set_rules('role[]', 'Role/Angkatan', 'required');
                 
                 $this -> form_validation -> set_rules('usia_min', 'Usia Minimum', 'required|integer');
                 $this -> form_validation -> set_rules('usia_max', 'Usia Maksimum', 'required|integer|callback_cek_usia');

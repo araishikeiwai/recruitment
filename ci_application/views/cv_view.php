@@ -42,7 +42,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            Angkatan/Role
+                                            Role/Angkatan
                                         </td>
                                         <td>
                                             <?php echo $row['role']; ?>

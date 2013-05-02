@@ -125,7 +125,7 @@
                                 <td id="identitas"><?php echo $row['fakultas']; ?></td>
                             </tr>
                             <tr>
-                                <td id="t_head">Angkatan/Role</td>
+                                <td id="t_head">Role/Angkatan</td>
                                 <td id="identitas"><?php echo $row['role']; ?></td>
                             </tr>
                             <tr>

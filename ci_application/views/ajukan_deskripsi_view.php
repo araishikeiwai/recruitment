@@ -148,7 +148,7 @@
                                         </tr>
                                         <tr>
                                             <td valign="top" style="width: 237px;">
-                                                Angkatan/Role<font style="color:red">*</font>
+                                                Role/Angkatan<font style="color:red">*</font>
                                                 <a href="javascript:;" onclick="pilih('role[]')"><h6>Pilih/Hapus Semua</h6></a>
                                                 <?php echo form_error('role[]'); ?>
                                                 <?php $role = array('2008', '2009', '2010', '2011', '2012', 'Alumni', 'Staf', 'Dosen'); ?>

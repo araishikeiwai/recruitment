@@ -7,7 +7,7 @@
 *
 * @author Ricky Arifandi Daniel
 * @copyright recrUItment, 24-Apr-2013
-* @version 1.1.0.2
+* @version 1.2.0.0
 * 
 */
 class Pengguna_model extends CI_Model {
@@ -30,11 +30,10 @@ class Pengguna_model extends CI_Model {
     /**
     * Menambah pengguna baru ke dalam database
     *
-    * @param string $username username pengguna
+    * @param string $data berisi data baru pengguna
     */
-    public function create_pengguna($username) {
-        $this->db->set('username', $username);
-        $query = $this->db->insert('pengguna');
+    public function create_pengguna($data) {
+        $query = $this->db->insert('pengguna', $data);
 
         return $query;
     }
