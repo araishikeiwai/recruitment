@@ -32,7 +32,7 @@ class Cari extends CI_Controller {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
         } else{
-            $this -> load -> view('Cari_utama_view', array('query' => ''));
+            $this -> load -> view('cari_utama_view', array('query' => ''));
         }
     }
 
