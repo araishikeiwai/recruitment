@@ -18,7 +18,7 @@ class Tes_ldap_m extends CI_Model {
 
 function cek_ldap($username, $password)
     {
-        $conn = @ldap_connect("152.118.39.37");
+        $conn = @ldap_connect("ldap://152.118.39.37", 389);
         $opt = @ldap_set_option($conn, LDAP_OPT_PROTOCOL_VERSION, 3);
         //jika berhasil konek
         if($conn)

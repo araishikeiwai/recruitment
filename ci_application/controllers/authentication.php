@@ -8,7 +8,7 @@
 *
 * @author Ricky Arifandi Daniel
 * @copyright recrUItment, 24-Apr-2013
-* @version 1.1.0.2
+* @version 1.2.0.0
 * 
 */
 class Authentication extends CI_Controller {
@@ -19,27 +19,20 @@ class Authentication extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('pengguna_model');
+        $this->load->model('ldap_model');
     }
 
     /**
     * Mengatur halaman mana yang akan ditampilkan, apakah halaman home (sudah login) atau 
     * halaman login (belum login)
     */
-    public function index()
-    {
+    public function index() {
         if (!$this->session->userdata('logged_in')) {
-            $this->load->view('home_view');
+            $this->load->view('home_view', array('error_message' => 'none'));
         } else {
             $data = array('query' => $this -> pengguna_model -> get_pengguna($this -> session -> userdata('username')));
             $this->load->view('main_view', $data);
         }
-    }
-
-    /**
-    * unused for this version
-    */
-    public function auth() {
-
     }
 
     /**
@@ -48,31 +41,45 @@ class Authentication extends CI_Controller {
     */
     public function start_session() {
         $username = strtolower($this->input->post('username', true));
+        $password = $this -> input -> post('password', true);
+        
         if ($username != "") {
-            $logged_in = TRUE;
+            $ldap_result = $this -> ldap_model -> auth_ldap($username, $password);
 
-            // check if the user already exists in pengguna table, if not, create that user
-            // and insert it to the pengguna table
-            $query = $this -> pengguna_model -> get_pengguna($username);
-            if ($query -> num_rows() == 0) {
-                $query = $this -> pengguna_model -> create_pengguna($username);
+            if ($ldap_result == 'error_username') {
+                $this -> load -> view('home_view', array('error_message' => 'username'));
+            } else if ($ldap_result == 'error_password') {
+                $this -> load -> view('home_view', array('error_message' => 'password'));
+            } else if ($ldap_result == 'error_gagal_konek') {
+                $this -> load -> view('home_view', array('error_message' => 'koneksi'));
+            } else {
+                $logged_in = TRUE;
+
+                // check if the user already exists in pengguna table, if not, create that user
+                // and insert it to the pengguna table
                 $query = $this -> pengguna_model -> get_pengguna($username);
+                if ($query -> num_rows() == 0) {
+                    $query = $this -> pengguna_model -> create_pengguna($username);
+                    $query = $this -> pengguna_model -> get_pengguna($username);
+                }
+
+                $data = $query -> row_array();
+                $nama = $data['nama'];
+                $status = $data['status'];
+
+                $session_data = array(
+                    'username' => $username,
+                    'nama' => $nama,
+                    'status' => $status,
+                    'logged_in' => $logged_in
+                );
+
+                $this -> session -> set_userdata($session_data);
+                redirect('');
             }
-
-            $data = $query -> row_array();
-            $nama = $data['nama'];
-            $status = $data['status'];
-
-            $session_data = array(
-                'username' => $username,
-                'nama' => $nama,
-                'status' => $status,
-                'logged_in' => $logged_in
-            );
-
-            $this -> session -> set_userdata($session_data);
+        } else {
+            redirect('');
         }
-        redirect('');
     }
 
     /**

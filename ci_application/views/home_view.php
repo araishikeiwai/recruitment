@@ -5,7 +5,7 @@
 -
 - @author Nur Ulul Asman, Ricky Arifandi Daniel
 - @copyright recrUItment, 24-Apr-2013
-- @version 1.1.0.2
+- @version 1.2.0.0
 -->
 <!DOCTYPE html>
 <html>
@@ -50,6 +50,16 @@
                                                              'placeholder' => 'Password');
                                 echo form_password($password_attributes);
                                 echo "</div>";
+
+                                echo '<span style="color:white; font-size:12px">';
+                                if ($error_message == 'username') {
+                                    echo 'Username Anda tidak terdaftar di LDAP UI<br/><br/>';
+                                } else if ($error_message == 'password') {
+                                    echo 'Password Anda salah<br/><br/>';
+                                } else if ($error_message == 'koneksi') {
+                                    echo 'Terdapat masalah koneksi LDAP UI<br/><br/>';
+                                }
+                                echo '</span>';
 
                                 echo form_submit('login', 'Login');
 

@@ -1,0 +1,133 @@
+array(48) { 
+    ["objectclass"]=> array(10) {
+        ["count"]=> int(9) 
+        [0]=> string(3) "top" 
+        [1]=> string(6) "person" 
+        [2]=> string(20) "organizationalPerson" 
+        [3]=> string(13) "inetOrgPerson" 
+        [4]=> string(12) "posixAccount" 
+        [5]=> string(13) "shadowAccount" 
+        [6]=> string(12) "uiEduAccount" 
+        [7]=> string(12) "sambaAccount" 
+        [8]=> string(22) "inetLocalMailRecipient" 
+    } 
+    [0]=> string(11) "objectclass" 
+    ["cn"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(21) "RICKY ARIFANDI DANIEL" 
+    } 
+    [1]=> string(2) "cn" 
+    ["sn"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(21) "RICKY ARIFANDI DANIEL" 
+    } 
+    [2]=> string(2) "sn" 
+    ["uid"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(14) "ricky.arifandi" 
+    } 
+    [3]=> string(3) "uid" 
+    ["rid"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(6) "139366" 
+    } 
+    [4]=> string(3) "rid" 
+    ["uidnumber"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(6) "139366" 
+    } 
+    [5]=> string(9) "uidnumber" 
+    ["gidnumber"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(4) "2200" 
+    } 
+    [6]=> string(9) "gidnumber" 
+    ["mail"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(23) "ricky.arifandi@ui.ac.id" 
+    } 
+    [7]=> string(4) "mail" 
+    ["mailroutingaddress"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(21) "ricky.arifandi@ui.edu" 
+    } 
+    [8]=> string(18) "mailroutingaddress" 
+    ["mailhost"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(19) "makara.cso.ui.ac.id" 
+    } 
+    [9]=> string(8) "mailhost" 
+    ["homedirectory"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(41) "/home/fasilkom/mahasiswa/r/ricky.arifandi" 
+    } 
+    [10]=> string(13) "homedirectory" 
+    ["gecos"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(34) "RICKY ARIFANDI DANIEL - 1006671860" 
+    } 
+    [11]=> string(5) "gecos" 
+    ["role"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(9) "mahasiswa" 
+    } 
+    [12]=> string(4) "role" 
+    ["idmhs"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(10) "1006671860" 
+    } 
+    [13]=> string(5) "idmhs" 
+    ["kodeidentitas"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(10) "1006671860" 
+    } 
+    [14]=> string(13) "kodeidentitas" 
+    ["kodefakultas"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(2) "12" 
+    } 
+    [15]=> string(12) "kodefakultas" 
+    ["kodeorg"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(21) "01.00.12.01:mahasiswa" 
+    } 
+    [16]=> string(7) "kodeorg" 
+    ["hasaccessto"]=> array(6) { 
+        ["count"]=> int(5) 
+        [0]=> string(13) "mail.ui.ac.id" 
+        [1]=> string(19) "makara.cso.ui.ac.id" 
+        [2]=> string(16) "account.ui.ac.id" 
+        [3]=> string(6) "SIAKNG" 
+        [4]=> string(16) "hotspot.ui.ac.id" 
+    } 
+    [17]=> string(11) "hasaccessto" 
+    ["access12"]=> array(4) { 
+        ["count"]=> int(3) 
+        [0]=> string(6) "kawung" 
+        [1]=> string(6) "xavier" 
+        [2]=> string(14) "role-mahasiswa" 
+    } 
+    [18]=> string(8) "access12" 
+    ["loginshell"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(9) "/bin/bash" 
+    } 
+    [19]=> string(10) "loginshell" 
+    ["macaddress"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(12) "00216B0DFDA8" 
+    } 
+    [20]=> string(10) "macaddress" 
+    ["shadowmax"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(5) "99999" 
+    } 
+    [21]=> string(9) "shadowmax" 
+    ["shadowexpire"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(5) "15959" 
+    } 
+    [22]=> string(12) "shadowexpire" 
+    ["count"]=> int(23) 
+    ["dn"]=> string(95) "uid=ricky.arifandi,ou=Mahasiswa,ou=Users,ou=Fakultas Ilmu Komputer,o=Universitas Indonesia,c=ID" 
+} 
