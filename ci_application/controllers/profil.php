@@ -90,7 +90,6 @@ class Profil extends CI_Controller {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
         } else {
-            $this -> form_validation -> set_rules('nama', 'Nama', 'required');
             $this -> form_validation -> set_rules('email', 'Email', 'required|valid_email');
 
             if ($this -> form_validation -> run() == FALSE) {
@@ -99,15 +98,12 @@ class Profil extends CI_Controller {
             } else {
                 $data = array();
                 $data['status'] = $this -> input -> post('status');
-                $data['nama'] = $this -> input -> post('nama');
-                $data['fakultas'] = $this -> input -> post('fakultas');
-                $data['role'] = $this -> input -> post('role');
                 $data['jenis_kelamin'] = $this -> input -> post('jenis_kelamin');
                 $data['email'] = $this -> input -> post('email');
 
                 //var_dump($data);
                 $this -> pengguna_model -> update_pengguna($data);
-                $session_data = array('nama' => $data['nama'], 'status' => $data['status']);
+                $session_data = array('status' => $data['status']);
                 $this -> session -> set_userdata($session_data);
                 redirect('profil');
             }

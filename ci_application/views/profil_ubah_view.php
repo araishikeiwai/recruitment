@@ -53,6 +53,18 @@
                                 <td id="identitas"><input type="text" style="width:100%" readonly value="<?php echo $row['username']; ?>"/></td>
                             </tr>
                             <tr>
+                                <td id="t_head">Nama</td>
+                                <td id="identitas"><input type="text" style="width:100%" readonly value="<?php echo $row['nama']; ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td id="t_head">Fakultas</td>
+                                <td id="identitas"><input type="text" style="width:100%" readonly value="<?php echo $row['fakultas']; ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td id="t_head">Role/Angkatan</td>
+                                <td id="identitas"><input type="text" style="width:100%" readonly value="<?php echo $row['role']; ?>"/></td>
+                            </tr>
+                            <tr>
                                 <td id="t_head">Status</td>
                                 <td id="identitas">
                                     <?php
@@ -76,7 +88,7 @@
                             <?php } else { echo "<hr/>"; echo "<hr/>"; echo "<hr/>"; echo "<hr/>";  } ?>
 
                             <table id="hidden">
-                            <tr>
+                            <!--<tr>
                                 <td id="t_head">
                                     Nama<font style="color:red">*</font>
                                     <?php echo form_error('nama'); ?>
@@ -91,7 +103,7 @@
                                         echo form_input($form_attributes);
                                     ?>
                                 </td>
-                            </tr>
+                            </tr>-->
                             <tr>
                                 <td id="t_head">
                                     Email<font style="color:red">*</font>
@@ -108,7 +120,7 @@
                                     ?>
                                 </td>
                             </tr>
-                            <tr>
+                            <!--<tr>
                                 <td id="t_head">Fakultas<font style="color:red">*</font></td>
                                 <td id="identitas">
                                     <div class="input-control select">
@@ -154,7 +166,7 @@
                                         ?>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr>-->
                             <tr>
                                 <td id="t_head">Jenis Kelamin<font style="color:red">*</font></td>
                                 <td id="identitas">
