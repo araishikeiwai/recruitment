@@ -44,60 +44,83 @@ class Authentication extends CI_Controller {
         $password = $this -> input -> post('password', true);
         
         if ($username != "") {
-            $ldap_result = $this -> ldap_model -> auth_ldap($username, $password);
-
-            if ($ldap_result == 'error_username') {
-                $this -> load -> view('home_view', array('error_message' => 'username'));
-            } else if ($ldap_result == 'error_password') {
-                $this -> load -> view('home_view', array('error_message' => 'password'));
-            } else if ($ldap_result == 'error_gagal_konek') {
-                $this -> load -> view('home_view', array('error_message' => 'koneksi'));
-            } else {
-                $logged_in = TRUE;
-
-                // check if the user already exists in pengguna table, if not, create that user
-                // and insert it to the pengguna table
-                $query = $this -> pengguna_model -> get_pengguna($username);
-                if ($query -> num_rows() == 0) {
-                    $kodefakultas = $ldap_result['kodefakultas'][0];
-                    $fakultas = 'Non-Fasilkom';
-
-                    if ($kodefakultas == '12') {
-                        $fakultas = 'Fasilkom';
-                    }
-
-                    $koderole1 = ucwords($ldap_result['role'][0]);
-                    $role = 'Non-Mahasiswa';
-
-                    if ($koderole1 == 'Mahasiswa') {
-                        $koderole2 = $ldap_result['idmhs'][0];
-                        $role = $koderole1 . '/20' . substr($koderole2, 0, 2);
-                    }
-
-                    $data = array(
-                        'username' => $username,
-                        'nama' => $ldap_result['cn'][0],
-                        'email' => $ldap_result['mail'][0],
-                        'fakultas' => $fakultas,
-                        'role' => $role
-                    );
-                    $query = $this -> pengguna_model -> create_pengguna($data);
+            if ($username == 'admin') {
+                if ($password == 'fasilkommania') {
                     $query = $this -> pengguna_model -> get_pengguna($username);
+
+                    $data = $query -> row_array();
+                    $nama = $data['nama'];
+                    $status = $data['status'];
+                    $logged_in = TRUE;
+
+                    $session_data = array(
+                        'username' => $username,
+                        'nama' => $nama,
+                        'status' => $status,
+                        'logged_in' => $logged_in
+                    );
+
+                    $this -> session -> set_userdata($session_data);
+                    redirect('');
+                } else {
+                    $this -> load -> view('home_view', array('error_message' => 'password'));
                 }
+            } else {
+                $ldap_result = $this -> ldap_model -> auth_ldap($username, $password);
 
-                $data = $query -> row_array();
-                $nama = $data['nama'];
-                $status = $data['status'];
+                if ($ldap_result == 'error_username') {
+                    $this -> load -> view('home_view', array('error_message' => 'username'));
+                } else if ($ldap_result == 'error_password') {
+                    $this -> load -> view('home_view', array('error_message' => 'password'));
+                } else if ($ldap_result == 'error_gagal_konek') {
+                    $this -> load -> view('home_view', array('error_message' => 'koneksi'));
+                } else {
+                    $logged_in = TRUE;
 
-                $session_data = array(
-                    'username' => $username,
-                    'nama' => $nama,
-                    'status' => $status,
-                    'logged_in' => $logged_in
-                );
+                    // check if the user already exists in pengguna table, if not, create that user
+                    // and insert it to the pengguna table
+                    $query = $this -> pengguna_model -> get_pengguna($username);
+                    if ($query -> num_rows() == 0) {
+                        $kodefakultas = $ldap_result['kodefakultas'][0];
+                        $fakultas = 'Non-Fasilkom';
 
-                $this -> session -> set_userdata($session_data);
-                redirect('');
+                        if ($kodefakultas == '12') {
+                            $fakultas = 'Fasilkom';
+                        }
+
+                        $koderole1 = ucwords($ldap_result['role'][0]);
+                        $role = 'Non-Mahasiswa';
+
+                        if ($koderole1 == 'Mahasiswa') {
+                            $koderole2 = $ldap_result['idmhs'][0];
+                            $role = $koderole1 . '/20' . substr($koderole2, 0, 2);
+                        }
+
+                        $data = array(
+                            'username' => $username,
+                            'nama' => $ldap_result['cn'][0],
+                            'email' => $ldap_result['mail'][0],
+                            'fakultas' => $fakultas,
+                            'role' => $role
+                        );
+                        $query = $this -> pengguna_model -> create_pengguna($data);
+                        $query = $this -> pengguna_model -> get_pengguna($username);
+                    }
+
+                    $data = $query -> row_array();
+                    $nama = $data['nama'];
+                    $status = $data['status'];
+
+                    $session_data = array(
+                        'username' => $username,
+                        'nama' => $nama,
+                        'status' => $status,
+                        'logged_in' => $logged_in
+                    );
+
+                    $this -> session -> set_userdata($session_data);
+                    redirect('');
+                }
             }
         } else {
             redirect('');

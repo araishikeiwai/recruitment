@@ -58,6 +58,8 @@
                                     echo 'Password Anda salah<br/><br/>';
                                 } else if ($error_message == 'koneksi') {
                                     echo 'Terdapat masalah koneksi LDAP UI<br/><br/>';
+                                } else {
+                                    echo 'Silakan login menggunakan akun JUITA Anda<br/><br/>';
                                 }
                                 echo '</span>';
 
