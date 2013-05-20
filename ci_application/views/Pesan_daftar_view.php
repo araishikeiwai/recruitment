@@ -9,7 +9,7 @@
 - @version 1.1.0.2
 -->
 
-    <title>Hasil Pencarian</title>
+    <title>Daftar Pesan</title>
 
     <?php include('header_view.php'); ?>
 		
@@ -77,6 +77,9 @@
                                 </script>
                             </center>
                             <div class="span12 bg-color-red">
+                                <?php 
+                                    echo '<a href="' . base_url() .'">'; 
+                                ?>
                                 <button class="shortcut span12">
                                     <span class="icon">
                                         <i class="icon-undo"></i>
