@@ -13,6 +13,12 @@
 */
 class Pesan extends CI_Controller {
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->load->model('pesan_model');
+    }
+
 	/**
 	* unused in this version
 	*/
@@ -25,7 +31,15 @@ class Pesan extends CI_Controller {
 	* unused in this version
 	*/
     public function lihat() {
+        
+    }
 
+    /**
+    *
+    */
+    public function daftar_pesan($id_penerima) {
+        $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_id($id_penerima));
+        $this -> load -> view("Pesan_daftar_view", $data);
     }
 
     /**

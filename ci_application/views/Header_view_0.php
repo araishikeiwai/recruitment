@@ -14,6 +14,8 @@
         $row['pendaftar'] = $pendaftar -> result_array();
     } else if ($query == 'hasil') {
         $row = $lowongan -> result_array();
+    } else if ($query == 'pesan') {
+        $row = $pesan -> result_array();
     } else if ($query != '' && $query -> num_rows() > 0) {
         $row = $query -> row_array();
     } else {

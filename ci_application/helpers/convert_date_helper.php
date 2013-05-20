@@ -69,3 +69,10 @@ if (!function_exists('lowongan_link')) {
         return '<a href=' . base_url() . 'lowongan/lihat/' . $id_lowongan . '>' . $judul . '</a>';
     }
 }
+
+if (!function_exists('pesan_link')) {
+    function pesan_link($id_pesan, $subject) {
+        $link = '<a href=' . base_url() . 'pesan/lihat/' . $id_pesan . '>' . $subject . '</a>';
+        return $link;
+    }
+}
