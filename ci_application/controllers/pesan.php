@@ -30,23 +30,25 @@ class Pesan extends CI_Controller {
     /**
 	* unused in this version
 	*/
-    public function lihat() {
-        
+    public function lihat($id_pesan) {
+        $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_id($id_pesan));
+        $this -> load -> view("Pesan_lihat_view", $data);
     }
 
     /**
     *
     */
     public function daftar_pesan($id_penerima) {
-        $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_id($id_penerima));
+        $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_penerima($id_penerima));
         $this -> load -> view("Pesan_daftar_view", $data);
     }
 
     /**
 	* unused in this version
 	*/
-    public function tulis() {
-
+    public function tulis($id_pengirim) {
+        $data = array('query' => 'tulispesan', 'pengirim' => $id_pengirim);
+        $this -> load -> view("Pesan_tulis_view", $data);
     }
 
     /**

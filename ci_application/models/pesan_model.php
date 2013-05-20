@@ -13,7 +13,7 @@
 */
 class Pesan_model extends CI_Model {
 
-    public function get_pesan_by_id($id_penerima) {
+    public function get_pesan_by_penerima($id_penerima) {
     	$this->db->select('*');
         $this->db->from('pesan');
         $this->db->where('penerima', $id_penerima);
@@ -22,6 +22,14 @@ class Pesan_model extends CI_Model {
         return $query;
     }
 
+    public function get_pesan_by_id($id_pesan) {
+    	$this->db->select('*');
+        $this->db->from('pesan');
+        $this->db->where('id_pesan', $id_pesan);
+        $query = $this->db->get();
+
+        return $query;
+    }
 }
 
 /* End of file pesan_model.php */
