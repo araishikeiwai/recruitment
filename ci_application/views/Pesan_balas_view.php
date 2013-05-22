@@ -22,14 +22,23 @@
                     <div class="grid">
                         <div class="row">
                             <div class="span12">
-                                <h3>Isi pesan</h3>
+                                <h3>Kirim pesan</h3>
                                 <table id="hidden">
+                                     <?php
+                                            //echo validation_errors();
+                                            $form_attributes = array('id' => 'tulis_pesan');
+                                            $hidden = array (
+                                                'pengirim' => $this -> session -> userdata('username'),
+                                                'penerima' => $row['pengirim'],
+                                            );
+                                            echo form_open(base_url().'pesan/kirim/', $form_attributes, $hidden);
+                                        ?>
                                     <tr>
                                         <td>
                                             Kepada
                                         </td>
                                         <td>
-                                            <?php echo $row[0]['penerima']; ?>
+                                            <?php echo $row['pengirim']; ?>
                                         </td>
                                     </tr>
                                     <tr>
@@ -37,9 +46,15 @@
                                             Subject
                                         </td>
                                         <td>
-                                            <div style="width:100%">
-                                                <?php echo $row[0]['subject']; ?>
-                                            <div>
+                                            <?php
+                                                $form_attributes = array(
+                                                    'name' => 'subject',
+                                                    'value' => set_value('subject'),
+                                                    'placeholder' => 'Subject here...',
+                                                    'style' => 'width:100%'
+                                                );
+                                                echo form_input($form_attributes);
+                                            ?>
                                         </td>
                                     </tr>
                                 </table>
@@ -51,38 +66,43 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div>
-                                                <?php echo $row[0]['isi']; ?>
-                                            </div>
+                                            <?php
+                                                $form_attributes = array(
+                                                    'name' => 'isi',
+                                                    'value' => set_value('isi'),
+                                                    'style' => 'width:100%'
+                                                );
+                                                echo form_textarea($form_attributes);
+                                            ?>
                                         </td>
                                     </tr>
                                 </table>
                                 <div class="span6 bg-color-red">
-                                    <?php 
-                                        echo '<a href="' . base_url() . 'pesan/daftar_pesan/' . $this -> session -> userdata('username') . '">'; 
+                                    <?php
+                                        echo '<a href="'. base_url() . 'pesan/lihat/' . $row['id_pesan'] . '">';
                                     ?>
                                     <button class="shortcut span6">
                                         <span class="icon">
-                                            <i class="icon-undo"></i>
+                                            <i class="icon-cancel-2"></i>
                                         </span>
                                         <span class="label">
-                                            Kembali
+                                            Batal
                                         </span>
                                     </button>
+                                    </a>
                                 </div>
                                 <div class="span6 bg-color-green">
-                                    <?php 
-                                        echo '<a href="' . base_url() . 'pesan/balas/' . $row[0]['pengirim'] . '/'. $row[0]['id_pesan'].'">'; 
-                                    ?>
+                                    <a href ="javascript:;" onclick="document.getElementById('tulis_pesan').submit()">
                                     <button class="shortcut span6">
                                         <span class="icon">
-                                            <i class="icon-arrow-right-2"></i>
+                                            <i class="icon-checkmark"></i>
                                         </span>
                                         <span class="label">
-                                            Balas
+                                            Simpan
                                         </span>
                                     </button>
-                                    </div>
+                                    </a>
+                                </div>
                             </div>
                             
                         </div>

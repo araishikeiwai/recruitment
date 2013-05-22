@@ -29,7 +29,7 @@
                                             $form_attributes = array('id' => 'tulis_pesan');
                                             $hidden = array (
                                                 'pengirim' => $this -> session -> userdata('username'),
-                                                'penerima' => $row['pengirim'],
+                                                'penerima' => $row['penerima'],
                                             );
                                             echo form_open(base_url().'pesan/kirim/', $form_attributes, $hidden);
                                         ?>
@@ -38,7 +38,7 @@
                                             Kepada
                                         </td>
                                         <td>
-                                            <?php echo $row['pengirim']; ?>
+                                            <?php echo $row['penerima']; ?>
                                         </td>
                                     </tr>
                                     <tr>
@@ -79,7 +79,7 @@
                                 </table>
                                 <div class="span6 bg-color-red">
                                     <?php
-                                        echo '<a href="'. base_url() . 'pesan/lihat/' . $row['id_pesan'] . '">';
+                                        echo '<a href="'. base_url() . 'profil/lihat/' . $row['penerima'] . '">';
                                     ?>
                                     <button class="shortcut span6">
                                         <span class="icon">

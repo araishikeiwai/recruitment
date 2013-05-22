@@ -39,7 +39,8 @@ class Pesan_model extends CI_Model {
 
     public function simpan_pesan($data) {
         $time = unix_to_human(gmt_to_local(now(), 'UP5', FALSE));
-        $data['waktu'] = $time;
+        $time = explode(" ", $time);
+        $data['waktu'] = $time[1];
         
         $this -> db -> select_max('id_pesan');
         $id = $this -> db -> get('pesan');

@@ -17,6 +17,8 @@
     } else if ($query == 'pesan') {
         $row = $pesan -> result_array(); 
     } else if ($query == 'tulispesan') {
+        $row['penerima'] = $penerima;
+    } else if ($query == 'balaspesan') {
         $row['id_pesan'] = $id_pesan;
         $row['pengirim'] = $pengirim;
     } else if ($query != '' && $query -> num_rows() > 0) {

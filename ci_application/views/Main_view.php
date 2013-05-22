@@ -55,6 +55,7 @@
                                     </div>
                                 <?php } else { ?>
                                     <div>
+                                        <?php echo '<a href="' . base_url() . 'pesan/tulis/' . $row['username'] . '">'; ?>
                                         <button class="shortcut span3">
                                             <span class="icon">
                                                 <i class="icon-mail"></i>
@@ -62,9 +63,8 @@
                                             <span class="label">
                                                 Kirim Pesan
                                             </span>
-                                            
-
                                         </button>
+                                        </a>
                                     </div>
                                 <?php } ?>
                                 
@@ -82,7 +82,7 @@
                                         </a>
                                     <?php } ?>
                                 </div>
-                                    
+
                                 <div>
                                     <?php if ($this -> session -> userdata('status') == 'admin') { ?>
                                         <?php echo '<a href="' . base_url() . 'admin/moderasi">'; ?>
