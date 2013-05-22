@@ -21,7 +21,12 @@ class Ldap_model extends CI_Model {
             // $filter  = "uid='" . $username . "'";
             $filter  = "uid=" . $username;
             $base_dn = "o=Universitas Indonesia,c=ID";
-            $result  = ldap_search($conn, $base_dn, $filter);
+            $result  = @ldap_search($conn, $base_dn, $filter);
+            
+            if (!$result) {
+                return 'error_gagal_konek';
+            }
+
             // $result = ldap_search($conn, "o=Universitas Indonesia,c=ID", $filter);
             $info   = ldap_get_entries($conn, $result);
             

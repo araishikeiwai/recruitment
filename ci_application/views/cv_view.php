@@ -79,7 +79,7 @@
                                             Jenis Kelamin
                                         </td>
                                         <td>
-                                            <?php echo convert_jk($row['jenis_kelamin']); ?>
+                                            <?php echo $row['jenis_kelamin']; ?>
                                         </td>
                                     </tr>
                                     <tr>
