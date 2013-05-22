@@ -46,8 +46,8 @@ class Pesan extends CI_Controller {
     /**
 	* unused in this version
 	*/
-    public function tulis($id_pengirim) {
-        $data = array('query' => 'tulispesan', 'pengirim' => $id_pengirim);
+    public function tulis($id_pengirim, $id_pesan) {
+        $data = array('query' => 'tulispesan', 'pengirim' => $id_pengirim, 'id_pesan' => $id_pesan);
         $this -> load -> view("Pesan_tulis_view", $data);
     }
 
@@ -55,7 +55,20 @@ class Pesan extends CI_Controller {
 	* unused in this version
 	*/
     public function kirim() {
-        
+        $data = array();
+        $data['pengirim'] = $this -> input -> post('pengirim');
+        $data['penerima'] = $this -> input -> post('penerima');
+        $data['subject'] = $this -> input -> post('subject');
+        $data['isi'] = $this -> input -> post('isi');
+
+        echo 'pengirim : '. $data['pengirim']. '<br/>';
+        echo 'penerima : ' . $data['penerima'] . '<br />';
+        echo 'subject : ' . $data['subject'] . '<br />';
+        echo 'isi : ' . $data['isi'] . '<br />';
+        $id_pesan = $this -> pesan_model -> simpan_pesan($data);
+        $id_pesan = $id_pesan - 1;
+
+        // redirect('pesan/lihat/' . $id_pesan);
     }
 
 }

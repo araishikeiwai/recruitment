@@ -13,6 +13,12 @@
 */
 class Pesan_model extends CI_Model {
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->load->helper('date');
+    }
+
     public function get_pesan_by_penerima($id_penerima) {
     	$this->db->select('*');
         $this->db->from('pesan');
@@ -29,6 +35,21 @@ class Pesan_model extends CI_Model {
         $query = $this->db->get();
 
         return $query;
+    }
+
+    public function simpan_pesan($data) {
+        $time = unix_to_human(gmt_to_local(now(), 'UP5', FALSE));
+        $data['waktu'] = $time;
+        
+        $this -> db -> select_max('id_pesan');
+        $id = $this -> db -> get('pesan');
+        $id_pesan = $id->result_array();
+        $id_pesan = $id_pesan[0]['id_pesan'] + 1;
+        $data['id_pesan'] = $id_pesan;
+
+        $this -> db -> insert('pesan', $data);
+
+        return $id_pesan;
     }
 }
 
