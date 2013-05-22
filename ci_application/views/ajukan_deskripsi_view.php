@@ -38,7 +38,7 @@
                                                 Deskripsi Lowongan<font style="color:red">*</font>
                                                 <?php echo form_error('deskripsi'); ?>
                                             </td>
-                                            <td valign="top" colspan="3">
+                                            <td valign="top" colspan="2">
                                                 <p>
                                                     <div class="input-control textarea">
                                                         <?php
@@ -57,7 +57,7 @@
                                             <td valign="top" style="width: 237px;">
                                                 Poster Lowongan (JPG/JPEG/PNG)
                                             </td>
-                                            <td valign="top" colspan="3">
+                                            <td valign="top" colspan="2">
                                                 <?php
                                                     $form_attributes = array(
                                                         'name' => 'poster',
@@ -107,40 +107,27 @@
                                                 Fakultas<font style="color:red">*</font>
                                                 <a href="javascript:;" onclick="pilih('fakultas[]')"><h6>Pilih/Hapus Semua</h6></a>
                                                 <?php echo form_error('fakultas[]'); ?>
-                                                <?php $fakultas = array('FK', 'FKG', 'FMIPA', 'FT', 'FH', 'FE', 'FIB', 'FPsi', 'FISIP', 'FKM', 'Fasilkom', 'FIK', 'FF', 'Pascasarjana', 'Vokasi'); ?>
                                             </td>
                                             <td valign="top">
                                                 <?php
-                                                    for ($i = 0; $i < 5; $i++) {
+                                                    for ($i = 0; $i < 8; $i++) {
                                                         echo '<label class="input-control checkbox">'; 
                                                 ?>
                                                         <input type="checkbox" name="fakultas[]" value="<?php echo $i; ?>" <?php echo set_checkbox('fakultas[]', $i); ?> />
                                                 <?php
-                                                        echo '<span class="helper">' . $fakultas[$i] . '</span>';
+                                                        echo '<span class="helper">' . get_fakultas($i) . '</span>';
                                                         echo '</label><br/>';
                                                     }
                                                 ?>
                                             </td>
                                             <td valign="top">
                                                 <?php
-                                                    for ($i = 5; $i < 10; $i++) {
+                                                    for ($i = 8; $i < 16; $i++) {
                                                         echo '<label class="input-control checkbox">'; 
                                                 ?>
                                                         <input type="checkbox" name="fakultas[]" value="<?php echo $i; ?>" <?php echo set_checkbox('fakultas[]', $i); ?> />
                                                 <?php
-                                                        echo '<span class="helper">' . $fakultas[$i] . '</span>';
-                                                        echo '</label><br/>';
-                                                    }
-                                                ?>
-                                            </td>
-                                            <td valign="top">
-                                                <?php
-                                                    for ($i = 10; $i < 15; $i++) {
-                                                        echo '<label class="input-control checkbox">'; 
-                                                ?>
-                                                        <input type="checkbox" name="fakultas[]" value="<?php echo $i; ?>" <?php echo set_checkbox('fakultas[]', $i); ?> />
-                                                <?php
-                                                        echo '<span class="helper">' . $fakultas[$i] . '</span>';
+                                                        echo '<span class="helper">' . get_fakultas($i) . '</span>';
                                                         echo '</label><br/>';
                                                     }
                                                 ?>
@@ -151,7 +138,6 @@
                                                 Role/Angkatan<font style="color:red">*</font>
                                                 <a href="javascript:;" onclick="pilih('role[]')"><h6>Pilih/Hapus Semua</h6></a>
                                                 <?php echo form_error('role[]'); ?>
-                                                <?php $role = array('2008', '2009', '2010', '2011', '2012', 'Alumni', 'Staf', 'Dosen'); ?>
                                             </td>
                                             <td valign="top">
                                                 <?php
@@ -160,7 +146,7 @@
                                                 ?>
                                                         <input type="checkbox" name="role[]" value="<?php echo $i; ?>" <?php echo set_checkbox('role[]', $i); ?> />
                                                 <?php
-                                                        echo '<span class="helper">' . $role[$i] . '</span>';
+                                                        echo '<span class="helper">' . get_role($i) . '</span>';
                                                         echo '</label><br/>';
                                                     }
                                                 ?>
@@ -172,7 +158,7 @@
                                                 ?>
                                                         <input type="checkbox" name="role[]" value="<?php echo $i; ?>" <?php echo set_checkbox('role[]', $i); ?> />
                                                 <?php
-                                                        echo '<span class="helper">' . $role[$i] . '</span>';
+                                                        echo '<span class="helper">' . get_role($i) . '</span>';
                                                         echo '</label><br/>';
                                                     }
                                                 ?>
@@ -220,13 +206,13 @@
                                             <td>
                                                 <label class="input-control checkbox">
                                                     <input type="checkbox" name="jenis_kelamin[]" value="0" <?php echo set_checkbox('jenis_kelamin[]', '0'); ?> />
-                                                    <span class="helper">Pria</span>
+                                                    <span class="helper"><?php echo get_jenis_kelamin(0); ?></span>
                                                 </label>
                                             </td>
                                             <td>
                                                 <label class="input-control checkbox">
                                                     <input type="checkbox" name="jenis_kelamin[]" value="1" <?php echo set_checkbox('jenis_kelamin[]', '1'); ?> />
-                                                    <span class="helper">Wanita</span>
+                                                    <span class="helper"><?php echo get_jenis_kelamin(1); ?></span>
                                                 </label>
                                             </td>
                                         </tr>
@@ -235,16 +221,15 @@
                                                 Agama<font style="color:red">*</font>
                                                 <a href="javascript:;" onclick="pilih('agama[]')"><h6>Pilih/Hapus Semua</h6></a>
                                                 <?php echo form_error('agama[]'); ?>
-                                                <?php $agama = array('Islam', 'Kristen', 'Katolik', 'Buddha', 'Hindu', 'Konghucu', 'Lainnya'); ?>
                                             </td>
-                                            <td>
+                                            <td valign="top" colspan="2">
                                                 <?php
                                                     for ($i = 0; $i < 7; $i++) {
                                                         echo '<label class="input-control checkbox">';
                                                 ?>
                                                         <input type="checkbox" name="agama[]" value="<?php echo $i; ?>" <?php echo set_checkbox('agama[]', $i); ?> />
                                                 <?php
-                                                        echo '<span class="helper">' . $agama[$i] . '</span>';
+                                                        echo '<span class="helper">' . get_agama($i) . '</span>';
                                                         echo '</label><br/>';
                                                     }
                                                 ?>
@@ -255,7 +240,7 @@
                                                 Batas Akhir Pembukaan Lowongan<font style="color:red">*</font>
                                                 <?php echo form_error('tgl_tutup'); ?>
                                             </td>
-                                            <td>
+                                            <td valign="top" colspan="2">
                                                 <input style="width:100%" type="date" name="tgl_tutup" value="<?php echo set_value('tgl_tutup') ?>">
                                             </td>
                                         </tr>
@@ -266,7 +251,7 @@
                                                 Membutuhkan Wawancara?<font style="color:red">*</font>
                                                 <?php echo form_error('wawancara'); ?>
                                             </td>
-                                            <td>
+                                            <td valign="top" colspan="2">
                                                 <label class="input-control radio">
                                                     <input type="radio" name="wawancara" value="Y" <?php echo set_radio('wawancara', 'Y'); ?> />
                                                     <span class="helper">Ya</span>

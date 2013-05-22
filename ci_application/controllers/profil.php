@@ -100,6 +100,8 @@ class Profil extends CI_Controller {
                 $data['status'] = $this -> input -> post('status');
                 $data['jenis_kelamin'] = $this -> input -> post('jenis_kelamin');
                 $data['email'] = $this -> input -> post('email');
+                $data['role'] = $this -> input -> post('role');
+                $data['fakultas'] = $this -> input -> post('fakultas');
 
                 //var_dump($data);
                 $this -> pengguna_model -> update_pengguna($data);

@@ -76,3 +76,41 @@ if (!function_exists('pesan_link')) {
         return $link;
     }
 }
+
+if (!function_exists('get_fakultas')) {
+    function get_fakultas($id_fakultas) {
+        $fakultas = array('Non-Fakultas', 'FK', 'FKG', 'FMIPA', 'FT', 'FH', 'FE', 'FIB', 'FPsi', 'FISIP', 'FKM', 'Fasilkom', 'FIK', 'FF', 'Pascasarjana', 'Vokasi');
+        return $fakultas[$id_fakultas];
+    }
+}
+
+if (!function_exists('get_role')) {
+    function get_role($id_role) {
+        $role = array('Mahasiswa2008', 'Mahasiswa2009', 'Mahasiswa2010', 'Mahasiswa2011', 'Mahasiswa2012', 'Alumni', 'Staf', 'Dosen');
+        return $role[$id_role];
+    }
+}
+
+if (!function_exists('get_jenis_kelamin')) {
+    function get_jenis_kelamin($id_jenis_kelamin) {
+        $jenis_kelamin = array('Pria', 'Wanita');
+        return $jenis_kelamin[$id_jenis_kelamin];
+    }
+}
+
+if (!function_exists('get_agama')) {
+    function get_agama($id_agama) {
+        $agama = array('Islam', 'Kristen', 'Katolik', 'Buddha', 'Hindu', 'Konghucu', 'Lainnya');
+        return $agama[$id_agama];
+    }
+}
+
+if (!function_exists('is_syarat')) {
+    function is_syarat($syarat, $syarat_full) {
+        if (strpos($syarat_full, $syarat) !== false) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}

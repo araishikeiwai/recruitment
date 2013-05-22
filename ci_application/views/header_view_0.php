@@ -45,10 +45,11 @@
         for ($i = 0; $i < 9; $i++) {
             $row[$l[$i]] = '';
         }
-        $t = array('FK', 'FKG', 'FMIPA', 'FT', 'FH', 'FE', 'FIB', 'FPsi', 'FISIP', 'FKM', 'Fasilkom', 'FIK', 'FF', 'Pascasarjana', 'Vokasi', '2008', '2009', '2010', '2011', '2012', 'Alumni', 'Staf', 'Dosen', 'Islam', 'Kristen', 'Katolik', 'Buddha', 'Hindu', 'Konghucu', 'Lainnya', 'usia_min', 'usia_max', 'L', 'P');
-        for ($i = 0; $i < 34; $i++) {
+        $t = array('usia_min', 'usia_max');
+        for ($i = 0; $i < 2; $i++) {
             $row['syarat_' . $t[$i]] = '';
         }
+        $row['syarat'] = '';
 
 
     }

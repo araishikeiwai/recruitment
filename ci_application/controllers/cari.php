@@ -83,33 +83,29 @@ class Cari extends CI_Controller {
 
                 $temp = $this -> input -> post('fakultas');
                 if ($temp != null) {
-                    $fakultas = array('FK', 'FKG', 'FMIPA', 'FT', 'FH', 'FE', 'FIB', 'FPsi', 'FISIP', 'FKM', 'Fasilkom', 'FIK', 'FF', 'Pascasarjana', 'Vokasi');
                     for ($i = 0; $i < count($temp); $i++) {
-                        $criteria = $criteria." AND  syarat_".$fakultas[$temp[$i]]." = '1'";
+                        $criteria = $criteria . " AND syarat LIKE '%" . get_fakultas($temp[$i]) . "%'";
                     } 
                 }
                 
                 $temp = $this -> input -> post('role');
                 if ($temp != null) {
-                    $role = array('2008', '2009', '2010', '2011', '2012', 'Alumni', 'Staf', 'Dosen');
                     for ($i = 0; $i < count($temp); $i++) {
-                        $criteria = $criteria." AND  syarat_".$role[$temp[$i]]." = '1'";
+                        $criteria = $criteria . " AND syarat LIKE '%" . get_role($temp[$i]) . "%'";
                     }
                 }
                 
                 $temp = $this -> input -> post('jenis_kelamin');
                 if ($temp != null) {
-                    $jenis_kelamin = array('L', 'P');
                     for ($i = 0; $i < count($temp); $i++) {
-                        $criteria = $criteria." AND  syarat_".$jenis_kelamin[$temp[$i]]." = '1'";
+                        $criteria = $criteria . " AND syarat LIKE '%" . get_jenis_kelamin($temp[$i]) . "%'";
                     }
                 }
 
                 $temp = $this -> input -> post('agama');
                 if ($temp != null) {
-                    $agama = array('Islam', 'Kristen', 'Katolik', 'Buddha', 'Hindu', 'Konghucu', 'Lainnya');
                     for ($i = 0; $i < count($temp); $i++) {
-                        $criteria = $criteria." AND  syarat_".$agama[$temp[$i]]." = '1'";
+                        $criteria = $criteria . " AND syarat LIKE '%" . get_agama($temp[$i]) . "%'";
                     }
                 }
 

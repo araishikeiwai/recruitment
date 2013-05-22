@@ -35,7 +35,7 @@
                                                 Judul Lowongan<font style="color:red">*</font>
                                                 <?php echo form_error('judul'); ?>
                                             </td>
-                                            <td colspan="3">
+                                            <td colspan="2">
                                                 <?php
                                                     $form_attributes = array(
                                                         'name' => 'judul',
@@ -50,7 +50,7 @@
                                             <td>
                                                 Tipe Lowongan<font style="color:red">*</font>
                                             </td>
-                                            <td colspan="3">
+                                            <td colspan="2">
                                                 <div class="input-control select">
                                                     <?php
                                                         $options = array(
@@ -70,7 +70,7 @@
                                                 Deskripsi Lowongan<font style="color:red">*</font>
                                                 <?php echo form_error('deskripsi'); ?>
                                             </td>
-                                            <td valign="top" colspan="3">
+                                            <td valign="top" colspan="2">
                                                 <p>
                                                     <div class="input-control textarea">
                                                         <?php
@@ -89,7 +89,7 @@
                                             <td valign="top" style="width: 237px;">
                                                 Poster Lowongan (JPG/JPEG/PNG)
                                             </td>
-                                            <td valign="top" colspan="3">
+                                            <td valign="top" colspan="2">
                                                 <?php
                                                     $form_attributes = array(
                                                         'name' => 'poster',
@@ -139,40 +139,27 @@
                                                 Fakultas<font style="color:red">*</font>
                                                 <a href="javascript:;" onclick="pilih('fakultas[]')"><h6>Pilih/Hapus Semua</h6></a>
                                                 <?php echo form_error('fakultas[]'); ?>
-                                                <?php $fakultas = array('FK', 'FKG', 'FMIPA', 'FT', 'FH', 'FE', 'FIB', 'FPsi', 'FISIP', 'FKM', 'Fasilkom', 'FIK', 'FF', 'Pascasarjana', 'Vokasi'); ?>
                                             </td>
                                             <td valign="top">
                                                 <?php
-                                                    for ($i = 0; $i < 5; $i++) {
+                                                    for ($i = 0; $i < 8; $i++) {
                                                         echo '<label class="input-control checkbox">'; 
                                                 ?>
-                                                        <input type="checkbox" name="fakultas[]" value="<?php echo $i; ?>" <?php echo set_checkbox('fakultas[]', $i); if ($row['syarat_' . $fakultas[$i]]) echo 'checked'; ?> />
+                                                        <input type="checkbox" name="fakultas[]" value="<?php echo $i; ?>" <?php echo set_checkbox('fakultas[]', $i); if (is_syarat(get_fakultas($i), $row['syarat'])) echo 'checked'; ?> />
                                                 <?php
-                                                        echo '<span class="helper">' . $fakultas[$i] . '</span>';
+                                                        echo '<span class="helper">' . get_fakultas($i) . '</span>';
                                                         echo '</label><br/>';
                                                     }
                                                 ?>
                                             </td>
                                             <td valign="top">
                                                 <?php
-                                                    for ($i = 5; $i < 10; $i++) {
+                                                    for ($i = 8; $i < 16; $i++) {
                                                         echo '<label class="input-control checkbox">'; 
                                                 ?>
-                                                        <input type="checkbox" name="fakultas[]" value="<?php echo $i; ?>" <?php echo set_checkbox('fakultas[]', $i); if ($row['syarat_' . $fakultas[$i]]) echo 'checked'; ?> />
+                                                        <input type="checkbox" name="fakultas[]" value="<?php echo $i; ?>" <?php echo set_checkbox('fakultas[]', $i); if (is_syarat(get_fakultas($i), $row['syarat'])) echo 'checked'; ?> />
                                                 <?php
-                                                        echo '<span class="helper">' . $fakultas[$i] . '</span>';
-                                                        echo '</label><br/>';
-                                                    }
-                                                ?>
-                                            </td>
-                                            <td valign="top">
-                                                <?php
-                                                    for ($i = 10; $i < 15; $i++) {
-                                                        echo '<label class="input-control checkbox">'; 
-                                                ?>
-                                                        <input type="checkbox" name="fakultas[]" value="<?php echo $i; ?>" <?php echo set_checkbox('fakultas[]', $i); if ($row['syarat_' . $fakultas[$i]]) echo 'checked'; ?> />
-                                                <?php
-                                                        echo '<span class="helper">' . $fakultas[$i] . '</span>';
+                                                        echo '<span class="helper">' . get_fakultas($i) . '</span>';
                                                         echo '</label><br/>';
                                                     }
                                                 ?>
@@ -183,16 +170,15 @@
                                                 Role/Angkatan<font style="color:red">*</font>
                                                 <a href="javascript:;" onclick="pilih('role[]')"><h6>Pilih/Hapus Semua</h6></a>
                                                 <?php echo form_error('role[]'); ?>
-                                                <?php $role = array('2008', '2009', '2010', '2011', '2012', 'Alumni', 'Staf', 'Dosen'); ?>
                                             </td>
                                             <td valign="top">
                                                 <?php
                                                     for ($i = 0; $i < 4; $i++) {
                                                         echo '<label class="input-control checkbox">';
                                                 ?>
-                                                        <input type="checkbox" name="role[]" value="<?php echo $i; ?>" <?php echo set_checkbox('role[]', $i); if ($row['syarat_' . $role[$i]]) echo 'checked'; ?> />
+                                                        <input type="checkbox" name="role[]" value="<?php echo $i; ?>" <?php echo set_checkbox('role[]', $i); if (is_syarat(get_role($i), $row['syarat'])) echo 'checked'; ?> />
                                                 <?php
-                                                        echo '<span class="helper">' . $role[$i] . '</span>';
+                                                        echo '<span class="helper">' . get_role($i) . '</span>';
                                                         echo '</label><br/>';
                                                     }
                                                 ?>
@@ -202,9 +188,9 @@
                                                     for ($i = 4; $i < 8; $i++) {
                                                         echo '<label class="input-control checkbox">';
                                                 ?>
-                                                        <input type="checkbox" name="role[]" value="<?php echo $i; ?>" <?php echo set_checkbox('role[]', $i); if ($row['syarat_' . $role[$i]]) echo 'checked'; ?> />
+                                                        <input type="checkbox" name="role[]" value="<?php echo $i; ?>" <?php echo set_checkbox('role[]', $i); if (is_syarat(get_role($i), $row['syarat'])) echo 'checked'; ?> />
                                                 <?php
-                                                        echo '<span class="helper">' . $role[$i] . '</span>';
+                                                        echo '<span class="helper">' . get_role($i) . '</span>';
                                                         echo '</label><br/>';
                                                     }
                                                 ?>
@@ -251,14 +237,14 @@
                                             </td>
                                             <td>
                                                 <label class="input-control checkbox">
-                                                    <input type="checkbox" name="jenis_kelamin[]" value="0" <?php echo set_checkbox('jenis_kelamin[]', '0'); if ($row['syarat_L']) echo 'checked'; ?> />
-                                                    <span class="helper">Pria</span>
+                                                    <input type="checkbox" name="jenis_kelamin[]" value="0" <?php echo set_checkbox('jenis_kelamin[]', '0'); if (is_syarat(get_jenis_kelamin(0), $row['syarat'])) echo 'checked'; ?> />
+                                                    <span class="helper"><?php echo get_jenis_kelamin(0) ?></span>
                                                 </label>
                                             </td>
                                             <td>
                                                 <label class="input-control checkbox">
-                                                    <input type="checkbox" name="jenis_kelamin[]" value="1" <?php echo set_checkbox('jenis_kelamin[]', '1'); if ($row['syarat_P']) echo 'checked'; ?> />
-                                                    <span class="helper">Wanita</span>
+                                                    <input type="checkbox" name="jenis_kelamin[]" value="1" <?php echo set_checkbox('jenis_kelamin[]', '1'); if (is_syarat(get_jenis_kelamin(1), $row['syarat'])) echo 'checked'; ?> />
+                                                    <span class="helper"><?php echo get_jenis_kelamin(1) ?></span>
                                                 </label>
                                             </td>
                                         </tr>
@@ -267,16 +253,15 @@
                                                 Agama<font style="color:red">*</font>
                                                 <a href="javascript:;" onclick="pilih('agama[]')"><h6>Pilih/Hapus Semua</h6></a>
                                                 <?php echo form_error('agama[]'); ?>
-                                                <?php $agama = array('Islam', 'Kristen', 'Katolik', 'Buddha', 'Hindu', 'Konghucu', 'Lainnya'); ?>
                                             </td>
-                                            <td>
+                                            <td valign="top" colspan="2">
                                                 <?php
                                                     for ($i = 0; $i < 7; $i++) {
                                                         echo '<label class="input-control checkbox">';
                                                 ?>
-                                                        <input type="checkbox" name="agama[]" value="<?php echo $i; ?>" <?php echo set_checkbox('agama[]', $i); if ($row['syarat_' . $agama[$i]]) echo 'checked'; ?> />
+                                                        <input type="checkbox" name="agama[]" value="<?php echo $i; ?>" <?php echo set_checkbox('agama[]', $i); if (is_syarat(get_agama($i), $row['syarat'])) echo 'checked'; ?> />
                                                 <?php
-                                                        echo '<span class="helper">' . $agama[$i] . '</span>';
+                                                        echo '<span class="helper">' . get_agama($i) . '</span>';
                                                         echo '</label><br/>';
                                                     }
                                                 ?>
@@ -287,7 +272,7 @@
                                                 Batas Akhir Pembukaan Lowongan<font style="color:red">*</font>
                                                 <?php echo form_error('tgl_tutup'); ?>
                                             </td>
-                                            <td>
+                                            <td valign="top" colspan="2">
                                                 <input style="width:100%" type="date" name="tgl_tutup" value="<?php echo set_value('tgl_tutup', $row['tgl_tutup']) ?>">
                                             </td>
                                         </tr>

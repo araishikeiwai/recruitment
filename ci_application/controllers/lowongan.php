@@ -122,32 +122,29 @@ class Lowongan extends CI_Controller {
                     
                     $data['deskripsi'] = $this -> input -> post('deskripsi');
                     $data['poster'] = $this -> input -> post('poster');
+                    $data['syarat'] = '';
                     
                     $temp = $this -> input -> post('fakultas');
-                    $fakultas = array('FK', 'FKG', 'FMIPA', 'FT', 'FH', 'FE', 'FIB', 'FPsi', 'FISIP', 'FKM', 'Fasilkom', 'FIK', 'FF', 'Pascasarjana', 'Vokasi');
                     for ($i = 0; $i < count($temp); $i++) {
-                        $data['syarat_' . $fakultas[$temp[$i]]] = true;
+                        $data['syarat'] = $data['syarat'] . get_fakultas($temp[$i]) . ' ';
                     }
                     
                     $temp = $this -> input -> post('role');
-                    $role = array('2008', '2009', '2010', '2011', '2012', 'Alumni', 'Staf', 'Dosen');
                     for ($i = 0; $i < count($temp); $i++) {
-                        $data['syarat_' . $role[$temp[$i]]] = true;
+                        $data['syarat'] = $data['syarat'] . get_role($temp[$i]) . ' ';
                     }
 
                     $data['syarat_usia_min'] = $this -> input -> post('usia_min');
                     $data['syarat_usia_max'] = $this -> input -> post('usia_max');
 
                     $temp = $this -> input -> post('jenis_kelamin');
-                    $jenis_kelamin = array('L', 'P');
                     for ($i = 0; $i < count($temp); $i++) {
-                        $data['syarat_' . $jenis_kelamin[$temp[$i]]] = true;
+                        $data['syarat'] = $data['syarat'] . get_jenis_kelamin($temp[$i]) . ' ';
                     }
 
                     $temp = $this -> input -> post('agama');
-                    $agama = array('Islam', 'Kristen', 'Katolik', 'Buddha', 'Hindu', 'Konghucu', 'Lainnya');
                     for ($i = 0; $i < count($temp); $i++) {
-                        $data['syarat_' . $agama[$temp[$i]]] = true;
+                        $data['syarat'] = $data['syarat'] . get_agama($temp[$i]) . ' ';
                     }
 
                     $data['tgl_tutup'] = $this -> input -> post('tgl_tutup');
@@ -411,10 +408,11 @@ class Lowongan extends CI_Controller {
         $oke = $oke && $lowongan['status'] != 'belum dimoderasi';
         $oke = $oke && $lowongan['tgl_tutup'] >= date("Y-m-d");
         $oke = $oke && $lowongan['nama_provider'] != $username;
-        $oke = $oke && $lowongan['syarat_' . $pengguna['fakultas']] == '1';
-        $oke = $oke && $lowongan['syarat_' . $pengguna['role']] == '1';
-        $oke = $oke && $lowongan['syarat_' . $pengguna['jenis_kelamin']] == '1';
-        $oke = $oke && $lowongan['syarat_' . $pengguna['agama']] == '1';
+
+        $oke = $oke && is_syarat($pengguna['fakultas'], $lowongan['syarat']);
+        $oke = $oke && is_syarat($pengguna['role'], $lowongan['syarat']);
+        $oke = $oke && is_syarat($pengguna['jenis_kelamin'], $lowongan['syarat']);
+        $oke = $oke && is_syarat($pengguna['agama'], $lowongan['syarat']);
 
         $tgl_lahir_pengguna = new DateTime($pengguna['tgl_lahir']);
         $sekarang = new DateTime();
@@ -512,48 +510,33 @@ class Lowongan extends CI_Controller {
                     
                     $data['deskripsi'] = $this -> input -> post('deskripsi');
                     $data['poster'] = $this -> input -> post('poster');
+                    $data['syarat'] = '';
                     
                     $temp = $this -> input -> post('fakultas');
-                    $fakultas = array('FK', 'FKG', 'FMIPA', 'FT', 'FH', 'FE', 'FIB', 'FPsi', 'FISIP', 'FKM', 'Fasilkom', 'FIK', 'FF', 'Pascasarjana', 'Vokasi');
-                    for ($i = 0; $i < count($fakultas); $i++) {
-                        $data['syarat_' . $fakultas[$i]] = false;
-                    }
                     for ($i = 0; $i < count($temp); $i++) {
-                        $data['syarat_' . $fakultas[$temp[$i]]] = true;
+                        $data['syarat'] = $data['syarat'] . get_fakultas($temp[$i]) . ' ';
                     }
                     
                     $temp = $this -> input -> post('role');
-                    $role = array('2008', '2009', '2010', '2011', '2012', 'Alumni', 'Staf', 'Dosen');
-                    for ($i = 0; $i < count($role); $i++) {
-                        $data['syarat_' . $role[$i]] = false;
-                    }
                     for ($i = 0; $i < count($temp); $i++) {
-                        $data['syarat_' . $role[$temp[$i]]] = true;
+                        $data['syarat'] = $data['syarat'] . get_role($temp[$i]) . ' ';
                     }
 
                     $data['syarat_usia_min'] = $this -> input -> post('usia_min');
                     $data['syarat_usia_max'] = $this -> input -> post('usia_max');
 
                     $temp = $this -> input -> post('jenis_kelamin');
-                    $jenis_kelamin = array('L', 'P');
-                    for ($i = 0; $i < count($jenis_kelamin); $i++) {
-                        $data['syarat_' . $jenis_kelamin[$i]] = false;
-                    }
                     for ($i = 0; $i < count($temp); $i++) {
-                        $data['syarat_' . $jenis_kelamin[$temp[$i]]] = true;
+                        $data['syarat'] = $data['syarat'] . get_jenis_kelamin($temp[$i]) . ' ';
                     }
 
                     $temp = $this -> input -> post('agama');
-                    $agama = array('Islam', 'Kristen', 'Katolik', 'Buddha', 'Hindu', 'Konghucu', 'Lainnya');
-                    for ($i = 0; $i < count($agama); $i++) {
-                        $data['syarat_' . $agama[$i]] = false;
-                    }
                     for ($i = 0; $i < count($temp); $i++) {
-                        $data['syarat_' . $agama[$temp[$i]]] = true;
+                        $data['syarat'] = $data['syarat'] . get_agama($temp[$i]) . ' ';
                     }
 
                     $data['tgl_tutup'] = $this -> input -> post('tgl_tutup');
-                    
+
                     $data['status'] = 'belum dimoderasi';
 
                     $this -> lowongan_model -> update_lowongan($this -> input -> post('id_lowongan'), $data);

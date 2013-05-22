@@ -38,7 +38,7 @@
 								<tbody>
                                     <?php if (count($row) == 0) { ?>
                                             <tr>
-                                                <td colspan="2">
+                                                <td colspan="3">
                                                     Tidak Ada Data!
                                                 </td>
                                             </tr>

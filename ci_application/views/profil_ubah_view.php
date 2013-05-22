@@ -56,14 +56,14 @@
                                 <td id="t_head">Nama</td>
                                 <td id="identitas"><input type="text" style="width:100%" readonly value="<?php echo $row['nama']; ?>"/></td>
                             </tr>
-                            <tr>
+                            <!--<tr>
                                 <td id="t_head">Fakultas</td>
                                 <td id="identitas"><input type="text" style="width:100%" readonly value="<?php echo $row['fakultas']; ?>"/></td>
                             </tr>
                             <tr>
                                 <td id="t_head">Role/Angkatan</td>
                                 <td id="identitas"><input type="text" style="width:100%" readonly value="<?php echo $row['role']; ?>"/></td>
-                            </tr>
+                            </tr>-->
                             <tr>
                                 <td id="t_head">Status</td>
                                 <td id="identitas">
@@ -120,27 +120,28 @@
                                     ?>
                                 </td>
                             </tr>
-                            <!--<tr>
+                            <tr>
                                 <td id="t_head">Fakultas<font style="color:red">*</font></td>
                                 <td id="identitas">
                                     <div class="input-control select">
                                         <?php
                                             $options = array(
-                                                'FK' => 'FK',
-                                                'FKG' => 'FKG',
-                                                'FMIPA' => 'FMIPA',
-                                                'FT' => 'FT',
-                                                'FH' => 'FH',
-                                                'FE' => 'FE',
-                                                'FIB' => 'FIB',
-                                                'FPsi' => 'FPsi',
-                                                'FISIP' => 'FISIP',
-                                                'FKM' => 'FKM',
-                                                'Fasilkom' => 'Fasilkom',
-                                                'FIK' => 'FIK',
-                                                'FF' => 'FF',
-                                                'Pascasarjana' => 'Pascasarjana',
-                                                'Vokasi' => 'Vokasi'
+                                                get_fakultas(0) => get_fakultas(0),
+                                                get_fakultas(1) => get_fakultas(1),
+                                                get_fakultas(2) => get_fakultas(2),
+                                                get_fakultas(3) => get_fakultas(3),
+                                                get_fakultas(4) => get_fakultas(4),
+                                                get_fakultas(5) => get_fakultas(5),
+                                                get_fakultas(6) => get_fakultas(6),
+                                                get_fakultas(7) => get_fakultas(7),
+                                                get_fakultas(8) => get_fakultas(8),
+                                                get_fakultas(9) => get_fakultas(9),
+                                                get_fakultas(10) => get_fakultas(10),
+                                                get_fakultas(11) => get_fakultas(11),
+                                                get_fakultas(12) => get_fakultas(12),
+                                                get_fakultas(13) => get_fakultas(13),
+                                                get_fakultas(14) => get_fakultas(14),
+                                                get_fakultas(15) => get_fakultas(15)
                                             );
                                             echo form_dropdown('fakultas', $options, $row['fakultas']);
                                         ?>
@@ -153,28 +154,28 @@
                                     <div class="input-control select">
                                         <?php
                                             $options = array(
-                                                '2008' => '2008',
-                                                '2009' => '2009',
-                                                '2010' => '2010',
-                                                '2011' => '2011',
-                                                '2012' => '2012',
-                                                'Alumni' => 'Alumni',
-                                                'Staf' => 'Staf',
-                                                'Dosen' => 'Dosen'
+                                                get_role(0) => get_role(0),
+                                                get_role(1) => get_role(1),
+                                                get_role(2) => get_role(2),
+                                                get_role(3) => get_role(3),
+                                                get_role(4) => get_role(4),
+                                                get_role(5) => get_role(5),
+                                                get_role(6) => get_role(6),
+                                                get_role(7) => get_role(7)
                                             );
                                             echo form_dropdown('role', $options, $row['role']);
                                         ?>
                                     </div>
                                 </td>
-                            </tr>-->
+                            </tr>
                             <tr>
                                 <td id="t_head">Jenis Kelamin<font style="color:red">*</font></td>
                                 <td id="identitas">
                                     <div class="input-control select">
                                         <?php
                                             $options = array(
-                                                'L' => 'Pria',
-                                                'P' => 'Wanita'
+                                                get_jenis_kelamin(0) => get_jenis_kelamin(0),
+                                                get_jenis_kelamin(1) => get_jenis_kelamin(1)
                                             );
                                             echo form_dropdown('jenis_kelamin', $options, $row['jenis_kelamin']);
                                             echo form_close();

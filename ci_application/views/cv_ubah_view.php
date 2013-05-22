@@ -110,13 +110,13 @@
                                            <div class="input-control select">
                                                 <?php
                                                     $options = array(
-                                                        'Islam' => 'Islam',
-                                                        'Kristen' => 'Kristen',
-                                                        'Katolik' => 'Katolik',
-                                                        'Buddha' => 'Buddha',
-                                                        'Hindu' => 'Hindu',
-                                                        'Konghucu' => 'Konghucu',
-                                                        'Lainnya' => 'Lainnya'
+                                                        get_agama(0) => get_agama(0),
+                                                        get_agama(1) => get_agama(1),
+                                                        get_agama(2) => get_agama(2),
+                                                        get_agama(3) => get_agama(3),
+                                                        get_agama(4) => get_agama(4),
+                                                        get_agama(5) => get_agama(5),
+                                                        get_agama(6) => get_agama(6)
                                                     );
                                                     echo form_dropdown('agama', $options, $row['agama']);
                                                 ?>

@@ -128,10 +128,9 @@
                                         <td valign="top">
                                             <p>
                                                 <?php
-                                                    $fakultas = array('FK', 'FKG', 'FMIPA', 'FT', 'FH', 'FE', 'FIB', 'FPsi', 'FISIP', 'FKM', 'Fasilkom', 'FIK', 'FF', 'Pascasarjana', 'Vokasi');
-                                                    for ($i = 0; $i < count($fakultas); $i++) {
-                                                        if ($row['lowongan']['syarat_' . $fakultas[$i]]) {
-                                                            echo $fakultas[$i] . '<br/>';
+                                                    for ($i = 0; $i < 16; $i++) {
+                                                        if (is_syarat(get_fakultas($i), $row['lowongan']['syarat'])) {
+                                                            echo get_fakultas($i) . '<br/>';
                                                         }
                                                     }
                                                 ?>
@@ -145,10 +144,9 @@
                                         <td>
                                             <p>
                                                 <?php
-                                                    $role = array('2008', '2009', '2010', '2011', '2012', 'Alumni', 'Staf', 'Dosen');
-                                                    for ($i = 0; $i < count($role); $i++) {
-                                                        if ($row['lowongan']['syarat_' . $role[$i]]) {
-                                                            echo $role[$i] . '<br/>';
+                                                    for ($i = 0; $i < 8; $i++) {
+                                                        if (is_syarat(get_role($i), $row['lowongan']['syarat'])) {
+                                                            echo get_role($i) . '<br/>';
                                                         }
                                                     }
                                                 ?>
@@ -170,10 +168,9 @@
                                         <td>
                                             <p>
                                                 <?php
-                                                    $jenis_kelamin = array('L', 'P');
-                                                    for ($i = 0; $i < count($jenis_kelamin); $i++) {
-                                                        if ($row['lowongan']['syarat_' . $jenis_kelamin[$i]]) {
-                                                            echo convert_jk($jenis_kelamin[$i]) . '<br/>';
+                                                    for ($i = 0; $i < 2; $i++) {
+                                                        if (is_syarat(get_jenis_kelamin($i), $row['lowongan']['syarat'])) {
+                                                            echo get_jenis_kelamin($i) . '<br/>';
                                                         }
                                                     }
                                                 ?>
@@ -187,10 +184,9 @@
                                         <td>
                                             <p>
                                                 <?php
-                                                    $agama = array('Islam', 'Kristen', 'Katolik', 'Buddha', 'Hindu', 'Konghucu', 'Lainnya');
-                                                    for ($i = 0; $i < count($agama); $i++) {
-                                                        if ($row['lowongan']['syarat_' . $agama[$i]]) {
-                                                            echo $agama[$i] . '<br/>';
+                                                    for ($i = 0; $i < 7; $i++) {
+                                                        if (is_syarat(get_agama($i), $row['lowongan']['syarat'])) {
+                                                            echo get_agama($i) . '<br/>';
                                                         }
                                                     }
                                                 ?>
