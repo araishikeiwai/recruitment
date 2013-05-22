@@ -28,6 +28,17 @@ class Pendaftar_model extends CI_Model {
 
         return $query;
     }
+
+    public function get_pendaftar_history($data) {
+        $this->db->select('*');
+        $this->db->from('pendaftar');
+        $this->db->join('lowongan', 'pendaftar.id_lowongan = lowongan.id_lowongan', 'inner');
+        $this->db->where($data);
+
+        $query = $this->db->get();
+
+        return $query;
+    }
     
     /**
     * Me-nambah pendaftar baru pada suatu lowongan

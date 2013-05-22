@@ -9,7 +9,7 @@
 - @version 1.1.0.2
 -->
 
-    <title>Hasil Pencarian</title>
+    <title>Kirim Broadcast</title>
 
     <?php include('header_view.php'); ?>
         
@@ -22,25 +22,17 @@
                     <div class="grid">
                         <div class="row">
                             <div class="span12">
-                                <h3>Kirim pesan</h3>
+                                <h3>Kirim Broadcast</h3>
                                 <table id="hidden">
                                      <?php
-                                            //echo validation_errors();
-                                            $form_attributes = array('id' => 'tulis_pesan');
-                                            $hidden = array (
-                                                'pengirim' => $this -> session -> userdata('username'),
-                                                'penerima' => $row['pengirim'],
-                                            );
-                                            echo form_open(base_url().'pesan/kirim/', $form_attributes, $hidden);
-                                        ?>
-                                    <tr>
-                                        <td>
-                                            Kepada
-                                        </td>
-                                        <td>
-                                            <?php echo $row['pengirim']; ?>
-                                        </td>
-                                    </tr>
+                                        //echo validation_errors();
+                                        $form_attributes = array('id' => 'tulis_pesan_broadcast');
+                                        $hidden = array (
+                                            'pengirim' => $this -> session -> userdata('username'),
+                                            'id_lowongan' => $row['id_lowongan'],
+                                        );
+                                        echo form_open(base_url().'pesan/kirim_broadcast/', $form_attributes, $hidden);
+                                    ?>
                                     <tr>
                                         <td>
                                             Subject
@@ -77,11 +69,8 @@
                                         </td>
                                     </tr>
                                 </table>
-
                                 <div class="span6 bg-color-red">
-                                    <?php
-                                        echo '<a href="'. base_url() . 'pesan/lihat/' . $row['id_pesan'] . '">';
-                                    ?>
+                                    <?php echo '<a href="' . base_url() . 'lowongan/lihat/' . $row['id_lowongan'] . '">'; ?>
                                     <button class="shortcut span6">
                                         <span class="icon">
                                             <i class="icon-cancel-2"></i>
@@ -92,23 +81,19 @@
                                     </button>
                                     </a>
                                 </div>
-
-
-
                                 <div class="span6 bg-color-green">
-                                    <a href ="javascript:;" onclick="document.getElementById('tulis_pesan').submit()">
+                                    <!-- <?php echo '<a href="' . base_url() . '">'; ?> -->
+                                    <a href ="#" onclick="document.getElementById('tulis_pesan_broadcast').submit()">
                                     <button class="shortcut span6">
                                         <span class="icon">
-                                            <i class="icon-checkmark"></i>
+                                            <i class="icon-broadcast"></i>
                                         </span>
                                         <span class="label">
-                                            Simpan
+                                            Broadcast
                                         </span>
                                     </button>
+                                    </div>
                                     </a>
-                                </div>
-
-                                
                             </div>
                             
                         </div>

@@ -23,6 +23,7 @@ class Pesan_model extends CI_Model {
     	$this->db->select('*');
         $this->db->from('pesan');
         $this->db->where('penerima', $id_penerima);
+        $this->db->order_by('waktu', 'desc');
         $query = $this->db->get();
 
         return $query;
@@ -49,6 +50,36 @@ class Pesan_model extends CI_Model {
         $data['id_pesan'] = $id_pesan;
 
         $this -> db -> insert('pesan', $data);
+
+        return $id_pesan;
+    }
+
+    public function simpan_pesan_broadcast($data) {
+        $time = unix_to_human(gmt_to_local(now(), 'UP5', FALSE));
+        $time = explode(" ", $time);
+        $field['waktu'] = $time[1];
+        
+        //ambil semua pendaftar
+        $this -> db -> select('username');
+        $this -> db -> from('pendaftar');
+        $this -> db -> where('id_lowongan', $data['id_lowongan']);
+        $pdftr = $this -> db -> get();
+        $pdftr = $pdftr -> result_array();
+
+        for($i = 0; $i < count($pdftr); $i++) {
+            $field['penerima'] = $pdftr[$i]['username'];
+            $this -> db -> select_max('id_pesan');
+            $id = $this -> db -> get('pesan');
+            $id_pesan = $id->result_array();
+            $id_pesan = $id_pesan[0]['id_pesan'] + 1;
+            
+            $field['pengirim'] = $data['pengirim'];
+            $field['subject'] = $data['subject'];
+            $field['isi'] = $data['isi'];
+            $field['id_pesan'] = $id_pesan;
+
+            $this -> db -> insert('pesan', $field);
+        }
 
         return $id_pesan;
     }

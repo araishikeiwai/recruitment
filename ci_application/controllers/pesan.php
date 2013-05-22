@@ -69,15 +69,42 @@ class Pesan extends CI_Controller {
         $data['subject'] = $this -> input -> post('subject');
         $data['isi'] = $this -> input -> post('isi');
 
-        echo 'pengirim : '. $data['pengirim']. '<br/>';
-        echo 'penerima : ' . $data['penerima'] . '<br />';
-        echo 'subject : ' . $data['subject'] . '<br />';
-        echo 'isi : ' . $data['isi'] . '<br />';
+        // echo 'pengirim : '. $data['pengirim']. '<br/>';
+        // echo 'penerima : ' . $data['penerima'] . '<br />';
+        // echo 'subject : ' . $data['subject'] . '<br />';
+        // echo 'isi : ' . $data['isi'] . '<br />';
         $id_pesan = $this -> pesan_model -> simpan_pesan($data);
 
         redirect('pesan/lihat/' . $id_pesan);
     }
 
+    /**
+    * unused in this version
+    */
+    public function broadcast($id_lowongan) {
+        
+        $data = array('query' => 'broadcast', 'id_lowongan' => $id_lowongan);
+        $this -> load -> view("Broadcast_view", $data);
+    }
+
+    /**
+    * unused in this version
+    */
+    public function kirim_broadcast() {
+        $data = array();
+        $data['id_lowongan'] = $this -> input -> post('id_lowongan');
+        $data['pengirim'] = $this -> input -> post('pengirim');
+        $data['subject'] = $this -> input -> post('subject');
+        $data['isi'] = $this -> input -> post('isi');
+
+        echo 'id_lowongan : '. $data['id_lowongan']. '<br/>';
+        echo 'pengirim : '. $data['pengirim']. '<br/>';
+        echo 'subject : ' . $data['subject'] . '<br />';
+        echo 'isi : ' . $data['isi'] . '<br />';
+        $id_pesan = $this -> pesan_model -> simpan_pesan_broadcast($data);
+
+        redirect('pesan/lihat/' . $id_pesan);
+    }
 }
 
 /* End of file pesan.php */

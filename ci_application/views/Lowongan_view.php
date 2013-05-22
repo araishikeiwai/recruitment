@@ -1,4 +1,3 @@
-    <?php include('header_view_0.php'); ?>
 <!--    
 - View - Lowongan
 -  
@@ -8,6 +7,8 @@
 - @copyright recrUItment, 24-Apr-2013
 - @version 1.1.0.2
 -->
+    <?php include('header_view_0.php'); ?>
+
     <title>Lihat Lowongan</title>
     
     <?php include('header_view.php'); ?>
@@ -249,12 +250,12 @@
                                             </button>
                                         </a>
                                     </div>
-                                <?php } else if ($this -> session -> userdata('username') == $row['lowongan']['nama_provider']) { ?>
+                        <?php } else if ($this -> session -> userdata('username') == $row['lowongan']['nama_provider']) { ?>
 
                                 <?php if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) { ?>
-                                    <div class="span4 bg-color-green">
+                                    <div class="span2 bg-color-green">
                                         <?php echo '<a href="' . base_url() . 'lowongan/ubah/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                            <button class="shortcut span4">
+                                            <button class="shortcut span2">
                                 <?php } else { ?>
                                     <div class="span6 bg-color-green">
                                         <?php echo '<a href="' . base_url() . 'lowongan/ubah/' . $row['lowongan']['id_lowongan'] . '">'; ?>
@@ -270,17 +271,17 @@
                                         </a>
                                     </div>
                                 <?php if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) { ?>
-                                    <div class="span4 bg-color-yellow">
+                                    <div class="span2 bg-color-yellow">
                                         <?php echo '<a href="' . base_url() . 'lowongan/pendaftar/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                            <button class="shortcut span4">
+                                            <button class="shortcut span2">
                                 <?php } else { ?>
                                     <div class="span6 bg-color-yellow">
                                         <?php echo '<a href="' . base_url() . 'lowongan/pendaftar/' . $row['lowongan']['id_lowongan'] . '">'; ?>
                                             <button class="shortcut span6">
                                 <?php } ?>
-                                                <!-- <span class="icon">
-                                                    <i class="icon-pencil"></i>
-                                                </span> -->
+                                                <span class="icon">
+                                                    <i class="icon-user-2"></i>
+                                                </span>
                                                 <span class="label">
                                                     Lihat Pendaftar
                                                 </span>
@@ -288,7 +289,29 @@
                                         </a>
                                     </div>
                                 <?php if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) { ?>
-                                    <div class="span4 bg-color-red">
+                                    <div class="span2 bg-color-blue">
+                                        <?php echo '<a href="' . base_url() . 'pesan/broadcast/' . $row['lowongan']['id_lowongan'] . '">'; ?>                                        
+                                        <button class="shortcut span2">
+                                            <span class="icon">
+                                                <i class="icon-broadcast"></i>
+                                            </span>
+                                            <span class="label">
+                                                Broadcast
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="span2 bg-color-yellow">
+                                        <?php echo '<a href="' . base_url() . 'promosi/ajukan/' . $row['lowongan']['id_lowongan'] . '">'; ?>
+                                        <button class="shortcut span2">
+                                            <span class="icon">
+                                                <i class="icon-eye"></i>
+                                            </span>
+                                            <span class="label">
+                                                Promosikan
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="span2 bg-color-red">
                                         <script type="text/javascript">
                                             function konfirmasi_hapus(link) {
                                                 var oke = confirm("Apakah Anda yakin menghapus lowongan ini?");
@@ -303,7 +326,7 @@
                                             echo "'$link'";
                                             echo ')">'; 
                                         ?>
-                                            <button class="shortcut span4">
+                                            <button class="shortcut span2">
                                                 <span class="icon">
                                                     <i class="icon-cancel-2"></i>
                                                 </span>
@@ -314,6 +337,7 @@
                                         </a>
                                     </div>
                                 <?php } ?>
+
                                 <?php } else {
                                     if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) {
                                         $sudah_daftar = FALSE;

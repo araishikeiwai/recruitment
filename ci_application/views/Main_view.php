@@ -98,6 +98,34 @@
                                     <?php } ?>
                                 </div>
                                 
+                                <div>
+                                    <?php echo '<a href="' . base_url() . 'lowongan/history_seeker">'; ?>
+                                        <button class="shortcut span3">
+                                            <span class="icon">
+                                                <i class="icon-user-2"></i>
+                                            </span>
+                                            <span class="label">
+                                                History Lowongan<br> 
+                                                Seeker
+                                            </span>
+                                        </button>
+                                    </a>
+                                </div>
+                                <div>
+                                    <?php if ($this -> session -> userdata('status') == 'provider' && $this -> session -> userdata('username') == $row['username']) { ?>
+                                    <?php echo '<a href="' . base_url() . 'lowongan/history_provider">'; ?>
+                                        <button class="shortcut span3">
+                                            <span class="icon">
+                                                <i class="icon-user-3"></i>
+                                            </span>
+                                            <span class="label">
+                                                History Lowongan<br> 
+                                                Provider
+                                            </span>
+                                        </button>
+                                    </a>
+                                    <?php } ?>
+                                </div>
                                 
                                 
 

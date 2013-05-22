@@ -629,6 +629,26 @@ class Lowongan extends CI_Controller {
         
     }
 
+    public function history_provider(){
+        if (!$this->session->userdata('logged_in')) {
+            redirect('');
+        } else{
+            $criteria['nama_provider'] = $this -> session -> userdata('username');
+            $data = array('query' => 'hasil', 'lowongan' => $this -> lowongan_model -> get_lowongan_by_criteria($criteria));
+            $this -> load -> view('history_lowongan_provider_view', $data);
+        }
+    }
+
+    public function history_seeker() {
+           if (!$this->session->userdata('logged_in')) {
+            redirect('');
+        } else{
+            $criteria['username'] = $this -> session -> userdata('username');
+            $data = array('query' => 'hasil', 'lowongan' => $this -> pendaftar_model -> get_pendaftar_history($criteria));
+            $this -> load -> view('history_lowongan_seeker_view', $data);
+        }   
+    }
+
 }
 
 /* End of file lowongan.php */
