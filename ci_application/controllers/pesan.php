@@ -56,6 +56,10 @@ class Pesan extends CI_Controller {
 	*/
     public function balas($id_pengirim, $id_pesan) {
         $data = array('query' => 'balaspesan', 'pengirim' => $id_pengirim, 'id_pesan' => $id_pesan);
+        $pesan = $this-> pesan_model -> get_pesan_by_id($id_pesan);
+        $pesan = $pesan->result_array();
+        $data['subject'] = $pesan[0]['subject'];
+        
         $this -> load -> view("Pesan_balas_view", $data);
     }
 

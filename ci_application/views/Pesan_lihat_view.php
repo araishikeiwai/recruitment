@@ -57,6 +57,7 @@
                                         </td>
                                     </tr>
                                 </table>
+                                
                                 <div class="span6 bg-color-red">
                                     <?php 
                                         echo '<a href="' . base_url() . 'pesan/daftar_pesan/' . $this -> session -> userdata('username') . '">'; 
@@ -70,6 +71,8 @@
                                         </span>
                                     </button>
                                 </div>
+
+                                <?php if($row[0]['penerima'] == $this->session->userdata('username')) {?>
                                 <div class="span6 bg-color-green">
                                     <?php 
                                         echo '<a href="' . base_url() . 'pesan/balas/' . $row[0]['pengirim'] . '/'. $row[0]['id_pesan'].'">'; 
@@ -82,7 +85,9 @@
                                             Balas
                                         </span>
                                     </button>
-                                    </div>
+                                </div>
+                                <?php }?>
+
                             </div>
                             
                         </div>

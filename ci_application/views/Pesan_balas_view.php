@@ -49,7 +49,7 @@
                                             <?php
                                                 $form_attributes = array(
                                                     'name' => 'subject',
-                                                    'value' => set_value('subject'),
+                                                    'value' => set_value('subject', 'Re: '.$row['subject']),
                                                     'placeholder' => 'Subject here...',
                                                     'style' => 'width:100%'
                                                 );

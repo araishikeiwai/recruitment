@@ -21,6 +21,7 @@
     } else if ($query == 'balaspesan') {
         $row['id_pesan'] = $id_pesan;
         $row['pengirim'] = $pengirim;
+        $row['subject'] = $subject;
     } else if ($query == 'broadcast') {
         $row['id_lowongan'] = $id_lowongan;
     } else if ($query != '' && $query -> num_rows() > 0) {
