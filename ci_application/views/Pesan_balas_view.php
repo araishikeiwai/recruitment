@@ -76,6 +76,7 @@
                                             ?>
                                         </td>
                                     </tr>
+                                    <?php echo form_close(); ?>
                                 </table>
 
                                 <div class="span6 bg-color-red">

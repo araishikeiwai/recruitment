@@ -68,6 +68,7 @@
                                             ?>
                                         </td>
                                     </tr>
+                                    <?php echo form_close(); ?>
                                 </table>
                                 <div class="span6 bg-color-red">
                                     <?php echo '<a href="' . base_url() . 'lowongan/lihat/' . $row['id_lowongan'] . '">'; ?>
@@ -82,8 +83,7 @@
                                     </a>
                                 </div>
                                 <div class="span6 bg-color-green">
-                                    <!-- <?php echo '<a href="' . base_url() . '">'; ?> -->
-                                    <a href ="#" onclick="document.getElementById('tulis_pesan_broadcast').submit()">
+                                    <a href ="javascript:;" onclick="document.getElementById('tulis_pesan_broadcast').submit()">
                                     <button class="shortcut span6">
                                         <span class="icon">
                                             <i class="icon-broadcast"></i>

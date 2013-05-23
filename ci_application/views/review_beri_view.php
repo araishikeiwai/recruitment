@@ -9,59 +9,51 @@
 - @version 1.1.0.2
 -->
 
-    <title>Hasil Pencarian</title>
+    <title>Daftar Pesan</title>
 
     <?php include('header_view.php'); ?>
-        
-         <div class="page [secondary] with-sidebar">
+		
+		 <div class="page [secondary] with-sidebar">
 
-            <?php include('promosi_view.php'); ?>
+			<?php include('promosi_view.php'); ?>
 
-            <div class="page-region" >
+			<div class="page-region" >
                 <div class="page-region-content">
                     <div class="grid">
                         <div class="row">
                             <div class="span12">
-                                <h3>Kirim pesan</h3>
+                                <h3>Isi Review</h3>
                                 <table id="hidden">
-                                     <?php
-                                            //echo validation_errors();
-                                            $form_attributes = array('id' => 'tulis_pesan');
-                                            $hidden = array (
-                                                'pengirim' => $this -> session -> userdata('username'),
-                                                'penerima' => $row['penerima'],
-                                            );
-                                            echo form_open(base_url().'pesan/kirim/', $form_attributes, $hidden);
-                                        ?>
+                                    <?php
+                                        //echo validation_errors();
+                                        $form_attributes = array('id' => 'tulis_review');
+                                        $hidden = array (
+                                            'id_lowongan' => $row['id_lowongan'],
+                                            'penerima' => $row['username'],
+                                        );
+                                        echo form_open(base_url().'lowongan/simpan_review/', $form_attributes, $hidden);
+                                    ?>
                                     <tr>
                                         <td>
-                                            Kepada
+                                            Nama Seeker
                                         </td>
                                         <td>
-                                            <?php echo $row['penerima']; ?>
+                                            <?php echo pengguna_link($row['username'], $row['nama']);?>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            Subject
-                                        </td>
-                                        <td>
-                                            <?php
-                                                $form_attributes = array(
-                                                    'name' => 'subject',
-                                                    'value' => set_value('subject'),
-                                                    'placeholder' => 'Subject here...',
-                                                    'style' => 'width:100%'
-                                                );
-                                                echo form_input($form_attributes);
-                                            ?>
-                                        </td>
-                                    </tr>
+                                    
                                 </table>
-                                <table id="hidden">
+                                <table width="100" id="hidden">
+                                    Nilai
+                                        <div class="input-control select">
+                                            <?php
+                                                $options = array(1,2,3,4,5,6,7,8,9,10);
+                                                echo form_dropdown('nilai', $options);
+                                            ?>
+                                        </div>
                                     <tr>
                                         <td>
-                                            <h4>Isi Pesan</h4>
+                                            <h4>Isi Review</h4>
                                         </td>
                                     </tr>
                                     <tr>
@@ -76,12 +68,9 @@
                                             ?>
                                         </td>
                                     </tr>
-                                    <?php echo form_close(); ?>
+                                    <?php echo form_close(); ?> 
                                 </table>
                                 <div class="span6 bg-color-red">
-                                    <?php
-                                        echo '<a href="'. base_url() . 'profil/lihat/' . $row['penerima'] . '">';
-                                    ?>
                                     <button class="shortcut span6">
                                         <span class="icon">
                                             <i class="icon-cancel-2"></i>
@@ -90,20 +79,20 @@
                                             Batal
                                         </span>
                                     </button>
-                                    </a>
                                 </div>
                                 <div class="span6 bg-color-green">
-                                    <a href ="javascript:;" onclick="document.getElementById('tulis_pesan').submit()">
+                                    <a href ="javascript:;" onclick="document.getElementById('tulis_review').submit()">
                                     <button class="shortcut span6">
                                         <span class="icon">
-                                            <i class="icon-checkmark"></i>
+                                            <i class="icon-comments"></i>
                                         </span>
                                         <span class="label">
-                                            Simpan
+                                            Review
                                         </span>
                                     </button>
                                     </a>
                                 </div>
+
                             </div>
                             
                         </div>
@@ -112,7 +101,7 @@
 
                 </div>
             </div>
-        </div>
-        
-        
-        <?php include('footer_view.php'); ?>
+        </div>  
+		
+		
+		<?php include('footer_view.php'); ?>

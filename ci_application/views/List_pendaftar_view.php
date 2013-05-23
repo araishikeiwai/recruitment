@@ -74,6 +74,12 @@
                                                     ?>
                                                 </div>
                                             </td>
+                                            <?php echo form_close(); ?>
+                                            <td>
+                                                <?php echo '<a href ="' . base_url() . 'lowongan/beri_review/' . $row['lowongan']['id_lowongan'] . '/' . $row['pendaftar'][$i]['username'] . '">'; ?>
+                                                <button class="default">Beri Review</button>
+                                                </a>
+                                            </td>
                                         </tr>
                                     <?php } } ?> 
                                 </tbody>

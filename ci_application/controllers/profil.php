@@ -25,6 +25,7 @@ class Profil extends CI_Controller {
         $this -> form_validation -> set_message('valid_email', '%s tidak valid');
 
         $this->load->model('pengguna_model');
+        $this->load->model('review_model');
 
         $config = array(
             'upload_path' => base_url() . 'images/avatar',
@@ -46,6 +47,7 @@ class Profil extends CI_Controller {
             redirect('');
         } else {
             $data = array('query' => $this -> pengguna_model -> get_pengguna($this -> session -> userdata('username')));
+            $data['user_review'] = $this -> review_model -> get_review($this -> session -> userdata('username'));
             $this->load->view('main_view', $data);
         }
     }
@@ -64,6 +66,7 @@ class Profil extends CI_Controller {
             }
             $data = array('query' => $this -> pengguna_model -> get_pengguna($username));
             if ($data['query'] -> num_rows() > 0) {
+                $data['user_review'] = $this -> review_model -> get_review($this -> session -> userdata('username'));
                 $this->load->view('main_view', $data);   
             } else {
                 $this->load->view('404_view');

@@ -174,6 +174,21 @@
                             <div class="span4 bg-color-orange">
                                 <center><h3>Review<h3></center>
                             </div>
+                            <!-- <div class="bg-color-yellow"> -->
+                                <?php 
+                                    if(count($review) > 0) {
+                                        for($i = 0; $i < count($review); $i++) {
+                                            echo 'dari ' . pengguna_link($review[$i]['username'], $review[$i]['nama']);
+                                            echo ' pada lowongan ' . lowongan_link($review[$i]['id_lowongan'], $review[$i]['judul']) . ':<br />';
+                                            echo '<em>' .$review[$i]['isi'] . '</em>';
+                                            echo 'Nilai : ' . $review[$i]['nilai'] . ' dari 10<br />';
+                                            echo '__________________________<br />';
+                                        }
+                                    } else {
+                                        echo 'Belum memiliki review';
+                                    }
+                                ?>
+                            <!-- </div> -->
                         </div>
                         
                         

@@ -625,8 +625,34 @@ class Lowongan extends CI_Controller {
     /**
     * unused in this version
     */
-    public function beri_review() {
-        
+    public function beri_review($id_lowongan, $username) {
+        if (!$this->session->userdata('logged_in')) {
+            redirect('');
+        } else {
+            $lowongan = $this -> lowongan_model -> get_lowongan($id_lowongan);
+            $pengguna = $this -> pengguna_model -> get_pengguna($username);
+            $lowongan = $lowongan -> row_array();
+            $pengguna = $pengguna -> row_array();
+
+            $data = array('query' => 'review', 'pengguna' => $pengguna, 'lowongan' => $lowongan);
+            $this -> load -> view('review_beri_view', $data);
+        }
+    }
+
+    public function simpan_review() {
+        if (!$this->session->userdata('logged_in')) {
+            redirect('');
+        } else {
+            $data['id_lowongan'] = $this -> input -> post('id_lowongan');
+            $data['username'] = $this -> input -> post('penerima');
+            $data['nilai'] = $this -> input -> post('nilai');
+            $data['nilai'] = $data['nilai'] + 1;
+            $data['isi'] = $this -> input -> post('isi');
+            $this -> review_model -> simpan_review($data);
+
+            redirect('lowongan/pendaftar/' . $data['id_lowongan']);
+        }
+
     }
 
     public function history_provider(){

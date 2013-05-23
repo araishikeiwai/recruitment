@@ -24,8 +24,15 @@
         $row['subject'] = $subject;
     } else if ($query == 'broadcast') {
         $row['id_lowongan'] = $id_lowongan;
+    } else if ($query == 'review') {
+        $row['username'] = $pengguna['username'];
+        $row['nama'] = $pengguna['nama'];
+        $row['id_lowongan'] = $lowongan['id_lowongan'];
     } else if ($query != '' && $query -> num_rows() > 0) {
         $row = $query -> row_array();
+        if($row['status'] == 'seeker' || $row['status'] == 'provider' || $row['status'] == 'admin') {
+            $review = $user_review -> result_array();
+        }
     } else {
         $row['username'] = '';
         $row['nama'] = '';

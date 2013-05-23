@@ -19,6 +19,7 @@ class Authentication extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('pengguna_model');
+        $this->load->model('review_model');
     }
 
     /**
@@ -31,6 +32,7 @@ class Authentication extends CI_Controller {
             $this->load->view('home_view');
         } else {
             $data = array('query' => $this -> pengguna_model -> get_pengguna($this -> session -> userdata('username')));
+            $data['user_review'] = $this -> review_model -> get_review($this -> session -> userdata('username'));
             $this->load->view('main_view', $data);
         }
     }
