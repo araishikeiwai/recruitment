@@ -71,6 +71,7 @@
                                     <?php echo form_close(); ?> 
                                 </table>
                                 <div class="span6 bg-color-red">
+                                    <?php echo '<a href ="' . base_url() . 'lowongan/pendaftar/' . $row['id_lowongan'] . '">'; ?>
                                     <button class="shortcut span6">
                                         <span class="icon">
                                             <i class="icon-cancel-2"></i>
@@ -79,6 +80,7 @@
                                             Batal
                                         </span>
                                     </button>
+                                    </a>
                                 </div>
                                 <div class="span6 bg-color-green">
                                     <a href ="javascript:;" onclick="document.getElementById('tulis_review').submit()">
