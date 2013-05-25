@@ -85,7 +85,7 @@ class Authentication extends CI_Controller {
                     if ($query -> num_rows() == 0) {
                         $data = array(
                             'username' => $username,
-                            'nama' => ucwords(strtolower(($ldap_result['cn'][0])),
+                            'nama' => ucwords(strtolower($ldap_result['cn'][0])),
                             'email' => $ldap_result['mail'][0],
                         );
                         $query = $this -> pengguna_model -> create_pengguna($data);

@@ -40,8 +40,8 @@ class Pesan extends CI_Controller {
     /**
     *
     */
-    public function daftar_pesan($id_penerima) {
-        $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_penerima($id_penerima));
+    public function daftar_pesan() {
+        $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_penerima($this -> session -> userdata('username')));
 
         if ($data['pesan'] -> num_rows() == 0) {
             $this -> load -> view('Pesan_daftar_view', $data);

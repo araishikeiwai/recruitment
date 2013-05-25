@@ -50,7 +50,7 @@
                     <div class="span2 bg-color-green">
                         <?php 
                             $username = $this -> session -> userdata('username');
-                            echo '<a href="' . base_url() . 'pesan/daftar_pesan/' . $username . '">'; 
+                            echo '<a href="' . base_url() . 'pesan/daftar_pesan/">'; 
                         ?>
                         <button class="shortcut span2">
                             <span class="icon">

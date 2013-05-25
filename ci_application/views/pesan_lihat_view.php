@@ -59,7 +59,7 @@
                                 </table>
                                 <div class="span6 bg-color-red">
                                     <?php 
-                                        echo '<a href="' . base_url() . 'pesan/daftar_pesan/' . $this -> session -> userdata('username') . '">'; 
+                                        echo '<a href="' . base_url() . 'pesan/daftar_pesan/">'; 
                                     ?>
                                     <button class="shortcut span6">
                                         <span class="icon">

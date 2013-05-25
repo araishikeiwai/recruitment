@@ -51,14 +51,19 @@ class Lowongan extends CI_Controller {
             redirect('');
         } else{
             $lowongan = $this -> lowongan_model -> get_lowongan($id_lowongan);
-            $wawancara = $this -> wawancara_model -> get_wawancara(array('id_lowongan' => $id_lowongan));
-            $pendaftar = $this -> pendaftar_model -> get_pendaftar(array('id_lowongan' => $id_lowongan));
 
-            $provider = $this -> pengguna_model -> get_pengguna($lowongan -> row() -> nama_provider);
-            $provider = $provider -> row_array();
+            if ($lowongan -> num_rows() > 0) {
+                $wawancara = $this -> wawancara_model -> get_wawancara(array('id_lowongan' => $id_lowongan));
+                $pendaftar = $this -> pendaftar_model -> get_pendaftar(array('id_lowongan' => $id_lowongan));
 
-            $data = array('query' => 'multiLihat', 'lowongan' => $lowongan, 'wawancara' => $wawancara, 'pendaftar' => $pendaftar, 'provider' => $provider);
-            $this -> load -> view('lowongan_view', $data);
+                $provider = $this -> pengguna_model -> get_pengguna($lowongan -> row() -> nama_provider);
+                $provider = $provider -> row_array();
+
+                $data = array('query' => 'multiLihat', 'lowongan' => $lowongan, 'wawancara' => $wawancara, 'pendaftar' => $pendaftar, 'provider' => $provider);
+                $this -> load -> view('lowongan_view', $data);
+            } else {
+                $this -> load -> view('404_view');
+            }
         }
     }
 

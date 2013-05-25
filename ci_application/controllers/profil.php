@@ -66,7 +66,7 @@ class Profil extends CI_Controller {
             }
             $data = array('query' => $this -> pengguna_model -> get_pengguna($username));
             if ($data['query'] -> num_rows() > 0) {
-                $data['user_review'] = $this -> review_model -> get_review($this -> session -> userdata('username'));
+                $data['user_review'] = $this -> review_model -> get_review($username);
                 $this->load->view('main_view', $data);   
             } else {
                 $this->load->view('404_view');
