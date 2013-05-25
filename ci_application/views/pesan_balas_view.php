@@ -103,7 +103,7 @@
                                             <i class="icon-checkmark"></i>
                                         </span>
                                         <span class="label">
-                                            Simpan
+                                            Kirim
                                         </span>
                                     </button>
                                     </a>

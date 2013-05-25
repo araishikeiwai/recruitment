@@ -33,6 +33,7 @@ class Pesan extends CI_Controller {
 	*/
     public function lihat($id_pesan) {
         $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_id($id_pesan));
+        $data['pengirim'] = '';
         $this -> load -> view("Pesan_lihat_view", $data);
     }
 
@@ -56,6 +57,8 @@ class Pesan extends CI_Controller {
     */
     public function tulis($id_penerima) {
         $data = array('query' => 'tulispesan', 'penerima' => $id_penerima);
+
+
         $this -> load -> view("Pesan_tulis_view", $data);
     }
 
