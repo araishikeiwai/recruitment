@@ -82,6 +82,7 @@ class Profil extends CI_Controller {
             redirect('');
         } else {
             $data = array('query' => $this -> pengguna_model -> get_pengguna($this -> session -> userdata('username')));
+            $data['user_review'] = $this -> review_model -> get_review($this -> session -> userdata('username'));
             $this->load->view('profil_ubah_view', $data);
         }
     }

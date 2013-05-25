@@ -17,6 +17,7 @@ class Pesan extends CI_Controller {
         parent::__construct();
 
         $this->load->model('pesan_model');
+        $this->load->model('pengguna_model');
     }
 
 	/**
@@ -40,6 +41,13 @@ class Pesan extends CI_Controller {
     */
     public function daftar_pesan($id_penerima) {
         $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_penerima($id_penerima));
+        $pesan = $data['pesan'] -> result_array();
+        
+        for($i = 0; $i < count($pesan); $i++) {
+            $data['pengirim'][$i] = $this -> pengguna_model -> get_pengguna($pesan[$i]['pengirim']);
+        }
+
+        
         $this -> load -> view("Pesan_daftar_view", $data);
     }
 

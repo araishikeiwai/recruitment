@@ -16,6 +16,7 @@
         $row = $lowongan -> result_array();
     } else if ($query == 'pesan') {
         $row = $pesan -> result_array(); 
+        $pengirim = $pengirim;
     } else if ($query == 'tulispesan') {
         $row['penerima'] = $penerima;
     } else if ($query == 'balaspesan') {

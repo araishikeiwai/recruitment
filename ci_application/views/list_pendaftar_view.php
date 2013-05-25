@@ -104,9 +104,9 @@
                                 <div class="span12 bg-color-red">
                                     <a href="<?php echo base_url() ?>lowongan/lihat/<?php echo $row['lowongan']['id_lowongan'] ?>">
                                         <button class="shortcut span12">
-                                            <!--<span class="icon">
-                                                <i class="icon-cancel-2"></i>
-                                            </span>-->
+                                            <span class="icon">
+                                                <i class="icon-undo"></i>
+                                            </span>
                                             <span class="label">
                                                 Kembali
                                             </span>

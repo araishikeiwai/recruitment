@@ -11,7 +11,7 @@
 * @version 1.1.0.2
 * 
 */
-class Cv extends CI_Controller {
+class cv extends CI_Controller {
 
     /**
     * Mengkonstruksi controller dan melakukan pengaturan validasi, lalu me-load model untuk pengguna.
@@ -24,6 +24,7 @@ class Cv extends CI_Controller {
         $this -> form_validation -> set_message('integer', '%s harus berupa angka');
 
         $this->load->model('pengguna_model');
+        $this->load->model('review_model');
     }
 
     /**
@@ -35,6 +36,7 @@ class Cv extends CI_Controller {
         } else {
             if ($par == 0) {
                 $data = array('query' => $this -> pengguna_model -> get_pengguna($this -> session -> userdata('username')));
+                $data['user_review'] = $this -> review_model -> get_review($this -> session -> userdata('username'));
                 $this->load->view('cv_view', $data);
             } else {
                 //$username = $this->input->post('username',true);
@@ -51,6 +53,7 @@ class Cv extends CI_Controller {
             redirect('');
         } else {
             $data = array('query' => $this -> pengguna_model -> get_pengguna($this -> session -> userdata('username')));
+            $data['user_review'] = $this -> review_model -> get_review($this -> session -> userdata('username'));
             $this->load->view('cv_ubah_view', $data);
         }
     }
