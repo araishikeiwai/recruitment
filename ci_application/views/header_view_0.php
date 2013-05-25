@@ -15,13 +15,26 @@
     } else if ($query == 'hasil') {
         $row = $lowongan -> result_array();
     } else if ($query == 'pesan') {
-        $row = $pesan -> result_array();
+        $row = $pesan -> result_array(); 
     } else if ($query == 'tulispesan') {
-        $row = $pengirim;
+        $row['penerima'] = $penerima;
+    } else if ($query == 'balaspesan') {
+        $row['id_pesan'] = $id_pesan;
+        $row['pengirim'] = $pengirim;
+        $row['subject'] = $subject;
+    } else if ($query == 'broadcast') {
+        $row['id_lowongan'] = $id_lowongan;
+    } else if ($query == 'review') {
+        $row['username'] = $pengguna['username'];
+        $row['nama'] = $pengguna['nama'];
+        $row['id_lowongan'] = $lowongan['id_lowongan'];
     } else if ($query == 'paket') {
         $row = $paket -> result_array();
     } else if ($query != '' && $query -> num_rows() > 0) {
         $row = $query -> row_array();
+        if($row['status'] == 'seeker' || $row['status'] == 'provider' || $row['status'] == 'admin') {
+            $review = $user_review -> result_array();
+        }
     } else {
         $row['username'] = '';
         $row['nama'] = '';

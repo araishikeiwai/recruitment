@@ -50,7 +50,9 @@
                                         for ($i = 0; $i < count($row); $i++) { ?>
                                         <tr>
                                             <td>
-                                                <?php echo $row[$i]['pengirim'];?>
+                                                <?php $pengirim[$i] = $pengirim[$i] -> row_array();
+                                                  echo pengguna_link($row[$i]['pengirim'], $pengirim[$i]['nama']);
+                                                  ?>
                                             </td>
                                             <td>
                                                 <?php echo pesan_link($row[$i]['id_pesan'], $row[$i]['subject']); ?>

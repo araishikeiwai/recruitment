@@ -25,20 +25,20 @@
                                 <h3>Kirim pesan</h3>
                                 <table id="hidden">
                                      <?php
-                                        //echo validation_errors();
-                                        $form_attributes = array('id' => 'tulis_pesan');
-                                        $hidden = array (
-                                            'pengirim' => $this -> session -> userdata('username'),
-                                            'penerima' => $row['penerima'],
-                                        );
-                                        echo form_open(base_url().'pesan/kirim/', $form_attributes, $hidden);
-                                    ?>
+                                            //echo validation_errors();
+                                            $form_attributes = array('id' => 'tulis_pesan');
+                                            $hidden = array (
+                                                'pengirim' => $this -> session -> userdata('username'),
+                                                'penerima' => $row['pengirim'],
+                                            );
+                                            echo form_open(base_url().'pesan/kirim/', $form_attributes, $hidden);
+                                        ?>
                                     <tr>
                                         <td>
                                             Kepada
                                         </td>
                                         <td>
-                                            <?php echo $row['penerima']; ?>
+                                            <?php echo $row['pengirim']; ?>
                                         </td>
                                     </tr>
                                     <tr>
@@ -49,7 +49,7 @@
                                             <?php
                                                 $form_attributes = array(
                                                     'name' => 'subject',
-                                                    'value' => set_value('subject'),
+                                                    'value' => set_value('subject', 'Re: '.$row['subject']),
                                                     'placeholder' => 'Subject here...',
                                                     'style' => 'width:100%'
                                                 );
@@ -78,9 +78,10 @@
                                     </tr>
                                     <?php echo form_close(); ?>
                                 </table>
+
                                 <div class="span6 bg-color-red">
                                     <?php
-                                        echo '<a href="'. base_url() . 'profil/lihat/' . $row['penerima'] . '">';
+                                        echo '<a href="'. base_url() . 'pesan/lihat/' . $row['id_pesan'] . '">';
                                     ?>
                                     <button class="shortcut span6">
                                         <span class="icon">
@@ -92,6 +93,9 @@
                                     </button>
                                     </a>
                                 </div>
+
+
+
                                 <div class="span6 bg-color-green">
                                     <a href ="javascript:;" onclick="document.getElementById('tulis_pesan').submit()">
                                     <button class="shortcut span6">
@@ -104,6 +108,8 @@
                                     </button>
                                     </a>
                                 </div>
+
+                                
                             </div>
                             
                         </div>

@@ -70,9 +70,10 @@
                                         </span>
                                     </button>
                                 </div>
+                                <?php if($row[0]['penerima'] == $this->session->userdata('username')) {?>
                                 <div class="span6 bg-color-green">
                                     <?php 
-                                        echo '<a href="' . base_url() . 'pesan/tulis/' . $row[0]['pengirim'] . '">'; 
+                                        echo '<a href="' . base_url() . 'pesan/balas/' . $row[0]['pengirim'] . '/'. $row[0]['id_pesan'].'">'; 
                                     ?>
                                     <button class="shortcut span6">
                                         <span class="icon">
@@ -82,7 +83,9 @@
                                             Balas
                                         </span>
                                     </button>
-                                    </div>
+                                </div>
+                                <?php }?>
+
                             </div>
                             
                         </div>

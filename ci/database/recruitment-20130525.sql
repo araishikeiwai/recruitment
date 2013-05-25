@@ -1,3 +1,4 @@
+
 -- phpMyAdmin SQL Dump
 -- version 3.3.9
 -- http://www.phpmyadmin.net
@@ -178,7 +179,8 @@ CREATE TABLE IF NOT EXISTS `pesan` (
   `waktu` time NOT NULL,
   `subject` varchar(100) NOT NULL,
   `isi` text NOT NULL,
-  PRIMARY KEY (`pengirim`,`penerima`,`waktu`),
+  `id_pesan` int(11) NOT NULL,
+  PRIMARY KEY (`pengirim`,`penerima`,`waktu`,`id_pesan`),
   KEY `penerima` (`penerima`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

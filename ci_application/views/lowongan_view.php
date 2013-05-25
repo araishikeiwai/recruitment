@@ -247,11 +247,11 @@
                                     </div>
                                 <?php } else if ($this -> session -> userdata('username') == $row['lowongan']['nama_provider']) { ?>
                                     <?php 
-                                        $span = 6;
+                                        $span = 4;
                                         if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) {
-                                            $span = 4;
+                                            $span = 3;
                                             if ($row['lowongan']['status'] == 'dimoderasi') {
-                                                $span = 3;
+                                                $span = 2;
                                             }
                                         }
                                     ?>
@@ -268,6 +268,18 @@
                                                 </span>
                                             </button>
                                         </a>
+                                    </div>
+
+                                    <div class="span<?php echo $span ?> bg-color-red">
+                                        <?php echo '<a href="' . base_url() . 'pesan/broadcast/' . $row['lowongan']['id_lowongan'] . '">'; ?>                                        
+                                        <button class="shortcut span<?php echo $span ?>">
+                                            <span class="icon">
+                                                <i class="icon-broadcast"></i>
+                                            </span>
+                                            <span class="label">
+                                                Broadcast Pesan
+                                            </span>
+                                        </button>
                                     </div>
 
                                     <?php if ($row['lowongan']['status'] == 'dimoderasi') { ?>

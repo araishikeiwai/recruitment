@@ -20,6 +20,7 @@ class Authentication extends CI_Controller {
         parent::__construct();
         $this->load->model('pengguna_model');
         $this->load->model('ldap_model');
+        $this->load->model('review_model');
     }
 
     /**
@@ -31,6 +32,7 @@ class Authentication extends CI_Controller {
             $this->load->view('home_view', array('error_message' => 'none'));
         } else {
             $data = array('query' => $this -> pengguna_model -> get_pengguna($this -> session -> userdata('username')));
+            $data['user_review'] = $this -> review_model -> get_review($this -> session -> userdata('username'));
             $this->load->view('main_view', $data);
         }
     }
@@ -83,7 +85,7 @@ class Authentication extends CI_Controller {
                     if ($query -> num_rows() == 0) {
                         $data = array(
                             'username' => $username,
-                            'nama' => ucwords($ldap_result['cn'][0]),
+                            'nama' => ucwords(strtolower(($ldap_result['cn'][0])),
                             'email' => $ldap_result['mail'][0],
                         );
                         $query = $this -> pengguna_model -> create_pengguna($data);

@@ -55,6 +55,7 @@
                                     </div>
                                 <?php } else { ?>
                                     <div>
+                                        <?php echo '<a href="' . base_url() . 'pesan/tulis/' . $row['username'] . '">'; ?>
                                         <button class="shortcut span3">
                                             <span class="icon">
                                                 <i class="icon-mail"></i>
@@ -62,9 +63,8 @@
                                             <span class="label">
                                                 Kirim Pesan
                                             </span>
-                                            
-
                                         </button>
+                                        </a>
                                     </div>
                                 <?php } ?>
                                 
@@ -82,7 +82,7 @@
                                         </a>
                                     <?php } ?>
                                 </div>
-                                    
+
                                 <div>
                                     <?php if ($this -> session -> userdata('status') == 'admin') { ?>
                                         <?php echo '<a href="' . base_url() . 'admin/moderasi">'; ?>
@@ -98,6 +98,34 @@
                                     <?php } ?>
                                 </div>
                                 
+                                <div>
+                                    <?php echo '<a href="' . base_url() . 'lowongan/history_seeker">'; ?>
+                                        <button class="shortcut span3">
+                                            <span class="icon">
+                                                <i class="icon-user-2"></i>
+                                            </span>
+                                            <span class="label">
+                                                History Lowongan<br> 
+                                                Seeker
+                                            </span>
+                                        </button>
+                                    </a>
+                                </div>
+                                <div>
+                                    <?php if ($this -> session -> userdata('status') == 'provider' && $this -> session -> userdata('username') == $row['username']) { ?>
+                                    <?php echo '<a href="' . base_url() . 'lowongan/history_provider">'; ?>
+                                        <button class="shortcut span3">
+                                            <span class="icon">
+                                                <i class="icon-user-3"></i>
+                                            </span>
+                                            <span class="label">
+                                                History Lowongan<br> 
+                                                Provider
+                                            </span>
+                                        </button>
+                                    </a>
+                                    <?php } ?>
+                                </div>
                                 
                                 
 
@@ -146,6 +174,21 @@
                             <div class="span4 bg-color-orange">
                                 <center><h3>Review<h3></center>
                             </div>
+                            <!-- <div class="bg-color-yellow"> -->
+                                <?php 
+                                    if(count($review) > 0) {
+                                        for($i = 0; $i < count($review); $i++) {
+                                            echo 'dari ' . pengguna_link($review[$i]['username'], $review[$i]['nama']);
+                                            echo ' pada lowongan ' . lowongan_link($review[$i]['id_lowongan'], $review[$i]['judul']) . ':<br />';
+                                            echo '<em>' .$review[$i]['isi'] . '</em>';
+                                            echo 'Nilai : ' . $review[$i]['nilai'] . ' dari 10<br />';
+                                            echo '__________________________<br />';
+                                        }
+                                    } else {
+                                        echo 'Belum memiliki review';
+                                    }
+                                ?>
+                            <!-- </div> -->
                         </div>
                         
                         

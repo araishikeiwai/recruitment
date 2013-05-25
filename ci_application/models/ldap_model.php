@@ -13,7 +13,7 @@
 class Ldap_model extends CI_Model {
 
     function auth_ldap($username, $password) {
-        // $conn = @ldap_connect("152.118.39.37"); ldap ui, belum bisa dari ppl.cs.ui.ac.id
+        //$conn = @ldap_connect('ldap://152.118.39.37', 389); //ldap ui, belum bisa dari ppl.cs.ui.ac.id
         $conn = @ldap_connect('ldap://152.118.29.6', 389); //ldap fasilkom
         $opt = @ldap_set_option($conn, LDAP_OPT_PROTOCOL_VERSION, 3);
         // jika berhasil konek

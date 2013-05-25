@@ -180,6 +180,9 @@
                                     </a>
                                     <?php echo '<a href="' . base_url() . 'profil">'; ?>
                                         <button class="shortcut span6">
+                                            <span class="icon">
+                                                <i class="icon-undo"></i>
+                                            </span>
                                             <span class="label">
                                                 Kembali
                                             </span>
