@@ -18,6 +18,8 @@
         $row = $pesan -> result_array();
     } else if ($query == 'tulispesan') {
         $row = $pengirim;
+    } else if ($query == 'paket') {
+        $row = $paket -> result_array();
     } else if ($query != '' && $query -> num_rows() > 0) {
         $row = $query -> row_array();
     } else {

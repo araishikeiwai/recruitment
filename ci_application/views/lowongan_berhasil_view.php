@@ -9,7 +9,7 @@
 -->
     <?php include('header_view_0.php'); ?>
 
-    <title>Berhasil Mendaftar Lowongan</title>
+    <title>Berhasil!</title>
     
     <?php include('header_view.php'); ?>
         

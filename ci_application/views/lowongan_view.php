@@ -246,16 +246,20 @@
                                         </a>
                                     </div>
                                 <?php } else if ($this -> session -> userdata('username') == $row['lowongan']['nama_provider']) { ?>
+                                    <?php 
+                                        $span = 6;
+                                        if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) {
+                                            $span = 4;
+                                            if ($row['lowongan']['status'] == 'dimoderasi') {
+                                                $span = 3;
+                                            }
+                                        }
+                                    ?>
 
-                                <?php if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) { ?>
-                                    <div class="span4 bg-color-green">
+
+                                    <div class="span<?php echo $span ?> bg-color-green">
                                         <?php echo '<a href="' . base_url() . 'lowongan/ubah/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                            <button class="shortcut span4">
-                                <?php } else { ?>
-                                    <div class="span6 bg-color-green">
-                                        <?php echo '<a href="' . base_url() . 'lowongan/ubah/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                            <button class="shortcut span6">
-                                <?php } ?>
+                                            <button class="shortcut span<?php echo $span ?>">
                                                 <span class="icon">
                                                     <i class="icon-pencil"></i>
                                                 </span>
@@ -265,15 +269,25 @@
                                             </button>
                                         </a>
                                     </div>
-                                <?php if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) { ?>
-                                    <div class="span4 bg-color-yellow">
+
+                                    <?php if ($row['lowongan']['status'] == 'dimoderasi') { ?>
+                                        <div class="span<?php echo $span ?> bg-color-blue">
+                                            <?php echo '<a href="' . base_url() . 'promosi/ajukan/' . $row['lowongan']['id_lowongan'] . '">'; ?>
+                                                <button class="shortcut span<?php echo $span ?>">
+                                                    <span class="icon">
+                                                        <i class="icon-eye"></i>
+                                                    </span>
+                                                    <span class="label">
+                                                        Ajukan Promosi
+                                                    </span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    <?php } ?>
+
+                                    <div class="span<?php echo $span ?> bg-color-yellow">
                                         <?php echo '<a href="' . base_url() . 'lowongan/pendaftar/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                            <button class="shortcut span4">
-                                <?php } else { ?>
-                                    <div class="span6 bg-color-yellow">
-                                        <?php echo '<a href="' . base_url() . 'lowongan/pendaftar/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                            <button class="shortcut span6">
-                                <?php } ?>
+                                            <button class="shortcut span<?php echo $span ?>">
                                                 <!-- <span class="icon">
                                                     <i class="icon-pencil"></i>
                                                 </span> -->
@@ -283,33 +297,34 @@
                                             </button>
                                         </a>
                                     </div>
-                                <?php if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) { ?>
-                                    <div class="span4 bg-color-red">
-                                        <script type="text/javascript">
-                                            function konfirmasi_hapus(link) {
-                                                var oke = confirm("Apakah Anda yakin menghapus lowongan ini?");
-                                                if (oke == true) {
-                                                    window.location = link;
+                                    
+                                    <?php if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) { ?>
+                                        <div class="span<?php echo $span ?> bg-color-red">
+                                            <script type="text/javascript">
+                                                function konfirmasi_hapus(link) {
+                                                    var oke = confirm("Apakah Anda yakin menghapus lowongan ini?");
+                                                    if (oke == true) {
+                                                        window.location = link;
+                                                    }
                                                 }
-                                            }
-                                        </script>
-                                        <?php 
-                                            $link = base_url() . 'lowongan/batal/' . $row['lowongan']['id_lowongan'];
-                                            echo '<a href="javascript:;" onclick="konfirmasi_hapus(';
-                                            echo "'$link'";
-                                            echo ')">'; 
-                                        ?>
-                                            <button class="shortcut span4">
-                                                <span class="icon">
-                                                    <i class="icon-cancel-2"></i>
-                                                </span>
-                                                <span class="label">
-                                                    Batalkan Lowongan
-                                                </span>
-                                            </button>
-                                        </a>
-                                    </div>
-                                <?php } ?>
+                                            </script>
+                                            <?php 
+                                                $link = base_url() . 'lowongan/batal/' . $row['lowongan']['id_lowongan'];
+                                                echo '<a href="javascript:;" onclick="konfirmasi_hapus(';
+                                                echo "'$link'";
+                                                echo ')">'; 
+                                            ?>
+                                                <button class="shortcut span<?php echo $span ?>">
+                                                    <span class="icon">
+                                                        <i class="icon-cancel-2"></i>
+                                                    </span>
+                                                    <span class="label">
+                                                        Batalkan Lowongan
+                                                    </span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    <?php } ?>
                                 <?php } else {
                                     if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) {
                                         $sudah_daftar = FALSE;
