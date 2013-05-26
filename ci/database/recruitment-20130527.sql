@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 27, 2013 at 01:42 AM
+-- Generation Time: May 27, 2013 at 01:46 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `pengguna_achievement` (
 CREATE TABLE IF NOT EXISTS `pesan` (
   `pengirim` varchar(25) NOT NULL,
   `penerima` varchar(25) NOT NULL,
-  `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `subject` varchar(100) NOT NULL,
   `isi` text NOT NULL,
   `id_pesan` int(11) NOT NULL,
@@ -195,7 +195,8 @@ CREATE TABLE IF NOT EXISTS `pesan` (
 --
 
 INSERT INTO `pesan` (`pengirim`, `penerima`, `waktu`, `subject`, `isi`, `id_pesan`, `status`) VALUES
-('admin', 'ricky.arifandi', '2013-05-27 06:42:06', 'aoeu', '<p>aoeu</p>', 1, 'unread');
+('admin', 'ricky.arifandi', '2013-05-27 06:43:59', 'aoeu', '<p>aoeu</p>', 1, 'read'),
+('admin', 'ricky.arifandi', '2013-05-27 06:44:39', 'aoeuaoeu', '<p>aoeu</p>', 2, 'read');
 
 -- --------------------------------------------------------
 
