@@ -57,9 +57,9 @@
                                 <i class="icon-mail"></i>
                             </span>
                             <span class="label">
-                                Message
+                                Pesan
                             </span>
-                            <span class="badge bg-color-green">100</span>
+                            <span class="badge bg-color-green"><?php echo get_unread_message($this -> db, $this -> session -> userdata('username')) ?></span>
                         </button>
                     </div>
                     <div class="span2 bg-color-red">

@@ -1,5 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+if (!function_exists('convert_timestamp')) {
+    function convert_timestamp($timestamp) {
+        $date = substr($timestamp, 0, 10);
+        $time = substr($timestamp, 11, 8);
+
+        return convert_date($date) . ' @ ' . convert_time($time);
+    }
+}
+
 if (!function_exists('convert_date')) {
     function convert_date($date = '') {
         $y = substr($date, 0, 4);
@@ -112,5 +121,21 @@ if (!function_exists('is_syarat')) {
         } else {
             return false;
         }
+    }
+}
+
+if (!function_exists('get_unread_message')) {
+    function get_unread_message($db, $username) {
+        $db -> select('*');
+        $db -> from('pesan');
+
+        $data = array(
+            'penerima' => $username,
+            'status' => 'unread'
+        );
+
+        $db -> where($data);
+        $query = $db -> get();
+        return $query -> num_rows();
     }
 }

@@ -24,17 +24,14 @@
                             <h3>Daftar Pesan<h3>
                             <table id="myTable" class="striped hovered">
                                 <thead>
-                                    <td id="title">
+                                    <td id="title" style="width:220px">
                                         Pengirim
                                     </td>
-                                    <td id="title">
+                                    <td id="title" style="width:500px">
                                         Subject
                                     </td>
                                     <td id="title">
-                                        Waktu
-                                    </td>
-                                    <td id="title">
-                                        
+                                        Waktu Kirim
                                     </td>
                                 </thead>
                                     
@@ -42,23 +39,31 @@
                                 <tbody>
                                      <?php if (count($row) == 0) { ?>
                                      <tr>
-                                            <td colspan="2">
+                                            <td colspan="3">
                                                 Tidak Ada Data!
                                             </td>
                                         </tr>
                                     <?php } else {
                                         for ($i = 0; $i < count($row); $i++) { ?>
                                         <tr>
+                                            <?php
+                                                if ($row[$i]['status'] == 'unread') {
+                                                    $post = ' <b><i>(belum dibaca)</i></b>';
+                                                } else {
+                                                    $post = '';
+                                                }
+                                            ?>
                                             <td>
-                                                <?php $pengirim[$i] = $pengirim[$i] -> row_array();
-                                                  echo pengguna_link($row[$i]['pengirim'], $pengirim[$i]['nama']);
-                                                  ?>
+                                                <?php 
+                                                    $pengirim[$i] = $pengirim[$i] -> row_array();
+                                                    echo pengguna_link($row[$i]['pengirim'], $pengirim[$i]['nama']);
+                                                ?>
                                             </td>
                                             <td>
-                                                <?php echo pesan_link($row[$i]['id_pesan'], $row[$i]['subject']); ?>
+                                                <?php echo pesan_link($row[$i]['id_pesan'], $row[$i]['subject']) . $post ?>
                                             </td>
                                             <td>
-                                                <?php echo $row[$i]['waktu']; ?>
+                                                <?php echo convert_timestamp($row[$i]['waktu']); ?>
                                             </td>                                        
                                         </tr>
                                     <?php } } ?>

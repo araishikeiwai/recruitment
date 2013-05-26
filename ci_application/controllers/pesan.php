@@ -34,7 +34,15 @@ class Pesan extends CI_Controller {
     public function lihat($id_pesan) {
         $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_id($id_pesan));
         $data['pengirim'] = '';
-        $this -> load -> view("Pesan_lihat_view", $data);
+
+        $pesan = $data['pesan'] -> row_array();
+
+        if ($pesan['penerima'] == $this -> session -> userdata('username')) {
+            $update['status'] = 'read';
+            $this -> pesan_model -> update_status_pesan($id_pesan, $update);
+        }
+
+        $this -> load -> view("pesan_lihat_view", $data);
     }
 
     /**
@@ -44,7 +52,7 @@ class Pesan extends CI_Controller {
         $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_penerima($this -> session -> userdata('username')));
 
         if ($data['pesan'] -> num_rows() == 0) {
-            $this -> load -> view('Pesan_daftar_view', $data);
+            $this -> load -> view('pesan_daftar_view', $data);
         } else {
             $pesan = $data['pesan'] -> result_array();
             
@@ -63,7 +71,7 @@ class Pesan extends CI_Controller {
         $data = array('query' => 'tulispesan', 'penerima' => $id_penerima);
 
 
-        $this -> load -> view("Pesan_tulis_view", $data);
+        $this -> load -> view("pesan_tulis_view", $data);
     }
 
     /**
@@ -74,8 +82,9 @@ class Pesan extends CI_Controller {
         $pesan = $this-> pesan_model -> get_pesan_by_id($id_pesan);
         $pesan = $pesan->result_array();
         $data['subject'] = $pesan[0]['subject'];
+        $data['isi_pesan'] = $pesan[0]['isi'];
         
-        $this -> load -> view("Pesan_balas_view", $data);
+        $this -> load -> view("pesan_balas_view", $data);
     }
 
     /**
@@ -116,13 +125,15 @@ class Pesan extends CI_Controller {
         $data['subject'] = $this -> input -> post('subject');
         $data['isi'] = $this -> input -> post('isi');
 
+        $data['isi'] = $data['isi'] . '<br/><br/><i>Ini adalah pesan broadcast dari lowongan <a target="_blank" href="' . base_url() . 'lowongan/lihat/' . $data['id_lowongan'] . '">ini</a>.<br/>';
+
         echo 'id_lowongan : '. $data['id_lowongan']. '<br/>';
         echo 'pengirim : '. $data['pengirim']. '<br/>';
         echo 'subject : ' . $data['subject'] . '<br />';
         echo 'isi : ' . $data['isi'] . '<br />';
         $id_pesan = $this -> pesan_model -> simpan_pesan_broadcast($data);
 
-        redirect('pesan/lihat/' . $id_pesan);
+        redirect('lowongan/lihat/' . $data['id_lowongan']);
     }
 }
 

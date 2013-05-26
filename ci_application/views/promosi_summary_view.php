@@ -34,7 +34,7 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            Konfirmasi
+                                            Konfirmasi melalui halaman lowongan
                                         </li>
                                         <li>
                                             Ditampilin deh wokwokwokowkwokwokw

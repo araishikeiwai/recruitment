@@ -1,15 +1,6 @@
     <?php include('header_view_0.php'); ?>
-<!--    
-- View - Cari
--  
-- Halaman hasil pencarian lowongan
--
-- @author Nur Ulul Asman, Ricky Arifandi Daniel, Ahmad Faruq Waqfi
-- @copyright recrUItment, 24-Apr-2013
-- @version 1.1.0.2
--->
-
-    <title>Hasil Pencarian</title>
+    
+    <title>Lihat Pesan</title>
 
     <?php include('header_view.php'); ?>
         
@@ -22,23 +13,40 @@
                     <div class="grid">
                         <div class="row">
                             <div class="span12">
-                                <h3>Isi pesan</h3>
+                                <h3>Lihat pesan</h3>
                                 <table id="hidden">
                                     <tr>
+                                        <td style="width:120px">
+                                            Pengirim:
+                                        </td>
                                         <td>
-                                            Kepada
+                                            <?php echo $row[0]['pengirim']; ?>
+                                        </td>
+                                    </tr><tr>
+                                        <td style="width:120px">
+                                            Penerima:
                                         </td>
                                         <td>
                                             <?php echo $row[0]['penerima']; ?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            Subject
+                                        <td style="width:120px">
+                                            Subject:
                                         </td>
                                         <td>
                                             <div style="width:100%">
                                                 <?php echo $row[0]['subject']; ?>
+                                            <div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:120px">
+                                            Waktu Kirim:
+                                        </td>
+                                        <td>
+                                            <div style="width:100%">
+                                                <?php echo convert_timestamp($row[0]['waktu']); ?>
                                             <div>
                                         </td>
                                     </tr>
@@ -57,11 +65,21 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <div class="span6 bg-color-red">
+
+                                <?php 
+                                    if ($row[0]['penerima'] == $this -> session -> userdata('username')) {
+                                        $span = 6;
+                                    } else {
+                                        $span = 12;
+                                    }
+                                ?>
+
+
+                                <div class="span<?php echo $span ?> bg-color-red">
                                     <?php 
                                         echo '<a href="' . base_url() . 'pesan/daftar_pesan/">'; 
                                     ?>
-                                    <button class="shortcut span6">
+                                    <button class="shortcut span<?php echo $span ?>">
                                         <span class="icon">
                                             <i class="icon-undo"></i>
                                         </span>
@@ -69,6 +87,7 @@
                                             Kembali
                                         </span>
                                     </button>
+                                </a>
                                 </div>
                                 <?php if($row[0]['penerima'] == $this->session->userdata('username')) {?>
                                 <div class="span6 bg-color-green">
@@ -83,6 +102,7 @@
                                             Balas
                                         </span>
                                     </button>
+                                </a>
                                 </div>
                                 <?php }?>
 

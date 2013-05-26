@@ -22,6 +22,7 @@ class cv extends CI_Controller {
         $this->form_validation->set_error_delimiters('<p style="color:red">', '</p>');
         $this -> form_validation -> set_message('required', '%s harus diisi');
         $this -> form_validation -> set_message('integer', '%s harus berupa angka');
+        $this -> form_validation -> set_message('numeric', 'Format %s salah');
 
         $this->load->model('pengguna_model');
         $this->load->model('review_model');
@@ -68,7 +69,7 @@ class cv extends CI_Controller {
             $this -> form_validation -> set_rules('alamat', 'Alamat', 'required');
             $this -> form_validation -> set_rules('tmpt_lahir', 'Tempat Lahir', 'required');
             $this -> form_validation -> set_rules('tgl_lahir', 'Tanggal Lahir', 'required');
-            $this -> form_validation -> set_rules('no_kontak', 'No Kontak', 'required');
+            $this -> form_validation -> set_rules('no_kontak', 'No Kontak', 'required|numeric');
             $this -> form_validation -> set_rules('kemampuan', 'Kemampuan', 'required');
             $this -> form_validation -> set_rules('prestasi', 'Prestasi', 'required');
             $this -> form_validation -> set_rules('edukasi', 'Riwayat Pendidikan', 'required');
@@ -78,6 +79,7 @@ class cv extends CI_Controller {
 
             if ($this -> form_validation -> run() == FALSE) {
                 $data = array('query' => $this -> pengguna_model -> get_pengguna($this -> session -> userdata('username')));
+                $data['user_review'] = $this -> review_model -> get_review($this -> session -> userdata('username'));
                 $this -> load -> view('cv_ubah_view', $data);
             } else {
                 $data = array();

@@ -47,9 +47,14 @@
                                         </td>
                                         <td>
                                             <?php
+                                                if (substr($row['subject'], 0, 4) != 'Re: ') {
+                                                    $row['subject'] = 'Re: ' . $row['subject'];
+                                                }
+
                                                 $form_attributes = array(
+                                                    'id' => 'subject',
                                                     'name' => 'subject',
-                                                    'value' => set_value('subject', 'Re: '.$row['subject']),
+                                                    'value' => set_value('subject', $row['subject']),
                                                     'placeholder' => 'Subject here...',
                                                     'style' => 'width:100%'
                                                 );
@@ -67,9 +72,11 @@
                                     <tr>
                                         <td>
                                             <?php
+                                                $isi_pesan = '<br/><br/><i>quoting from ' . $pengirim . ':</i><br/>----------------<br/>' . $isi_pesan . '----------------<br/>';
+
                                                 $form_attributes = array(
                                                     'name' => 'isi',
-                                                    'value' => set_value('isi'),
+                                                    'value' => set_value('isi', $isi_pesan),
                                                     'style' => 'width:100%'
                                                 );
                                                 echo form_textarea($form_attributes);
@@ -78,6 +85,17 @@
                                     </tr>
                                     <?php echo form_close(); ?>
                                 </table>
+
+                                <script type="text/javascript">
+                                    function validasi_subject() {
+                                        var sub = document.getElementById('subject').value;
+                                        if (sub.trim() == '') {
+                                            alert('Subject tidak boleh kosong!');
+                                        } else {
+                                            document.getElementById('tulis_pesan').submit();
+                                        }
+                                    }
+                                </script>
 
                                 <div class="span6 bg-color-red">
                                     <?php
@@ -93,11 +111,8 @@
                                     </button>
                                     </a>
                                 </div>
-
-
-
                                 <div class="span6 bg-color-green">
-                                    <a href ="javascript:;" onclick="document.getElementById('tulis_pesan').submit()">
+                                    <a href ="javascript:;" onclick="validasi_subject()">
                                     <button class="shortcut span6">
                                         <span class="icon">
                                             <i class="icon-checkmark"></i>

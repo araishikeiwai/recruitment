@@ -48,6 +48,7 @@
                                         <td>
                                             <?php
                                                 $form_attributes = array(
+                                                    'id' => 'subject',
                                                     'name' => 'subject',
                                                     'value' => set_value('subject'),
                                                     'placeholder' => 'Subject here...',
@@ -78,6 +79,18 @@
                                     </tr>
                                     <?php echo form_close(); ?>
                                 </table>
+                                
+                                <script type="text/javascript">
+                                    function validasi_subject() {
+                                        var sub = document.getElementById('subject').value;
+                                        if (sub.trim() == '') {
+                                            alert('Subject tidak boleh kosong!');
+                                        } else {
+                                            document.getElementById('tulis_pesan').submit();
+                                        }
+                                    }
+                                </script>
+
                                 <div class="span6 bg-color-red">
                                     <?php
                                         echo '<a href="'. base_url() . 'profil/lihat/' . $row['penerima'] . '">';
@@ -93,7 +106,7 @@
                                     </a>
                                 </div>
                                 <div class="span6 bg-color-green">
-                                    <a href ="javascript:;" onclick="document.getElementById('tulis_pesan').submit()">
+                                    <a href ="javascript:;" onclick="validasi_subject()">
                                     <button class="shortcut span6">
                                         <span class="icon">
                                             <i class="icon-checkmark"></i>

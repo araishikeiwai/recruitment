@@ -70,6 +70,11 @@ class Authentication extends CI_Controller {
             } else {
                 $ldap_result = $this -> ldap_model -> auth_ldap($username, $password);
 
+                //for offline development
+                /*if ($username == 'ricky.arifandi') {
+                    $ldap_result = 'ok';
+                }*/
+
                 if ($ldap_result == 'error_username') {
                     $this -> load -> view('home_view', array('error_message' => 'username'));
                 } else if ($ldap_result == 'error_password') {

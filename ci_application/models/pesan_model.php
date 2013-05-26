@@ -38,11 +38,15 @@ class Pesan_model extends CI_Model {
         return $query;
     }
 
-    public function simpan_pesan($data) {
-        $time = unix_to_human(gmt_to_local(now(), 'UP5', FALSE));
-        $time = explode(" ", $time);
-        $data['waktu'] = $time[1];
+    public function update_status_pesan($id_pesan, $data) {
+        $this -> db -> where('id_pesan', $id_pesan);
         
+        $query = $this -> db -> update('pesan', $data);
+        
+        return $query;
+    }
+
+    public function simpan_pesan($data) {
         $this -> db -> select_max('id_pesan');
         $id = $this -> db -> get('pesan');
         $id_pesan = $id->result_array();
@@ -55,10 +59,6 @@ class Pesan_model extends CI_Model {
     }
 
     public function simpan_pesan_broadcast($data) {
-        $time = unix_to_human(gmt_to_local(now(), 'UP5', FALSE));
-        $time = explode(" ", $time);
-        $field['waktu'] = $time[1];
-        
         //ambil semua pendaftar
         $this -> db -> select('username');
         $this -> db -> from('pendaftar');

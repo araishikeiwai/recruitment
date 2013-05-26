@@ -84,7 +84,7 @@
                                 </div>
 
                                 <div>
-                                    <?php if ($this -> session -> userdata('status') == 'admin') { ?>
+                                    <?php if ($this -> session -> userdata('status') == 'admin' && $this -> session -> userdata('username') == $row['username']) { ?>
                                         <?php echo '<a href="' . base_url() . 'admin/moderasi">'; ?>
                                             <button class="shortcut span3">
                                                 <span class="icon">
@@ -98,6 +98,7 @@
                                     <?php } ?>
                                 </div>
                                 
+                                <?php if ($this -> session -> userdata('username') == $row['username'] && $this -> session -> userdata('status') != 'admin') { ?>
                                 <div>
                                     <?php echo '<a href="' . base_url() . 'lowongan/history_seeker">'; ?>
                                         <button class="shortcut span3">
@@ -111,6 +112,8 @@
                                         </button>
                                     </a>
                                 </div>
+                                <?php } ?>
+                                
                                 <div>
                                     <?php if ($this -> session -> userdata('status') == 'provider' && $this -> session -> userdata('username') == $row['username']) { ?>
                                     <?php echo '<a href="' . base_url() . 'lowongan/history_provider">'; ?>
