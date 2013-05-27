@@ -230,21 +230,74 @@
                                             </td>
                                         </tr>
                                     <?php } ?>
+                                    <?php if ($row['lowongan']['status'] == 'diajukan verifikasi' && ($row['lowongan']['nama_provider'] == $this -> session -> userdata('username') || $this -> session -> userdata('status') == 'admin')) { ?>
+                                        <tr>
+                                            <td style="width:237px">
+                                                Detil Pembayaran
+                                            </td>
+                                            <td>
+                                                <?php
+                                                    echo 'dari ' . $pembayaran['asal_bank'] . ' No ' . $pembayaran['asal_rekening'] . ' a/n ' . $pembayaran['asal_nama'] . '<br/>';
+                                                    echo 'ke ' . $pembayaran['rekening'] . '<br/>';
+                                                    echo 'pada tanggal ' . convert_date($pembayaran['tanggal_bayar']) . '<br/>';
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </table>
                                 
-                                <?php if ($this -> session -> userdata('status') == 'admin') { ?>
-                                    <div class="span12 bg-color-blue">
-                                        <?php echo '<a href="' . base_url() . 'admin/moderasi_lowongan/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                            <button class="shortcut span12">
-                                                <span class="icon">
-                                                    <i class="icon-broadcast"></i>
-                                                </span>
-                                                <span class="label">
-                                                    Moderasi Lowongan
-                                                </span>
-                                            </button>
-                                        </a>
-                                    </div>
+                                <?php if ($this -> session -> userdata('status') == 'admin') {
+                                    if ($row['lowongan']['status'] == 'belum dimoderasi') { ?>
+                                        <div class="span6 bg-color-red">
+                                            <?php echo '<a href="' . base_url() . 'admin/tolak_moderasi/' . $row['lowongan']['id_lowongan'] . '">'; ?>
+                                                <button class="shortcut span6">
+                                                    <span class="icon">
+                                                        <i class="icon-cancel"></i>
+                                                    </span>
+                                                    <span class="label">
+                                                        Tolak Lowongan
+                                                    </span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                        <div class="span6 bg-color-blue">
+                                            <?php echo '<a href="' . base_url() . 'admin/moderasi_lowongan/' . $row['lowongan']['id_lowongan'] . '">'; ?>
+                                                <button class="shortcut span6">
+                                                    <span class="icon">
+                                                        <i class="icon-broadcast"></i>
+                                                    </span>
+                                                    <span class="label">
+                                                        Moderasi Lowongan
+                                                    </span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    <?php } else if ($row['lowongan']['status'] == 'diajukan verifikasi') { ?>
+                                        <div class="span6 bg-color-red">
+                                            <?php echo '<a href="' . base_url() . 'admin/tolak_promosi/' . $row['lowongan']['id_lowongan'] . '">'; ?>
+                                                <button class="shortcut span6">
+                                                    <span class="icon">
+                                                        <i class="icon-cancel"></i>
+                                                    </span>
+                                                    <span class="label">
+                                                        Tolak Promosi
+                                                    </span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                        <div class="span6 bg-color-blue">
+                                            <?php echo '<a href="' . base_url() . 'admin/promosi_lowongan/' . $row['lowongan']['id_lowongan'] . '">'; ?>
+                                                <button class="shortcut span6">
+                                                    <span class="icon">
+                                                        <i class="icon-eye"></i>
+                                                    </span>
+                                                    <span class="label">
+                                                        Promosikan Lowongan
+                                                    </span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    <?php } ?>
                                 <?php } else if ($this -> session -> userdata('username') == $row['lowongan']['nama_provider']) { ?>
                                     <?php 
                                         $span = 4;

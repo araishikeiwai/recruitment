@@ -139,3 +139,39 @@ if (!function_exists('get_unread_message')) {
         return $query -> num_rows();
     }
 }
+
+if (!function_exists('get_promosi')) {
+    function get_promosi($db) {
+        $db -> select('*');
+        $db -> from('lowongan_promosi');
+        $db -> where('lowongan_promosi.status', 'dipromosikan');
+        $db -> join('lowongan', 'lowongan_promosi.id_lowongan = lowongan.id_lowongan', 'left');
+        $db -> join('promosi_paket', 'lowongan_promosi.id_promosi = promosi_paket.id_promosi', 'left');
+
+        $list_promosi = $db -> get();
+        $list_promosi = $list_promosi -> result_array();
+
+        $value = array();
+        $j = 0;
+
+        for ($i = 0; $i < count($list_promosi); $i++) {
+            $tanggal_mulai = new DateTime($list_promosi[$i]['tanggal_mulai']);
+            $sekarang = new DateTime();
+            $interval = $sekarang -> diff($tanggal_mulai);
+            $lama = $interval -> d;
+
+            if ($lama <= $list_promosi[$i]['durasi_promosi']) {
+                $value[$j] = $list_promosi[$i];
+                $j++;
+            } else {
+                $db -> where('id_lowongan', $list_promosi[$i]['id_lowongan']);
+                $db -> delete('lowongan_promosi');
+
+                $db -> where('id_lowongan', $list_promosi[$i]['id_lowongan']);
+                $db -> update('lowongan', array('status' => 'dimoderasi'));
+            }
+        }
+
+        return $value;
+    }
+}

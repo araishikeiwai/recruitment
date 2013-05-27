@@ -21,6 +21,16 @@ class promosi_model extends CI_Model {
         return $query;
     }
 
+    public function get_semua_promosi() {
+        $this -> db -> select('*');
+        $this -> db -> from('lowongan_promosi');
+        $this -> db -> join('lowongan', 'lowongan_promosi.id_lowongan = lowongan.id_lowongan', 'left');
+        $this -> db -> join('promosi_paket', 'lowongan_promosi.id_promosi = promosi_paket.id_promosi', 'left');
+        $query = $this -> db -> get();
+
+        return $query;   
+    }
+
     public function tambah_promosi($data) {
         $query = $this -> db -> insert('lowongan_promosi', $data);
 
@@ -38,6 +48,24 @@ class promosi_model extends CI_Model {
         $this -> db -> where('id_lowongan', $id_lowongan);
         
         $query = $this -> db -> update('lowongan_promosi', $data);
+        
+        return $query;
+    }
+
+    public function get_pembayaran($id_lowongan) {
+        $this -> db -> select('*');
+        $this -> db -> from('pembayaran');
+        $this -> db -> where('id_lowongan', $id_lowongan);
+        $this -> db -> join('rekening', 'pembayaran.id_rekening = rekening.id_rekening', 'left');
+        $query = $this -> db -> get();
+
+        return $query;
+    }
+
+    public function update_pembayaran($id_lowongan, $data) {
+        $this -> db -> where('id_lowongan', $id_lowongan);
+        
+        $query = $this -> db -> update('pembayaran', $data);
         
         return $query;
     }

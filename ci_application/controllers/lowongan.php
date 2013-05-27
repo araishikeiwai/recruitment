@@ -30,6 +30,7 @@ class Lowongan extends CI_Controller {
         $this->load->model('pendaftar_model');
         $this->load->model('review_model');
         $this->load->model('pengguna_model');
+        $this->load->model('promosi_model');
     }
 
     /**
@@ -60,6 +61,12 @@ class Lowongan extends CI_Controller {
                 $provider = $provider -> row_array();
 
                 $data = array('query' => 'multiLihat', 'lowongan' => $lowongan, 'wawancara' => $wawancara, 'pendaftar' => $pendaftar, 'provider' => $provider);
+
+                $pembayaran = $this -> promosi_model -> get_pembayaran($id_lowongan);
+                if ($pembayaran -> num_rows() > 0) {
+                    $data['pembayaran'] = $pembayaran -> row_array();
+                }
+
                 $this -> load -> view('lowongan_view', $data);
             } else {
                 $this -> load -> view('404_view');

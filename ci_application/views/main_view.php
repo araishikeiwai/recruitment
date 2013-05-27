@@ -88,10 +88,24 @@
                                         <?php echo '<a href="' . base_url() . 'admin/moderasi">'; ?>
                                             <button class="shortcut span3">
                                                 <span class="icon">
-                                                    <i class="icon-pencil"></i>
+                                                    <i class="icon-broadcast"></i>
                                                 </span>
                                                 <span class="label">
                                                     Moderasi Lowongan
+                                                </span>
+                                            </button>
+                                        </a>
+                                    <?php } ?>
+                                </div>
+                                <div>
+                                    <?php if ($this -> session -> userdata('status') == 'admin' && $this -> session -> userdata('username') == $row['username']) { ?>
+                                        <?php echo '<a href="' . base_url() . 'admin/promosi">'; ?>
+                                            <button class="shortcut span3">
+                                                <span class="icon">
+                                                    <i class="icon-eye"></i>
+                                                </span>
+                                                <span class="label">
+                                                    Promosi Lowongan
                                                 </span>
                                             </button>
                                         </a>

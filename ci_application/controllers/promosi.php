@@ -50,14 +50,10 @@ class Promosi extends CI_Controller {
 
             if ($this -> session -> userdata('username') == $lowongan['nama_provider']) {
                 if ($par == '') {
-                    $data['status'] = 'dipromosikan';
-                    $lowongan = $this -> lowongan_model -> get_lowongan_by_criteria($data);
-                    $jumlah_promosi = $lowongan -> num_rows();
-                    $data['status'] = 'diajukan promosi';
-                    $lowongan = $this -> lowongan_model -> get_lowongan_by_criteria($data);
-                    $jumlah_promosi = $jumlah_promosi + $lowongan -> num_rows();
+                    $jumlah_promosi = $this -> promosi_model -> get_semua_promosi();
+                    $jumlah_promosi = $jumlah_promosi -> num_rows();
 
-                    if ($jumlah_promosi == 5) {
+                    if ($jumlah_promosi >= 5) {
                         $this -> load -> view('lowongan_gagal_view', array('query' => '', 'id_lowongan' => $id_lowongan, 'error_message' => 'promosi_full'));
                     } else {
                         $this -> load -> view('promosi_paket_view', array('query' => 'paket', 'paket' => $this -> promosi_model -> get_paket_promosi(), 'id_lowongan' => $id_lowongan));
@@ -112,6 +108,7 @@ class Promosi extends CI_Controller {
                 $this -> form_validation -> set_rules('asal_bank', 'Bank Asal', 'required');
                 $this -> form_validation -> set_rules('asal_rekening', 'No Rekening Asal', 'required|numeric');
                 $this -> form_validation -> set_rules('asal_nama', 'Nama Pemilik Rekening', 'required');
+                $this -> form_validation -> set_rules('tanggal_bayar', 'Tanggal Pembayaran', 'required');
 
                 if ($this -> form_validation -> run() == FALSE) {
                     $this -> verifikasi($id_lowongan);
@@ -121,6 +118,7 @@ class Promosi extends CI_Controller {
                     $data['asal_bank'] = $this -> input -> post('asal_bank');
                     $data['asal_rekening'] = $this -> input -> post('asal_rekening');
                     $data['asal_nama'] = $this -> input -> post('asal_nama');
+                    $data['tanggal_bayar'] = $this -> input -> post('tanggal_bayar');
 
                     $this -> promosi_model -> simpan_pembayaran($data);
 
