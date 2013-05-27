@@ -60,7 +60,7 @@ class Pesan extends CI_Controller {
                 $data['pengirim'][$i] = $this -> pengguna_model -> get_pengguna($pesan[$i]['pengirim']);
             }
 
-            $this -> load -> view("Pesan_daftar_view", $data);
+            $this -> load -> view("pesan_daftar_view", $data);
         }
     }
 
