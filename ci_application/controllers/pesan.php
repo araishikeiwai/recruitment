@@ -103,10 +103,6 @@ class Pesan extends CI_Controller {
         $data['subject'] = $this -> input -> post('subject');
         $data['isi'] = $this -> input -> post('isi');
 
-        // echo 'pengirim : '. $data['pengirim']. '<br/>';
-        // echo 'penerima : ' . $data['penerima'] . '<br />';
-        // echo 'subject : ' . $data['subject'] . '<br />';
-        // echo 'isi : ' . $data['isi'] . '<br />';
         $id_pesan = $this -> pesan_model -> simpan_pesan($data);
 
         redirect('pesan/lihat/' . $id_pesan);

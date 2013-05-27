@@ -61,11 +61,11 @@
                             <center>
                                 <div class="toolbar-group pager">
                                     <center>
-                                        <a href='#' alt='First' class='firstPage big bg-color-white'>Hal Pertama</a>
+                                        <a href='#' alt='First' class='firstPage big bg-color-white'><i class="icon-arrow-left-2"></i></a>
                                         <button href='#' alt='Previous' class="prevPage big bg-color-white"><i class="icon-arrow-left-3"></i></button>
                                         <span class='currentPage'></span> dari <span class='totalPages'></span>
                                         <button href='#' alt='Next' class="nextPage big bg-color-white"><i class="icon-arrow-right-3"></i></button>
-                                        <a href='#' alt='Last' class='lastPage big bg-color-white'>Hal Terakhir</a>
+                                        <a href='#' alt='Last' class='lastPage big bg-color-white'><i class="icon-arrow-right-2"></i></a>
                                     </center>
                                 </div>
                                 <script>

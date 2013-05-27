@@ -446,8 +446,9 @@ class Lowongan extends CI_Controller {
                 $lowongan = $this -> lowongan_model -> get_lowongan($id_lowongan);
                 $wawancara = $this -> wawancara_model -> get_wawancara(array('id_lowongan' => $id_lowongan));
                 $pendaftar = $this -> pendaftar_model -> get_pendaftar(array('id_lowongan' => $id_lowongan));
+                $review = $this -> review_model -> get_review_by_lowongan($id_lowongan);
 
-                $data = array('query' => 'multiLihat', 'lowongan' => $lowongan, 'wawancara' => $wawancara, 'pendaftar' => $pendaftar);
+                $data = array('query' => 'multiLihat', 'lowongan' => $lowongan, 'wawancara' => $wawancara, 'pendaftar' => $pendaftar, 'review' => $review -> result_array());
 
                 $this -> load -> view('list_pendaftar_view', $data);
             } else {
@@ -648,8 +649,8 @@ class Lowongan extends CI_Controller {
             redirect('');
         } else{
             $criteria['nama_provider'] = $this -> session -> userdata('username');
-            $data = array('query' => 'hasil', 'lowongan' => $this -> lowongan_model -> get_lowongan_by_criteria($criteria));
-            $this -> load -> view('history_lowongan_provider_view', $data);
+            $data = array('query' => 'hasil', 'lowongan' => $this -> lowongan_model -> get_lowongan_by_criteria($criteria), 'sepo' => 'provider');
+            $this -> load -> view('lowongan_history_view', $data);
         }
     }
 
@@ -658,8 +659,8 @@ class Lowongan extends CI_Controller {
             redirect('');
         } else{
             $criteria['username'] = $this -> session -> userdata('username');
-            $data = array('query' => 'hasil', 'lowongan' => $this -> pendaftar_model -> get_pendaftar_history($criteria));
-            $this -> load -> view('history_lowongan_seeker_view', $data);
+            $data = array('query' => 'hasil', 'lowongan' => $this -> pendaftar_model -> get_pendaftar_history($criteria), 'sepo' => 'seeker');
+            $this -> load -> view('lowongan_history_view', $data);
         }   
     }
 

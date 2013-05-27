@@ -69,7 +69,7 @@ class Promosi extends CI_Controller {
     /**
 	* unused in this version
 	*/
-    public function verifikasi() {
+    public function verifikasi($id_lowongan) {
         if (!$this -> session -> userdata('logged_in')) {
             redirect('');
         } else {

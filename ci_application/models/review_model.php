@@ -31,6 +31,15 @@ class Review_model extends CI_Model {
     	return $query;
     }
 
+    public function get_review_by_lowongan($id_lowongan) {
+        $this -> db -> select('username');
+        $this -> db -> from('review');
+        $this -> db -> where('id_lowongan', $id_lowongan);
+        $query = $this -> db -> get();
+
+        return $query;
+    }
+
     public function simpan_review($data) {
     	$query = $this -> db -> insert('review', $data);
 

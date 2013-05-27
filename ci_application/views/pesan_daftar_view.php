@@ -72,10 +72,13 @@
                             </table>
                             <center>
                                 <div class="toolbar-group pager">
-                                    <button href='#' alt='Previous' class="prevPage big bg-color-white">
-                                        <i class="icon-arrow-left-3"></i>
-                                    </button>
-                                    <button href='#' alt='Next' class="nextPage big bg-color-white"><i class="icon-arrow-right-3"></i></button>
+                                    <center>
+                                        <a href='#' alt='First' class='firstPage big bg-color-white'><i class="icon-arrow-left-2"></i></a>
+                                        <button href='#' alt='Previous' class="prevPage big bg-color-white"><i class="icon-arrow-left-3"></i></button>
+                                        <span class='currentPage'></span> dari <span class='totalPages'></span>
+                                        <button href='#' alt='Next' class="nextPage big bg-color-white"><i class="icon-arrow-right-3"></i></button>
+                                        <a href='#' alt='Last' class='lastPage big bg-color-white'><i class="icon-arrow-right-2"></i></a>
+                                    </center>
                                 </div>
                                 <script>
                                     $(document).ready(function () {

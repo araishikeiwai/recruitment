@@ -76,9 +76,22 @@
                                             </td>
                                             <?php echo form_close(); ?>
                                             <td>
-                                                <?php echo '<a href ="' . base_url() . 'lowongan/beri_review/' . $row['lowongan']['id_lowongan'] . '/' . $row['pendaftar'][$i]['username'] . '">'; ?>
-                                                <button class="default">Beri Review</button>
-                                                </a>
+                                                <?php
+                                                    $temp = false;
+                                                    for ($j = 0; $j < count($review); $j++) {
+                                                        if ($review[$j]['username'] == $row['pendaftar'][$i]['username']) {
+                                                            $temp = true;
+                                                        }
+                                                    }
+                                                
+                                                    if (!$temp) {
+                                                        echo '<a href ="' . base_url() . 'lowongan/beri_review/' . $row['lowongan']['id_lowongan'] . '/' . $row['pendaftar'][$i]['username'] . '">';
+                                                        echo '<button class="default">Beri Review</button>';
+                                                        echo '</a>';
+                                                    } else {
+                                                        echo '<button disabled class="standart">Beri Review</button>';
+                                                    } 
+                                                ?>
                                             </td>
                                         </tr>
                                     <?php } } ?> 
@@ -87,11 +100,11 @@
                             <center>
                                 <div class="toolbar-group pager">
                                     <center>
-                                        <a href='#' alt='First' class='firstPage big bg-color-white'>Hal Pertama</a>
+                                        <a href='#' alt='First' class='firstPage big bg-color-white'><i class="icon-arrow-left-2"></i></a>
                                         <button href='#' alt='Previous' class="prevPage big bg-color-white"><i class="icon-arrow-left-3"></i></button>
                                         <span class='currentPage'></span> dari <span class='totalPages'></span>
                                         <button href='#' alt='Next' class="nextPage big bg-color-white"><i class="icon-arrow-right-3"></i></button>
-                                        <a href='#' alt='Last' class='lastPage big bg-color-white'>Hal Terakhir</a>
+                                        <a href='#' alt='Last' class='lastPage big bg-color-white'><i class="icon-arrow-right-2"></i></a>
                                     </center>
                                 </div>
                                 <script>

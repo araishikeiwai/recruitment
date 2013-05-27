@@ -250,7 +250,7 @@
                                         $span = 4;
                                         if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) {
                                             $span = 3;
-                                            if ($row['lowongan']['status'] == 'dimoderasi') {
+                                            if ($row['lowongan']['status'] == 'dimoderasi' || $row['lowongan']['status'] == 'diajukan promosi') {
                                                 $span = 2;
                                             }
                                         }
@@ -295,14 +295,27 @@
                                                 </button>
                                             </a>
                                         </div>
+                                    <?php } else if ($row['lowongan']['status'] == 'diajukan promosi') { ?>
+                                        <div class="span<?php echo $span ?> bg-color-blue">
+                                            <?php echo '<a href="' . base_url() . 'promosi/verifikasi/' . $row['lowongan']['id_lowongan'] . '">'; ?>
+                                                <button class="shortcut span<?php echo $span ?>">
+                                                    <span class="icon">
+                                                        <i class="icon-cart-2"></i>
+                                                    </span>
+                                                    <span class="label">
+                                                        Verifikasi Pembayaran
+                                                    </span>
+                                                </button>
+                                            </a>
+                                        </div>
                                     <?php } ?>
 
                                     <div class="span<?php echo $span ?> bg-color-yellow">
                                         <?php echo '<a href="' . base_url() . 'lowongan/pendaftar/' . $row['lowongan']['id_lowongan'] . '">'; ?>
                                             <button class="shortcut span<?php echo $span ?>">
-                                                <!-- <span class="icon">
-                                                    <i class="icon-pencil"></i>
-                                                </span> -->
+                                                <span class="icon">
+                                                    <i class="icon-list"></i>
+                                                </span>
                                                 <span class="label">
                                                     Lihat Pendaftar
                                                 </span>
