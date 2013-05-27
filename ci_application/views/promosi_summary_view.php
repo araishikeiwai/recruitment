@@ -29,15 +29,21 @@
                                         <li>
                                             Transfer sejumlah Rp <?php echo $row['biaya_promosi'] ?> ke salah satu rekening di bawah ini:
                                             <ul>
-                                                <li>BNI 0204 208 048 (a/n Ricky Arifandi Daniel Ganteng)</li>
-                                                <li>BCA 8050 143 628 (a/n Ricky Arifandi Daniel Tampan)</li>
+                                                <?php
+                                                    for ($i = 0; $i < count($rekening); $i++) {
+                                                        echo '<li>' . $rekening[$i]['rekening'] . '</li>';
+                                                    }
+                                                ?>
                                             </ul>
                                         </li>
                                         <li>
                                             Konfirmasi melalui halaman lowongan
                                         </li>
                                         <li>
-                                            Ditampilin deh wokwokwokowkwokwokw
+                                            Anda dapat membatalkan pengajuan promosi melalui halaman konfirmasi pembayaran
+                                        </li>
+                                        <li>
+                                            Apabila Anda telah melakukan pembayaran, lowongan yang Anda buka akan ditampilkan pada bagian kiri setiap halaman dalam recrUItment
                                         </li>
                                     </ol>
                                 </p>
