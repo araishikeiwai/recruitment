@@ -170,7 +170,16 @@
                                 <center class="bg-color-green">
                                     <h3 >Badges<h3><br/>
                                 </center>
-                                    <div class="rating" data-role="rating" data-param-vote="off" data-param-rating="3.7" data-param-stars="11">
+                                    <?php
+                                        $rating = 0;
+                                        if (count($review) > 0) {
+                                            for ($i = 0; $i < count($review); $i++) {
+                                                $rating = $rating + $review[$i]['nilai'];
+                                            }
+                                            $rating = $rating / count($review);
+                                        }
+                                    ?>
+                                    <div class="rating" data-role="rating" data-param-vote="off" data-param-rating="<?php echo $rating ?>" data-param-stars="10">
                                     </div>
                                 
                             </div>

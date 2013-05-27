@@ -38,7 +38,7 @@
                                 
 
                         </div>
-                        <div class="span5">
+                        <div class="span6">
                             
                             <h3 style="font-weight: 700;">Edit Profil</h3>
                             
@@ -56,14 +56,6 @@
                                 <td id="t_head">Nama</td>
                                 <td id="identitas"><input type="text" style="width:100%" readonly value="<?php echo $row['nama']; ?>"/></td>
                             </tr>
-                            <!--<tr>
-                                <td id="t_head">Fakultas</td>
-                                <td id="identitas"><input type="text" style="width:100%" readonly value="<?php echo $row['fakultas']; ?>"/></td>
-                            </tr>
-                            <tr>
-                                <td id="t_head">Role/Angkatan</td>
-                                <td id="identitas"><input type="text" style="width:100%" readonly value="<?php echo $row['role']; ?>"/></td>
-                            </tr>-->
                             <tr>
                                 <td id="t_head">Status</td>
                                 <td id="identitas">
@@ -88,22 +80,6 @@
                             <?php } else { echo "<hr/>"; echo "<hr/>"; echo "<hr/>"; echo "<hr/>";  } ?>
 
                             <table id="hidden">
-                            <!--<tr>
-                                <td id="t_head">
-                                    Nama<font style="color:red">*</font>
-                                    <?php echo form_error('nama'); ?>
-                                </td>
-                                <td id="identitas">
-                                    <?php
-                                        $form_attributes = array(
-                                            'name' => 'nama',
-                                            'value' => set_value('nama', $row['nama']),
-                                            'style' => 'width:100%'
-                                        );
-                                        echo form_input($form_attributes);
-                                    ?>
-                                </td>
-                            </tr>-->
                             <tr>
                                 <td id="t_head">
                                     Email<font style="color:red">*</font>
@@ -187,38 +163,10 @@
 
                             <h6 style="color:red">* = wajib diisi</h6>
                             <center>
-                                <a class="span2 button" href="<?php echo base_url(); ?>profil">Batal</a>
-                                <a class="span2 button default" href ="javascript:;" onclick="document.getElementById('profil_ubah').submit()">Simpan</a>
+                                <a class="span3 button" href="<?php echo base_url(); ?>profil">Batal</a>
+                                <a class="span3 button default" href ="javascript:;" onclick="document.getElementById('profil_ubah').submit()">Simpan</a>
                             </center>
                         </div>
-                        <div class="span4">
-                            <div class="span4">
-                                <center class="bg-color-green">
-                                    <h3 >Badges<h3><br/>
-                                </center>
-                                    <div class="rating" data-role="rating" data-param-vote="off" data-param-rating="3.7" data-param-stars="11">
-                                    </div>
-                                
-                            </div>
-                            <div class="span4 bg-color-orange">
-                                <center><h3>Review<h3></center>
-                            </div>
-                            <?php 
-                                    if(count($review) > 0) {
-                                        for($i = 0; $i < count($review); $i++) {
-                                            echo 'dari ' . pengguna_link($review[$i]['username'], $review[$i]['nama']);
-                                            echo ' pada lowongan ' . lowongan_link($review[$i]['id_lowongan'], $review[$i]['judul']) . ':<br />';
-                                            echo '<em>' .$review[$i]['isi'] . '</em>';
-                                            echo 'Nilai : ' . $review[$i]['nilai'] . ' dari 10<br />';
-                                            echo '__________________________<br />';
-                                        }
-                                    } else {
-                                        echo 'Belum memiliki review';
-                                    }
-                                ?>
-                        </div>
-                        
-                        
                     </div>
                     
                 </div>

@@ -83,7 +83,13 @@ class Pesan extends CI_Controller {
         $pesan = $pesan->result_array();
         $data['subject'] = $pesan[0]['subject'];
         $data['isi_pesan'] = $pesan[0]['isi'];
-        
+
+        if (substr($data['subject'], 0, 4) != 'Re: ') {
+            $data['subject'] = 'Re: ' . $data['subject'];
+        }
+
+        $data['isi_pesan'] = '<br/><br/><i>quoting from ' . $id_pengirim . ':</i><br/>----------------<br/>' . $data['isi_pesan'] . '----------------<br/>';
+
         $this -> load -> view("pesan_balas_view", $data);
     }
 

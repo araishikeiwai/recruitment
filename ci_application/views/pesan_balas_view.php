@@ -47,10 +47,6 @@
                                         </td>
                                         <td>
                                             <?php
-                                                if (substr($row['subject'], 0, 4) != 'Re: ') {
-                                                    $row['subject'] = 'Re: ' . $row['subject'];
-                                                }
-
                                                 $form_attributes = array(
                                                     'id' => 'subject',
                                                     'name' => 'subject',
@@ -72,8 +68,6 @@
                                     <tr>
                                         <td>
                                             <?php
-                                                $isi_pesan = '<br/><br/><i>quoting from ' . $pengirim . ':</i><br/>----------------<br/>' . $isi_pesan . '----------------<br/>';
-
                                                 $form_attributes = array(
                                                     'name' => 'isi',
                                                     'value' => set_value('isi', $isi_pesan),
