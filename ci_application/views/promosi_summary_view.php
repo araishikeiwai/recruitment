@@ -45,6 +45,9 @@
                                         <li>
                                             Apabila Anda telah melakukan pembayaran, lowongan yang Anda buka akan ditampilkan pada bagian kiri setiap halaman dalam recrUItment
                                         </li>
+                                        <li>
+                                            Apabila lowongan Anda telah dipromosikan, dilarang mengubah/menghapus lowongan Anda, atau promosi Anda akan dibatalkan dan uang yang telah dibayarkan tidak akan dikembalikan
+                                        </li>
                                     </ol>
                                 </p>
                                 <center>

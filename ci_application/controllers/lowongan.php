@@ -307,7 +307,7 @@ class Lowongan extends CI_Controller {
                     $this -> load -> view('lowongan_berhasil_view', array('query' => $query));
                 }
             } else {
-                $this -> load -> view('lowongan_gagal_view', array('query' => $this -> lowongan_model -> get_lowongan($id_lowongan)));
+                $this -> load -> view('lowongan_gagal_view', array('query' => $this -> lowongan_model -> get_lowongan($id_lowongan), 'error_message' => ''));
             }
         }
     }
@@ -553,6 +553,8 @@ class Lowongan extends CI_Controller {
                     $data['status'] = 'belum dimoderasi';
 
                     $this -> lowongan_model -> update_lowongan($this -> input -> post('id_lowongan'), $data);
+
+                    $this -> promosi_model -> hapus_promosi($this -> input -> post('id_lowongan'));
                     
                     redirect('lowongan/lihat/' . $this -> input -> post('id_lowongan'));
                 }
