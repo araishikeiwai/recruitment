@@ -21,6 +21,7 @@ class Authentication extends CI_Controller {
         $this->load->model('pengguna_model');
         $this->load->model('ldap_model');
         $this->load->model('review_model');
+        $this->load->model('pesan_model');
     }
 
     /**
@@ -90,6 +91,13 @@ class Authentication extends CI_Controller {
                         );
                         $query = $this -> pengguna_model -> create_pengguna($data);
                         $query = $this -> pengguna_model -> get_pengguna($username);
+
+                        $pesan['pengirim'] = 'admin';
+                        $pesan['penerima'] =  $username;
+                        $pesan['subject'] = 'Selamat Datang di recrUItment';
+                        $pesan['isi'] = 'Halo, ' . $data['nama'] . '!<br/><br/>Selamat datang di sistem informasi rekrutmen ini!<br/>Beberapa hal yang bisa Anda lakukan dalam sistem ini diantaranya:<ul><li><a href="' . base_url() . 'cari">Mencari lowongan yang telah dibuka</a></li><li>Mendaftar lowongan</li><li><a href="' . base_url() . 'profil/ubah">Membuka lowongan baru (harus mengupgrade status sebagai provider terlebih dahulu)</a></li><li>Mempromosikan lowongan yang Anda buka</li><li>Dan lain-lain</li></ul><br/>Selamat mengeksplorasi dan mempergunakan sistem ini. Semoga berguna :D<br/><br/>Tim Pengembang recrUItment';
+
+                        $this -> pesan_model -> simpan_pesan($pesan);
                     }
 
                     $data = $query -> row_array();

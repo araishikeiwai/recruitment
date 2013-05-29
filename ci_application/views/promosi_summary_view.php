@@ -24,7 +24,7 @@
                                     ?>
                                     Anda telah memilih paket <?php echo $id_promosi ?> untuk promosi lowongan Anda.<br/>
                                     <br/>
-                                    Berikut langkah-langkah yang harus Anda lakukan selanjutnya:<br/>
+                                    Berikut langkah-langkah yang harus Anda lakukan selanjutnya beserta beberapa aturan yang harus Anda patuhi:<br/>
                                     <ol>
                                         <li>
                                             Transfer sejumlah Rp <?php echo $row['biaya_promosi'] ?> ke salah satu rekening di bawah ini:
@@ -46,7 +46,7 @@
                                             Apabila Anda telah melakukan pembayaran, lowongan yang Anda buka akan ditampilkan pada bagian kiri setiap halaman dalam recrUItment
                                         </li>
                                         <li>
-                                            Apabila lowongan Anda telah dipromosikan, dilarang mengubah/menghapus lowongan Anda, atau promosi Anda akan dibatalkan dan uang yang telah dibayarkan tidak akan dikembalikan
+                                            Apabila lowongan Anda telah dipromosikan, DILARANG MENGUBAH/MENGHAPUS lowongan Anda, atau promosi Anda akan dibatalkan dan uang yang telah dibayarkan tidak akan dikembalikan
                                         </li>
                                     </ol>
                                 </p>
