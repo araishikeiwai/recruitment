@@ -577,10 +577,17 @@ class Lowongan extends CI_Controller {
             $lowongan = $lowongan -> row_array();
             if ($this -> session -> userdata('username') == $lowongan['nama_provider']) {
                 if ($lowongan['tgl_tutup'] == '0000-00-00' || $lowongan['tgl_tutup'] >= date("Y-m-d")) {
-                    $this -> lowongan_model -> delete_lowongan($id_lowongan);
+                    $pendaftar = $this -> pendaftar_model -> get_pendaftar(array('id_lowongan' => $id_lowongan));
+                    if ($pendaftar -> num_rows() > 0) {
+                        $this -> load -> view('lowongan_gagal_view', array('query' => '', 'error_message' => 'batal_pendaftar'));
+                    } else {
+                        $this -> lowongan_model -> delete_lowongan($id_lowongan);
+                        redirect('');
+                    }
                 }
+            } else {
+                redirect('');
             }
-            redirect('profil');
         }
     }
 
