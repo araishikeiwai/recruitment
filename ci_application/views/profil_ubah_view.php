@@ -20,33 +20,34 @@
             <div class="page-region" >
                 <div class="page-region-content">
                     <div class="grid">
-                    <div class="row">
-                        <div class="span3">
+                    <div class="row">   
+                        <div class="span4">
+                            <?php 
+                                $form_attributes = array('id' => 'profil_ubah');
+                                echo form_open_multipart(base_url().'profil/simpan', $form_attributes);
+                            ?>
                             <div class="image-collection">
-                                <div></div>
+                                <div><img src="<?php echo base_url() ?>images/avatar/<?php echo $this -> session -> userdata('username') ?>_.jpg"/></div>
                             </div>
-                                <!-- <div>
-                                    <button class="shortcut span3">
-                                        <span class="icon">
-                                            <i class="icon-pictures"></i>
-                                        </span>
-                                        <span class="label">
-                                            Ganti Foto
-                                        </span>
-                                    </button>
-                                </div> -->
-                                
-
+                            <table id="hidden">
+                                <tr>
+                                    <td>
+                                        Pilih gambar profil (format .jpg)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?php
+                                            echo form_upload('foto');
+                                        ?>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                         <div class="span6">
                             
                             <h3 style="font-weight: 700;">Edit Profil</h3>
                             
-                            <?php 
-                                $form_attributes = array('id' => 'profil_ubah');
-                                echo form_open(base_url().'profil/simpan', $form_attributes);
-                            ?>
-
                             <table id="hidden">
                             <tr>
                                 <td id="t_head">Username</td>

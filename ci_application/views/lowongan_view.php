@@ -300,7 +300,20 @@
                                     <?php } ?>
                                 <?php } else if ($this -> session -> userdata('username') == $row['lowongan']['nama_provider']) { ?>
                                     <div class="span12 bg-color-green">
-                                        <?php echo '<a href="' . base_url() . 'lowongan/ubah/' . $row['lowongan']['id_lowongan'] . '">'; ?>
+                                        <script type="text/javascript">
+                                            function konfirmasi_ubah(link) {
+                                                var oke = confirm("Apakah Anda yakin mengubah lowongan ini?\nStatus lowongan akan dikembalikan menjadi 'belum dimoderasi' dan promosi Anda akan dibatalkan dan uang Anda tidak akan kembali.");
+                                                if (oke == true) {
+                                                    window.location = link;
+                                                }
+                                            }
+                                        </script>
+                                        <?php 
+                                            $link = base_url() . 'lowongan/ubah/' . $row['lowongan']['id_lowongan'];
+                                            echo '<a href="javascript:;" onclick="konfirmasi_ubah(';
+                                            echo "'$link'";
+                                            echo ')">'; 
+                                        ?>
                                             <button class="shortcut span12">
                                                 <span class="icon">
                                                     <i class="icon-pencil"></i>

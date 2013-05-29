@@ -96,6 +96,17 @@ class Profil extends CI_Controller {
         } else {
             $this -> form_validation -> set_rules('email', 'Email', 'required|valid_email');
 
+            $config = array(
+                'upload_path' => './images/avatar/',
+                'allowed_types' => 'jpg',
+                'file_name' => $this -> session -> userdata('username') . '.jpg',
+                'overwrite' => TRUE,
+                'remove_spaces' => TRUE
+            );
+            $this -> load -> library('upload', $config);
+            $this -> upload -> initialize($config);
+
+            $this -> upload -> do_upload('foto');
             if ($this -> form_validation -> run() == FALSE) {
                 $data = array('query' => $this -> pengguna_model -> get_pengguna($this -> session -> userdata('username')));
                 $data['user_review'] = $this -> review_model -> get_review($this -> session -> userdata('username'));
