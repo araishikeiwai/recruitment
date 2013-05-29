@@ -27,7 +27,7 @@
                                 echo form_open_multipart(base_url().'profil/simpan', $form_attributes);
                             ?>
                             <div class="image-collection">
-                                <div><img src="<?php echo base_url() ?>images/avatar/<?php echo $this -> session -> userdata('username') ?>_.jpg"/></div>
+                                <div><?php if ($row['foto']) { ?><img src="<?php echo base_url() ?>images/avatar/<?php echo $this -> session -> userdata('username') ?>.jpg"/><?php } ?></div>
                             </div>
                             <table id="hidden">
                                 <tr>
@@ -38,7 +38,11 @@
                                 <tr>
                                     <td>
                                         <?php
-                                            echo form_upload('foto');
+                                            $form_attributes = array(
+                                                'name' => 'foto',
+                                                'accept' => "image/jpg"
+                                            );
+                                            echo form_upload($form_attributes);
                                         ?>
                                     </td>
                                 </tr>

@@ -119,6 +119,11 @@
                                     </tr>
                                     
                                 </table>
+                                <?php
+                                    if ($row['lowongan']['poster']) {
+                                        echo '<img src="' . base_url() . 'images/poster/' . $row['lowongan']['id_lowongan'] . '.jpg"/>';
+                                    }
+                                ?>
                                 <h4>Syarat</h4>
                                 <table id="hidden">
                                     <tr>

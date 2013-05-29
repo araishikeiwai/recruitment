@@ -27,7 +27,7 @@
                                         <?php
                                             $form_attributes = array('id' => 'lowongan_ubah');
                                             $hidden = array('id_lowongan' => $row['id_lowongan']);
-                                            echo form_open(base_url().'lowongan/simpan_lowongan', $form_attributes, $hidden);
+                                            echo form_open_multipart(base_url().'lowongan/simpan_lowongan', $form_attributes, $hidden);
                                         ?>
 
                                         <tr>
@@ -87,14 +87,13 @@
                                         </tr>
                                         <tr>
                                             <td valign="top" style="width: 237px;">
-                                                Poster Lowongan (JPG/JPEG/PNG)
+                                                Poster Lowongan (JPG, lebar maks 800 piksel)
                                             </td>
                                             <td valign="top" colspan="2">
                                                 <?php
                                                     $form_attributes = array(
                                                         'name' => 'poster',
-                                                        'value' => $row['poster'],
-                                                        'accept' => "image/jpeg, image/png, image/jpg"
+                                                        'accept' => "image/jpg"
                                                     );
                                                     echo form_upload($form_attributes);
                                                 ?>

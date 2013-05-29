@@ -101,18 +101,21 @@ class Profil extends CI_Controller {
                 'allowed_types' => 'jpg',
                 'file_name' => $this -> session -> userdata('username') . '.jpg',
                 'overwrite' => TRUE,
-                'remove_spaces' => TRUE
+                'remove_spaces' => FALSE
             );
             $this -> load -> library('upload', $config);
             $this -> upload -> initialize($config);
-
-            $this -> upload -> do_upload('foto');
+            
+            $data = array();
+            if ($this -> upload -> do_upload('foto')) {
+                $data['foto'] = TRUE;
+            }
+            
             if ($this -> form_validation -> run() == FALSE) {
                 $data = array('query' => $this -> pengguna_model -> get_pengguna($this -> session -> userdata('username')));
                 $data['user_review'] = $this -> review_model -> get_review($this -> session -> userdata('username'));
                 $this -> load -> view('profil_ubah_view', $data);
             } else {
-                $data = array();
                 $data['status'] = $this -> input -> post('status');
                 $data['jenis_kelamin'] = $this -> input -> post('jenis_kelamin');
                 $data['email'] = $this -> input -> post('email');

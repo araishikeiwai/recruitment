@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="span3">
                             <div class="image-collection">
-                                <div><img src="<?php echo base_url() ?>images/avatar/<?php echo $row['username'] ?>_.jpg"/></div>
+                                <div><?php if ($row['foto']) { ?><img src="<?php echo base_url() ?>images/avatar/<?php echo $row['username'] ?>.jpg"/><?php } ?></div>
                             </div>
                                 <?php if ($this -> session -> userdata('username') == $row['username']) { ?>
                                     <div>

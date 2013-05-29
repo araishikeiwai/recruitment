@@ -124,12 +124,27 @@ class Lowongan extends CI_Controller {
                 $this -> form_validation -> set_rules('tgl_tutup', 'Tanggal Akhir', 'required');
                 $this -> form_validation -> set_rules('wawancara', 'Kebutuhan Wawancara', 'required');
 
+                $config = array(
+                    'upload_path' => './images/poster/',
+                    'allowed_types' => 'jpg',
+                    'file_name' => $this -> input -> post('id_lowongan') . '.jpg',
+                    'max_width' => '800',
+                    'overwrite' => TRUE,
+                    'remove_spaces' => FALSE
+                );
+                $this -> load -> library('upload', $config);
+                $this -> upload -> initialize($config);
+                
+                $data = array();
+                if ($this -> upload -> do_upload('poster')) {
+                    $data['poster'] = TRUE;
+                }
+
                 if ($this -> form_validation -> run() == FALSE) {
                     $id_lowongan = $this -> input -> post('id_lowongan');
                     $data = array('query' => $this -> lowongan_model -> get_lowongan($id_lowongan));
                     $this -> load -> view('ajukan_deskripsi_view', $data);
                 } else {
-                    $data = array();
                     $temp = $this -> input -> post('wawancara');
                     
                     $data['deskripsi'] = $this -> input -> post('deskripsi');
@@ -530,18 +545,31 @@ class Lowongan extends CI_Controller {
                 $this -> form_validation -> set_rules('agama[]', 'Agama', 'required');
                 $this -> form_validation -> set_rules('tgl_tutup', 'Tanggal Akhir', 'required');
 
+                $config = array(
+                    'upload_path' => './images/poster/',
+                    'allowed_types' => 'jpg',
+                    'file_name' => $this -> input -> post('id_lowongan') . '.jpg',
+                    'max_width' => '800',
+                    'overwrite' => TRUE,
+                    'remove_spaces' => FALSE
+                );
+                $this -> load -> library('upload', $config);
+                $this -> upload -> initialize($config);
+                
+                $data = array();
+                if ($this -> upload -> do_upload('poster')) {
+                    $data['poster'] = TRUE;
+                }
+
                 if ($this -> form_validation -> run() == FALSE) {
                     $id_lowongan = $this -> input -> post('id_lowongan');
                     $data = array('query' => $this -> lowongan_model -> get_lowongan($id_lowongan));
                     $this -> load -> view('lowongan_ubah_view', $data);
                 } else {
-                    $data = array();
-
                     $data['judul'] = $this -> input -> post('judul');
                     $data['tipe'] = $this -> input -> post('tipe');
                     
                     $data['deskripsi'] = $this -> input -> post('deskripsi');
-                    $data['poster'] = $this -> input -> post('poster');
                     $data['syarat'] = '';
                     
                     $temp = $this -> input -> post('fakultas');
