@@ -64,6 +64,13 @@ class Wawancara_model extends CI_Model {
         return $query;   
     }
 
+    public function hapus_jadwal($data) {
+        $this -> db -> where($data);
+        $query = $this -> db -> delete('wawancara');
+
+        return $query;
+    }
+
 }
 
 /* End of file wawancara_model.php */

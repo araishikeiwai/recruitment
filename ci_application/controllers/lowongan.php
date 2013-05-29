@@ -163,15 +163,15 @@ class Lowongan extends CI_Controller {
                     
                     $temp = $this -> input -> post('wawancara');
                     if ($temp == 'N') {
-                        $data['wawancara'] = false;
+                        $data['wawancara'] = 0;
                         $this -> lowongan_model -> update_lowongan($this -> input -> post('id_lowongan'), $data);
 
                         redirect('lowongan/lihat/' . $this -> input -> post('id_lowongan'));
                     } else if ($temp == 'Y') {
-                        $data['wawancara'] = true;
+                        $data['wawancara'] = 1;
                         $this -> lowongan_model -> update_lowongan($this -> input -> post('id_lowongan'), $data);
 
-                        $data = array('query' => $this -> lowongan_model -> get_lowongan($this -> input -> post('id_lowongan')));
+                        $data = array('query' => $this -> lowongan_model -> get_lowongan($this -> input -> post('id_lowongan')), 'jml_wawancara' => 1);
                         $this -> load -> view('ajukan_wawancara_view', $data);
                     }
                 }
@@ -180,27 +180,46 @@ class Lowongan extends CI_Controller {
                 $data = array();
                 $data['id_lowongan'] = $this -> input -> post('id_lowongan');
                 $jml_wawancara = $this -> input -> post('jml_wawancara');
+                $tgl = $this -> input -> post('tanggal');
+                $wkt = $this -> input -> post('waktu');
+
+                //$update['wawancara'] = $this -> lowongan_model -> get_lowongan($data['id_lowongan']) -> row() -> wawancara;
+                $update['wawancara'] = 0;
                 
                 for ($i = 0; $i < $jml_wawancara; $i++) {
-                    $this -> form_validation -> set_rules('tanggal' . $i, 'Tanggal pada baris ke-' . ($i + 1), 'required');
-                    $this -> form_validation -> set_rules('waktu' . $i, 'Waktu pada baris ke-' . ($i + 1), 'required');
+                    if ($tgl[$i] != '' && $wkt[$i] != '') {
+                        $data['tanggal'] = $tgl[$i];
+                        $data['waktu'] = $wkt[$i];
+
+                        $dupl = false;
+
+                        for ($j = 0; $j < $i && ! $dupl; $j++) {
+                            if ($tgl[$i] == $tgl[$j] && $wkt[$i] == $wkt[$j]) {
+                                $dupl = true;
+                            }
+                        }
+
+                        if (!$dupl) {
+                            $update['wawancara'] = $update['wawancara'] + 1;
+                            $dupl = $this -> wawancara_model -> simpan_jadwal($data);
+                        }
+                    }
                 }
 
-                if ($this -> form_validation -> run() == FALSE) {
-                    $id_lowongan = $this -> input -> post('id_lowongan');
-                    $data = array('query' => $this -> lowongan_model -> get_lowongan($id_lowongan));
-                    $this -> load -> view('ajukan_wawancara_view', $data);
-                } else {
-                    for ($i = 0; $i < $jml_wawancara; $i++) {
-                        $data['tanggal'] = $this -> input -> post('tanggal' . $i);
-                        $data['waktu'] = $this -> input -> post('waktu' . $i);
-                        
-                        $this -> wawancara_model -> simpan_jadwal($data);
-                    }
-                    redirect('lowongan/lihat/' . $this -> input -> post('id_lowongan'));
-                }
+                $this -> lowongan_model -> update_lowongan($this -> input -> post('id_lowongan'), $update);
+                redirect('lowongan/lihat/' . $data['id_lowongan']);
             }
         }
+    }
+
+    public function ubah_wawancara_provider($id_lowongan) {
+        $jml_wawancara = $this -> lowongan_model -> get_lowongan($id_lowongan) -> row() -> wawancara;
+        $wawancara = $this -> wawancara_model -> get_wawancara(array('id_lowongan' => $id_lowongan));
+
+        $this -> wawancara_model -> hapus_jadwal(array('id_lowongan' => $id_lowongan));
+
+        $data = array('query' => $this -> lowongan_model -> get_lowongan($id_lowongan), 'jml_wawancara' => $jml_wawancara, 'wawancara' => $wawancara -> result_array());
+        $this -> load -> view('ajukan_wawancara_view', $data);
     }
 
     /**
@@ -296,7 +315,7 @@ class Lowongan extends CI_Controller {
                 $query = $this -> lowongan_model -> get_lowongan($id_lowongan);
                 $lowongan = $query -> row_array();
 
-                if ($lowongan['wawancara']) {
+                if ($lowongan['wawancara'] > 0) {
                     $lowongan = $this -> lowongan_model -> get_lowongan($id_lowongan);
                     $wawancara = $this -> wawancara_model -> get_wawancara(array('id_lowongan' => $id_lowongan));
                     $pendaftar = $this -> pendaftar_model -> get_pendaftar(array('id_lowongan' => $id_lowongan));
@@ -615,7 +634,7 @@ class Lowongan extends CI_Controller {
                     }
                 }
 
-                $data = array('query' => $this -> pengguna_model -> get_pengguna($username));
+                $data = array('query' => $this -> pengguna_model -> get_pengguna($username), 'user_review' => $this -> review_model -> get_review($username));
                 if ($ada) {
                     $this -> load -> view('cv_view', $data);
                 } else {

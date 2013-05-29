@@ -87,7 +87,7 @@
                                             </td>
                                         </tr>
 
-                                        <?php if ($row['lowongan']['wawancara']) {
+                                        <?php if ($row['lowongan']['wawancara'] > 0) {
                                             $waw = 'Tidak ada';
                                             for ($j = 0; $j < count($row['wawancara']); $j++) {
                                                 if ($row['wawancara'][$j]['peserta'] == $this -> session -> userdata('username')) {
@@ -299,20 +299,9 @@
                                         </div>
                                     <?php } ?>
                                 <?php } else if ($this -> session -> userdata('username') == $row['lowongan']['nama_provider']) { ?>
-                                    <?php 
-                                        $span = 4;
-                                        if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) {
-                                            $span = 3;
-                                            if ($row['lowongan']['status'] == 'dimoderasi' || $row['lowongan']['status'] == 'diajukan promosi') {
-                                                $span = 2;
-                                            }
-                                        }
-                                    ?>
-
-
-                                    <div class="span<?php echo $span ?> bg-color-green">
+                                    <div class="span12 bg-color-green">
                                         <?php echo '<a href="' . base_url() . 'lowongan/ubah/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                            <button class="shortcut span<?php echo $span ?>">
+                                            <button class="shortcut span12">
                                                 <span class="icon">
                                                     <i class="icon-pencil"></i>
                                                 </span>
@@ -323,9 +312,9 @@
                                         </a>
                                     </div>
 
-                                    <div class="span<?php echo $span ?> bg-color-red">
+                                    <div class="span12 bg-color-red">
                                         <?php echo '<a href="' . base_url() . 'pesan/broadcast/' . $row['lowongan']['id_lowongan'] . '">'; ?>                                        
-                                        <button class="shortcut span<?php echo $span ?>">
+                                        <button class="shortcut span12">
                                             <span class="icon">
                                                 <i class="icon-broadcast"></i>
                                             </span>
@@ -336,9 +325,9 @@
                                     </div>
 
                                     <?php if ($row['lowongan']['status'] == 'dimoderasi') { ?>
-                                        <div class="span<?php echo $span ?> bg-color-blue">
+                                        <div class="span12 bg-color-blue">
                                             <?php echo '<a href="' . base_url() . 'promosi/ajukan/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                                <button class="shortcut span<?php echo $span ?>">
+                                                <button class="shortcut span12">
                                                     <span class="icon">
                                                         <i class="icon-eye"></i>
                                                     </span>
@@ -349,9 +338,9 @@
                                             </a>
                                         </div>
                                     <?php } else if ($row['lowongan']['status'] == 'diajukan promosi') { ?>
-                                        <div class="span<?php echo $span ?> bg-color-blue">
+                                        <div class="span12 bg-color-blue">
                                             <?php echo '<a href="' . base_url() . 'promosi/verifikasi/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                                <button class="shortcut span<?php echo $span ?>">
+                                                <button class="shortcut span12">
                                                     <span class="icon">
                                                         <i class="icon-cart-2"></i>
                                                     </span>
@@ -363,9 +352,9 @@
                                         </div>
                                     <?php } ?>
 
-                                    <div class="span<?php echo $span ?> bg-color-yellow">
+                                    <div class="span12 bg-color-yellow">
                                         <?php echo '<a href="' . base_url() . 'lowongan/pendaftar/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                            <button class="shortcut span<?php echo $span ?>">
+                                            <button class="shortcut span12">
                                                 <span class="icon">
                                                     <i class="icon-list"></i>
                                                 </span>
@@ -377,7 +366,19 @@
                                     </div>
                                     
                                     <?php if ($row['lowongan']['tgl_tutup'] >= date("Y-m-d")) { ?>
-                                        <div class="span<?php echo $span ?> bg-color-red">
+                                        <div class="span12 bg-color-green">
+                                            <?php echo '<a href="' . base_url() . 'lowongan/ubah_wawancara_provider/' . $row['lowongan']['id_lowongan'] . '">'; ?>
+                                                <button class="shortcut span12">
+                                                    <span class="icon">
+                                                        <i class="icon-calendar"></i>
+                                                    </span>
+                                                    <span class="label">
+                                                        Reset Jadwal Wawancara
+                                                    </span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                        <div class="span12 bg-color-red">
                                             <script type="text/javascript">
                                                 function konfirmasi_hapus(link) {
                                                     var oke = confirm("Apakah Anda yakin menghapus lowongan ini?");
@@ -392,7 +393,7 @@
                                                 echo "'$link'";
                                                 echo ')">'; 
                                             ?>
-                                                <button class="shortcut span<?php echo $span ?>">
+                                                <button class="shortcut span12">
                                                     <span class="icon">
                                                         <i class="icon-cancel-2"></i>
                                                     </span>
@@ -455,13 +456,8 @@
                                             echo "'$link'";
                                             echo ')">'; 
                                         ?>
-                                        <?php if ($row['lowongan']['wawancara']) { ?>
-                                            <div class="span6 bg-color-red">
-                                                <button class="shortcut span6">
-                                        <?php } else { ?>
                                             <div class="span12 bg-color-red">
                                                 <button class="shortcut span12">
-                                        <?php } ?>
                                                     <span class="icon">
                                                         <i class="icon-cancel-2"></i>
                                                     </span>
@@ -471,10 +467,10 @@
                                                 </button>
                                             </div>
                                         </a>
-                                        <?php if ($row['lowongan']['wawancara']) { ?>
-                                            <div class="span6 bg-color-green">
+                                        <?php if ($row['lowongan']['wawancara'] > 0) { ?>
+                                            <div class="span12 bg-color-green">
                                                 <?php echo '<a href="' . base_url() . 'lowongan/ubah_wawancara/' . $row['lowongan']['id_lowongan'] . '">'; ?>
-                                                    <button class="shortcut span6">
+                                                    <button class="shortcut span12">
                                                         <span class="icon">
                                                             <i class="icon-calendar"></i>
                                                         </span>

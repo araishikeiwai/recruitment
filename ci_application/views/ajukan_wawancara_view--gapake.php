@@ -45,65 +45,42 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <?php if (isset($wawancara[0])) { ?>
-                                                    <td>
-                                                        <input style="width:100%" type="date" name="tanggal[]" value="<?php echo set_value('tanggal[]', $wawancara[0]['tanggal']) ?>"/>
-                                                    </td>
-                                                    <td>
-                                                        <input style="width:100%" type="time" name="waktu[]" value="<?php echo set_value('waktu[]', $wawancara[0]['waktu']) ?>"/>
-                                                    </td>
-                                                <?php } else { ?>
-                                                    <td>
-                                                        <input style="width:100%" type="date" name="tanggal[]" value="<?php echo set_value('tanggal[]') ?>"/>
-                                                    </td>
-                                                    <td>
-                                                        <input style="width:100%" type="time" name="waktu[]" value="<?php echo set_value('waktu[]') ?>"/>
-                                                    </td>
-                                                <?php } ?>
+                                                <td>
+                                                    <input style="width:100%" type="date" name="tanggal0" value="<?php echo set_value('tanggal0') ?>"/>
+                                                </td>
+                                                <td>
+                                                    <input style="width:100%" type="time" name="waktu0" value="<?php echo set_value('waktu0') ?>"/>
+                                                </td>
                                             </tr>
                                             <?php
                                                 for ($i = 1; $i < 1000; $i++) {
-                                                    if ($i + 1 <= $jml_wawancara) {
-                                                        echo '<tr id="row' . $i . '"><td>';
-                                                    } else {
-                                                        echo '<tr id="row' . $i . '" hidden><td>';
-                                                    }
-                                                    if (isset($wawancara[$i])) {
-                                                        echo '<input style="width:100%" type="date" name="tanggal[]"  value="' . set_value('tanggal[]', $wawancara[$i]['tanggal']) . '"/></td><td>';
-                                                        echo '<input style="width:100%" type="time" name="waktu[]"  value="' . set_value('waktu[]', $wawancara[$i]['waktu']) . '"/></td></tr>';
-                                                    } else {
-                                                        echo '<input style="width:100%" type="date" name="tanggal[]"  value="' . set_value('tanggal[]') . '"/></td><td>';
-                                                        echo '<input style="width:100%" type="time" name="waktu[]"  value="' . set_value('waktu[]') . '"/></td></tr>';
-                                                    }
+                                                    echo '<tr id="row' . $i . '" hidden><td>';
+                                                    echo '<input style="width:100%" type="date" name="tanggal' . $i . '"  value="' . set_value('tanggal' . $i) . '"/></td><td>';
+                                                    echo '<input style="width:100%" type="time" name="waktu' . $i . '"  value="' . set_value('waktu' . $i) . '"/></td></tr>';
                                                 }
                                             ?>
                                         <tbody>
-                                        <input type="hidden" name="jml_wawancara" id="jml_wawancara" value="<?php echo $jml_wawancara ?>"/>
+                                        <input type="hidden" name="jml_wawancara" id="jml_wawancara" value="1"/>
                                         <?php echo form_close(); ?>
                                     </table>
 
                                     <table id="hidden">
                                         <tr>
                                             <script type="text/javascript">
+                                                var count = 1;
                                                 function tambahJadwal() {
-                                                    var num = document.getElementById('jml_wawancara').value;
-                                                    if (num < 1000) {
-                                                        num = num * 1;
-                                                        document.getElementById('row' + num).removeAttribute('hidden');
-                                                        num = num * 1;
-                                                        num = num + 1;
-                                                        document.getElementById('jml_wawancara').value = num;
+                                                    if (count < 1000) {
+                                                        document.getElementById('row' + count).removeAttribute('hidden');
+                                                        count++;
+                                                        document.getElementById('jml_wawancara').value = count;
                                                     }
                                                 }
 
                                                 function hapusJadwal() {
-                                                    var num = document.getElementById('jml_wawancara').value;
-                                                    if (num > 1) {
-                                                        num = num * 1;
-                                                        num = num - 1;
-                                                        document.getElementById('row' + num).setAttribute('hidden', 'true');
-                                                        num = num * 1;
-                                                        document.getElementById('jml_wawancara').value = num;
+                                                    if (count > 1) {
+                                                        count--;
+                                                        document.getElementById('row' + count).setAttribute('hidden', 'true');
+                                                        document.getElementById('jml_wawancara').value = count;
                                                     }
                                                 }
                                             </script>

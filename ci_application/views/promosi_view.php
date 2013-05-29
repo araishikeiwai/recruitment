@@ -9,7 +9,7 @@
 -->
 
 <div class="span3" style="display: block; width: 213px; float: left; min-height: 100% !important; height: auto; padding-top: 10px; padding-bottom: 10px; margin-top: 10px; margin-left: 7px;">
-    <h4>&nbsp;Lowongan Featured</h4>
+    <h4>&nbsp;Lowongan Direkomendasikan</h4>
     <br/>
     <?php 
         $list_promosi = get_promosi($this -> db);
@@ -21,7 +21,7 @@
             echo '</p>';
         }
         for ($i = 0; $i < (5 - $num); $i++) {
-            echo '<p><a href=' . base_url() . 'lowongan/history_provider>Promosikan lowongan Anda!</a></p>';
+            echo '<p>Slot tersedia</p>';
         }
     ?>
 </div>

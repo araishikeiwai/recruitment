@@ -114,7 +114,7 @@ class Pesan extends CI_Controller {
     public function broadcast($id_lowongan) {
         
         $data = array('query' => 'broadcast', 'id_lowongan' => $id_lowongan);
-        $this -> load -> view("Broadcast_view", $data);
+        $this -> load -> view("broadcast_view", $data);
     }
 
     /**
