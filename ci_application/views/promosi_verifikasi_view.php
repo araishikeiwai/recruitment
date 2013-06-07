@@ -1,5 +1,15 @@
     <?php include('header_view_0.php'); ?>
 
+<!--    
+- View - Verifikasi pembayaran promosi lowongan
+-  
+- Halaman untuk verifikasi pembayaran promosi lowongan
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel, Ahmad Faruq Waqfi
+- @copyright recrUItment, 24-Apr-2013
+- @version 1.1.0.2
+-->
+
     <title>Verifikasi Pembayaran Promosi Lowongan</title>
     
     <?php include('header_view.php'); ?>

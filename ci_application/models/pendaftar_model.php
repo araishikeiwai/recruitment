@@ -9,6 +9,13 @@
 * @copyright recrUItment, 24-Apr-2013
 * @version 1.1.0.2
 * 
+* ================================ UPDATE ================================
+*
+* Menambah fungsi untuk keperluan history lowongan
+*
+* @author Ricky Arifandi Daniel, Ahmad Faruq Waqfi
+* @copyright recrUItment, 7-Jun-2013
+* @version 1.3.0.0
 */
 class Pendaftar_model extends CI_Model {
 
@@ -29,6 +36,12 @@ class Pendaftar_model extends CI_Model {
         return $query;
     }
 
+    /**
+    * Me-retrieve seluruh lowongan dan pendaftarnya
+    *
+    * @param string $data kriteria pencarian pada query
+    * @return table seluruh lowongan dan pendaftar yang memenuhi kriteria query
+    */
     public function get_pendaftar_history($data) {
         $this->db->select('*');
         $this->db->from('pendaftar');

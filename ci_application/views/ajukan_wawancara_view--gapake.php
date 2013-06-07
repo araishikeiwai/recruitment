@@ -8,7 +8,7 @@
 - @copyright recrUItment, 24-Apr-2013
 - @version 1.1.0.2
 -->
-    <title>Ajukan Lowongan</title>
+    <title>Ajukan Wawancara</title>
 
     <?php include('header_view.php'); ?>
 

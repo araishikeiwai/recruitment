@@ -1,5 +1,15 @@
     <?php include('header_view_0.php'); ?>
 
+<!--    
+- View - Paket Promosi
+-  
+- Halaman pemilihan paket promosi
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel, Ahmad Faruq Waqfi
+- @copyright recrUItment, 6-Jun-2013
+- @version 1.3.0.0
+-->
+
     <title>Ajukan Promosi</title>
     
     <?php include('header_view.php'); ?>

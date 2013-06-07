@@ -9,16 +9,33 @@
 * @author Ricky Arifandi Daniel
 * @copyright recrUItment, 24-Apr-2013
 * @version 1.1.0.0
+*
+* ================================ UPDATE ================================
+*
+* Menambah fungsi untuk fitur pesan dan notifikasi
+*
+* @author Ricky Arifandi Daniel, Erryan Sazany
+* @copyright recrUItment, 7-Jun-2013
+* @version 1.3.0.0
 * 
 */
 class Pesan_model extends CI_Model {
 
+    /**
+    * Me-load helper date
+    */
     public function __construct() {
         parent::__construct();
 
         $this->load->helper('date');
     }
 
+    /**
+    * Me-retrieve pesan dengan penerima tertentu
+    *
+    * @param string $id_penerima username penerima
+    * @return table pesan dengan username penerima terkait
+    */
     public function get_pesan_by_penerima($id_penerima) {
         $this->db->select('*');
         $this->db->from('pesan');
@@ -29,6 +46,12 @@ class Pesan_model extends CI_Model {
         return $query;
     }
 
+    /**
+    * Me-retrieve pengguna dengan id tertentu
+    *
+    * @param string $id_pesan id pesan terkait
+    * @return table pesan dengan id tertentu
+    */
     public function get_pesan_by_id($id_pesan) {
         $this->db->select('*');
         $this->db->from('pesan');
@@ -38,6 +61,12 @@ class Pesan_model extends CI_Model {
         return $query;
     }
 
+    /**
+    * Meng-update status pesan (terbaca/belum dibaca)
+    *
+    * @param string $id_pesan id pesan terkait
+    * @param string $data data terkait update status pesan
+    */
     public function update_status_pesan($id_pesan, $data) {
         $this -> db -> where('id_pesan', $id_pesan);
         
@@ -46,6 +75,12 @@ class Pesan_model extends CI_Model {
         return $query;
     }
 
+    /**
+    * Menyimpan pesan
+    *
+    * @param string $data data terkait update status pesan
+    * @return int id pesan tersebut
+    */
     public function simpan_pesan($data) {
         $this -> db -> select_max('id_pesan');
         $id = $this -> db -> get('pesan');
@@ -58,6 +93,12 @@ class Pesan_model extends CI_Model {
         return $id_pesan;
     }
 
+    /**
+    * Menyimpan pesan broadcast
+    *
+    * @param string $data data terkait update status pesan
+    * @return int id pesan tersebut
+    */
     public function simpan_pesan_broadcast($data) {
         //ambil semua pendaftar
         $this -> db -> select('username');

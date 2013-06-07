@@ -1,6 +1,6 @@
     <?php include('header_view_0.php'); ?>
 <!--    
-- View - Ajukan Judul Tipe
+- View - Ubah Lowongan
 -  
 - Halaman pengubahan data terkait suatu lowongan
 -

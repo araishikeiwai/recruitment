@@ -11,12 +11,19 @@
 * @copyright recrUItment, 24-Apr-2013
 * @version 1.1.0.2
 * 
+* ================================ UPDATE ================================
+*
+* Menambah function untuk fitur review dan history lowongan
+*
+* @author Ricky Arifandi Daniel, Erryan Sazany, Ahmad Faruq Waqfi
+* @copyright recrUItment, 7-Jun-2013
+* @version 1.3.0.0
 */
 class Lowongan extends CI_Controller {
 
     /**
     * Mengkonstruksi controller dan melakukan pengaturan validasi, lalu me-load model untuk
-    * wawancara, lowongan, pendaftar, reviwq, dan pengguna.
+    * wawancara, lowongan, pendaftar, review, dan pengguna.
     */
     public function __construct() {
         parent::__construct();
@@ -675,7 +682,10 @@ class Lowongan extends CI_Controller {
     }
 
     /**
-    * unused in this version
+    * Menampilkan halaman untuk pemberian review
+    *
+    * @param integer $id_lowongan nomor identitas lowongan sesuai database
+    * @param string $username username suatu pengguna
     */
     public function beri_review($id_lowongan, $username) {
         if (!$this->session->userdata('logged_in')) {
@@ -691,6 +701,10 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Melakukan penyimpanan suatu review
+    *
+    */
     public function simpan_review() {
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -707,6 +721,9 @@ class Lowongan extends CI_Controller {
 
     }
 
+    /**
+    * Menampilkan halaman history lowongan yang pernah dibuka
+    */
     public function history_provider(){
         if (!$this->session->userdata('logged_in')) {
             redirect('');
@@ -717,6 +734,9 @@ class Lowongan extends CI_Controller {
         }
     }
 
+    /**
+    * Menampilkan halaman history lowongan yang didaftar
+    */
     public function history_seeker() {
            if (!$this->session->userdata('logged_in')) {
             redirect('');

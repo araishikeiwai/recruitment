@@ -10,11 +10,18 @@
 * @copyright recrUItment, 24-Apr-2013
 * @version 1.1.0.0
 * 
+* ================================ UPDATE ================================
+*
+* Menambah function untuk segala keperluan mengenai pesan dan notifikasi
+*
+* @author Ricky Arifandi Daniel, Ahmad Faruq Waqfi
+* @copyright recrUItment, 7-Jun-2013
+* @version 1.3.0.0
 */
 class Promosi extends CI_Controller {
 
     /**
-    * ...
+    * Mengkonstruksi controller dan melakukan pengaturan validasi, lalu me-load model untuk pengguna dan promosi.
     */
     public function __construct() {
         parent::__construct();
@@ -28,7 +35,7 @@ class Promosi extends CI_Controller {
     }
 
 	/**
-	* unused in this version
+	* Meredirect ke halaman ini
 	*/
     public function index() {
         if (!$this -> session -> userdata('logged_in')) {
@@ -39,7 +46,11 @@ class Promosi extends CI_Controller {
     }
 
     /**
-	* unused in this version
+	* Melakukan pengajuan terhadap suatu promosi
+    *
+    * @param string $id_lowongan id lowongan terkait
+    * @param string $par flag untuk mekanisme pengajuan promosi
+    * @param string $paket paket promosi
 	*/
     public function ajukan($id_lowongan, $par = '', $paket = '') {
         if (!$this -> session -> userdata('logged_in')) {
@@ -75,7 +86,9 @@ class Promosi extends CI_Controller {
     }
 
     /**
-	* unused in this version
+	* Membuka halaman untuk verifikasi terhadap pembayaran suatu promosi lowongan
+    *
+    * @param string $id_lowongan id lowongan terkait
 	*/
     public function verifikasi($id_lowongan) {
         if (!$this -> session -> userdata('logged_in')) {
@@ -96,6 +109,9 @@ class Promosi extends CI_Controller {
         }
     }
 
+    /**
+    * Membuka halaman untuk verifikasi terhadap pembayaran suatu promosi lowongan
+    */
     public function simpan_verifikasi() {
         if (!$this -> session -> userdata('logged_in')) {
             redirect('');
@@ -134,6 +150,11 @@ class Promosi extends CI_Controller {
         }
     }
 
+    /**
+    * Membatalkan pengajuan promosi suatu lowongan
+    *
+    * @param string $id_lowongan id lowongan terkait
+    */
     public function batal_ajukan($id_lowongan) {
         if (!$this -> session -> userdata('logged_in')) {
             redirect('');

@@ -10,6 +10,13 @@
 * @copyright recrUItment, 24-Apr-2013
 * @version 1.2.0.0
 * 
+* ================================ UPDATE ================================
+*
+* Melengkapi function delete_session
+*
+* @author Ricky Arifandi Daniel
+* @copyright recrUItment, 7-Jun-2013
+* @version 1.3.0.0
 */
 class Authentication extends CI_Controller {
 
@@ -121,7 +128,7 @@ class Authentication extends CI_Controller {
     }
 
     /**
-    * unused for this version
+    * Menghapus session
     */
     public function delete_session() {
         $this -> session -> sess_destroy();

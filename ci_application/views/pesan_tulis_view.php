@@ -1,10 +1,10 @@
     <?php include('header_view_0.php'); ?>
 <!--    
-- View - Cari
+- View - Tulis Pesan
 -  
-- Halaman hasil pencarian lowongan
+- Halaman untuk penulisan pesan
 -
-- @author Nur Ulul Asman, Ricky Arifandi Daniel, Ahmad Faruq Waqfi
+- @author Nur Ulul Asman, Ricky Arifandi Daniel, Erryan Sazany
 - @copyright recrUItment, 24-Apr-2013
 - @version 1.1.0.2
 -->

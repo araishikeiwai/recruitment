@@ -10,11 +10,18 @@
 * @copyright recrUItment, 24-Apr-2013
 * @version 1.1.0.2
 * 
+* ================================ UPDATE ================================
+*
+* Menambah kode untuk menampilkan review di panel sebelah kanan
+*
+* @author Ricky Arifandi Daniel, Erryan Sazany
+* @copyright recrUItment, 7-Jun-2013
+* @version 1.3.0.0
 */
 class Profil extends CI_Controller {
 
     /**
-    * Mengkonstruksi controller dan melakukan pengaturan validasi, lalu me-load model untuk pengguna.
+    * Mengkonstruksi controller dan melakukan pengaturan validasi, lalu me-load model untuk pengguna dan review.
     */
     public function __construct() {
         parent::__construct();

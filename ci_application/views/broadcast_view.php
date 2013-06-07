@@ -1,12 +1,12 @@
     <?php include('header_view_0.php'); ?>
 <!--    
-- View - Cari
+- View - Broadcast
 -  
-- Halaman hasil pencarian lowongan
+- Halaman pengiriman pesan broadcast
 -
-- @author Nur Ulul Asman, Ricky Arifandi Daniel, Ahmad Faruq Waqfi
-- @copyright recrUItment, 24-Apr-2013
-- @version 1.1.0.2
+- @author Nur Ulul Asman, Erryan Sazany
+- @copyright recrUItment, 7-Jun-2013
+- @version 1.3.0.0
 -->
 
     <title>Kirim Broadcast</title>

@@ -9,6 +9,13 @@
 * @copyright recrUItment, 24-Apr-2013
 * @version 1.2.0.0
 * 
+* ================================ UPDATE ================================
+*
+* Memperbaiki koneksi ldap
+*
+* @author Ricky Arifandi Daniel
+* @copyright recrUItment, 7-Jun-2013
+* @version 1.3.0.0
 */
 class Ldap_model extends CI_Model {
 

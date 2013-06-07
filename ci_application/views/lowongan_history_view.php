@@ -1,4 +1,15 @@
 <?php include('header_view_0.php'); ?>
+
+<!--    
+- View - History Lowongan
+-  
+- Halaman berisi history lowongan
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel, Ahmad Faruq Waqfi
+- @copyright recrUItment, 24-Jun-2013
+- @version 1.3.0.0
+-->
+
     <title>History Lowongan</title>
     <?php include('header_view.php'); ?>
         <div class="page [secondary] with-sidebar">

@@ -1,5 +1,5 @@
 <!--    
-- View - Ajukan Judul Tipe
+- View - Lowongan berhasil dibuat
 -  
 - Halaman berisi pesan berhasil mendaftar pada suatu lowongan
 -

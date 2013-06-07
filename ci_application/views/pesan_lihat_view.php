@@ -1,5 +1,15 @@
     <?php include('header_view_0.php'); ?>
-    
+
+<!--    
+- View - Lihat Pesan
+-  
+- Halaman isi pesan
+-
+- @author Nur Ulul Asman, Ricky Arifandi Daniel, Erryan Sazany
+- @copyright recrUItment, 6-Jun-2013
+- @version 1.3.0.0
+-->
+
     <title>Lihat Pesan</title>
 
     <?php include('header_view.php'); ?>

@@ -1,15 +1,15 @@
     <?php include('header_view_0.php'); ?>
 <!--    
-- View - Cari
+- View - Review
 -  
-- Halaman hasil pencarian lowongan
+- Halaman pemberian review
 -
 - @author Nur Ulul Asman, Ricky Arifandi Daniel, Ahmad Faruq Waqfi
 - @copyright recrUItment, 24-Apr-2013
 - @version 1.1.0.2
 -->
 
-    <title>Daftar Pesan</title>
+    <title>Beri Review</title>
 
     <?php include('header_view.php'); ?>
 		

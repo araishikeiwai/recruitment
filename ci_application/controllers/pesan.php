@@ -10,6 +10,13 @@
 * @copyright recrUItment, 24-Apr-2013
 * @version 1.1.0.0
 * 
+* ================================ UPDATE ================================
+*
+* Menambah function untuk segala keperluan mengenai pesan dan notifikasi
+*
+* @author Ricky Arifandi Daniel, Erryan Sazany
+* @copyright recrUItment, 7-Jun-2013
+* @version 1.3.0.0
 */
 class Pesan extends CI_Controller {
 
@@ -29,7 +36,9 @@ class Pesan extends CI_Controller {
     }
 
     /**
-    * unused in this version
+    * Membuka halaman berisi isi suatu pesan dan menandainya dengan "read" jika belum pernah dibuka sebelumnya
+    *
+    * @param string @id_pesan id pesan terkait
     */
     public function lihat($id_pesan) {
         $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_id($id_pesan));
@@ -46,7 +55,7 @@ class Pesan extends CI_Controller {
     }
 
     /**
-    *
+    *  Membuka halaman berisi daftar pesan
     */
     public function daftar_pesan() {
         $data = array('query' => 'pesan', 'pesan' => $this -> pesan_model -> get_pesan_by_penerima($this -> session -> userdata('username')));
@@ -65,7 +74,9 @@ class Pesan extends CI_Controller {
     }
 
     /**
-    * unused in this version
+    * Membuka halaman untuk menuliskan dan mengirim pesan
+    *
+    * @param string @id_penerima username penerima pesan
     */
     public function tulis($id_penerima) {
         $data = array('query' => 'tulispesan', 'penerima' => $id_penerima);
@@ -75,7 +86,10 @@ class Pesan extends CI_Controller {
     }
 
     /**
-    * unused in this version
+    * Membuka halaman untuk membalas pesan
+    *
+    * @param string @id_pengirim username pengirim pesan
+    * @param string @id_pesan id pesan terkait
     */
     public function balas($id_pengirim, $id_pesan) {
         $data = array('query' => 'balaspesan', 'pengirim' => $id_pengirim, 'id_pesan' => $id_pesan);
@@ -94,7 +108,7 @@ class Pesan extends CI_Controller {
     }
 
     /**
-    * unused in this version
+    * Melakukan pengiriman pesan
     */
     public function kirim() {
         $data = array();
@@ -109,7 +123,9 @@ class Pesan extends CI_Controller {
     }
 
     /**
-    * unused in this version
+    * Membuka halaman untuk mengirim pesan secara broadcast
+    *
+    * @param string $id_lowongan id lowongan terkait
     */
     public function broadcast($id_lowongan) {
         
@@ -118,7 +134,7 @@ class Pesan extends CI_Controller {
     }
 
     /**
-    * unused in this version
+    * Mengirimkan pesan broadcast ke seluruh pendaftar lowongan
     */
     public function kirim_broadcast() {
         $data = array();
@@ -129,10 +145,10 @@ class Pesan extends CI_Controller {
 
         $data['isi'] = $data['isi'] . '<br/><br/><i>Ini adalah pesan broadcast dari lowongan <a target="_blank" href="' . base_url() . 'lowongan/lihat/' . $data['id_lowongan'] . '">ini</a>.<br/>';
 
-        echo 'id_lowongan : '. $data['id_lowongan']. '<br/>';
-        echo 'pengirim : '. $data['pengirim']. '<br/>';
-        echo 'subject : ' . $data['subject'] . '<br />';
-        echo 'isi : ' . $data['isi'] . '<br />';
+        // echo 'id_lowongan : '. $data['id_lowongan']. '<br/>';
+        // echo 'pengirim : '. $data['pengirim']. '<br/>';
+        // echo 'subject : ' . $data['subject'] . '<br />';
+        // echo 'isi : ' . $data['isi'] . '<br />';
         $id_pesan = $this -> pesan_model -> simpan_pesan_broadcast($data);
 
         redirect('lowongan/lihat/' . $data['id_lowongan']);

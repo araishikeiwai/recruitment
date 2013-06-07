@@ -10,6 +10,13 @@
 * @copyright recrUItment, 24-Apr-2013
 * @version 1.1.0.2
 * 
+* ================================ UPDATE ================================
+*
+* Menambah function promosi, tolak_promosi, dan promosi_lowongan
+*
+* @author Ricky Arifandi Daniel
+* @copyright recrUItment, 7-Jun-2013
+* @version 1.3.0.0
 */
 class Admin extends CI_Controller {
 
@@ -24,7 +31,7 @@ class Admin extends CI_Controller {
     }
 
     /**
-    * unused for this version
+    * Redirect ke halaman utama untuk admin
     */
     public function index() {
         redirect('');
@@ -43,6 +50,11 @@ class Admin extends CI_Controller {
         }
     }
 
+    /**
+    * Melakukan penolakan terhadap pengajuan suatu lowongan
+    *
+    * @param string @id_lowongan id lowongan terkait
+    */
     public function tolak_moderasi($id_lowongan) {
         if ($this -> session -> userdata('status') == 'admin') {
             $lowongan = $this -> lowongan_model -> get_lowongan($id_lowongan) -> row_array();
@@ -65,6 +77,8 @@ class Admin extends CI_Controller {
     /**
     * Merubah status lowongan yang dimoderasi oleh admin, dari 'belum dimoderasi' menjadi 'dimoderasi'
     * Untuk menyelesaikan keperluan moderasi lowongan bagi admin.
+    *
+    * @param string $id_lowongan id lowongan terkait
     */
     public function moderasi_lowongan($id_lowongan) {
         if ($this -> session -> userdata('status') == 'admin') {
@@ -77,7 +91,7 @@ class Admin extends CI_Controller {
     }
 
     /**
-    * unused for this version
+    * Menampilkan lowongan yang diajukan promosi dan telah diverifikasi pembayarannya oleh provider terkait
     */
     public function promosi() {
         if ($this -> session -> userdata('status') == 'admin') {
@@ -88,6 +102,11 @@ class Admin extends CI_Controller {
         }
     }
 
+    /**
+    * Menolak ajuan promosi suatu lowongan, dan mengirimkan notifikasi bahwa promosi tidak diterima
+    *
+    * @param string $id_lowongan id lowongan terkait
+    */
     public function tolak_promosi($id_lowongan) {
         if ($this -> session -> userdata('status') == 'admin') {
             $lowongan = $this -> lowongan_model -> get_lowongan($id_lowongan) -> row_array();
@@ -109,7 +128,9 @@ class Admin extends CI_Controller {
     }
 
     /**
-    * unused for this version
+    * Menyetujui ajuan promosi suatu lowongan
+    *
+    * @param string $id_lowongan id lowongan terkait
     */
     public function promosi_lowongan($id_lowongan) {
         if ($this -> session -> userdata('status') == 'admin') {
